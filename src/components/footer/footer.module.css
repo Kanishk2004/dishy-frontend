@@ -1,0 +1,45 @@
+.container {
+    border-top: 2px solid var(--softgray);
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.main {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 40px;
+    padding-top: 30px;
+    border-bottom: 2px solid var(--softgray);
+}
+
+.brand {
+    width: 25%;
+    font-size: 15px;
+    color: var(--lightgray);
+}
+.brand h1{
+    color: var(--darkpink);
+    margin-bottom: 20px;
+    font-size: 40px;
+}
+
+.links {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    font-size: 15px;
+    color: var(--lightgray);
+}
+
+.footer {
+    padding-top: 20px;
+    font-size: 13px;
+    display: flex;
+    justify-content: space-between;
+    color: var(--lightgray);
+}
+.icons {
+    display: flex;
+    gap: 20px;
+}

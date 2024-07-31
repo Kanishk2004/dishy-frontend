@@ -1,0 +1,48 @@
+.container {
+	height: 100px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.logo {
+	color: var(--darkpink);
+	font-size: 50px;
+	font-weight: bold;
+}
+
+.links {
+	width: 400px;
+    height: 40px;
+	display: flex;
+	justify-content: space-between;
+}
+.link {
+	color: var(--darkgray);
+	font-size: 20px;
+	padding: 10px;
+	box-sizing: content-box;
+}
+.link:hover {
+	border-bottom: 2px solid var(--darkpink);
+}
+
+.buttons {
+	width: 200px;
+	font-size: 20px;
+	display: flex;
+	justify-content: space-between;
+}
+.button {
+	padding: 10px;
+	border: 2px solid var(--darkpink);
+	border-radius: 7px;
+}
+.button:hover {
+	background: var(--darkpink);
+	color: white;
+}
+.button:nth-child(2) {
+	background: var(--darkpink);
+	color: white;
+}
