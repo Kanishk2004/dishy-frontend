@@ -37,6 +37,7 @@
     font-size: 13px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     color: var(--lightgray);
 }
 .icons {

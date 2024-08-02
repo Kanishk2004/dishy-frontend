@@ -1,7 +1,12 @@
+'use client';
 import Link from 'next/link';
 import styles from './navbar.module.css';
+import UserProfile from './userProfile/UserProfile';
+import { useAuth } from '@/context/AuthContext';
 
 const Navbar = () => {
+	let {isAuthenticated} = useAuth();
+
 	return (
 		<div className={styles.container}>
 			<Link href={'/'} className={styles.logo}>
@@ -23,10 +28,18 @@ const Navbar = () => {
 				</Link>
 			</div>
 
-			<div className={styles.buttons}>
-				<Link href={'/login'} className={styles.button}>Log in</Link>
-				<Link href={'/signup'}className={styles.button}>Sign up</Link>
-			</div>
+			{isAuthenticated ? (
+				<UserProfile />
+			) : (
+				<div className={styles.buttons}>
+					<Link href={'/login'} className={styles.button}>
+						Log in
+					</Link>
+					<Link href={'/register'} className={styles.button}>
+						Sign up
+					</Link>
+				</div>
+			)}
 		</div>
 	);
 };

@@ -1,0 +1,31 @@
+.container {
+    width: 150px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.button {
+	padding: 10px;
+	border: 2px solid var(--darkpink);
+	border-radius: 7px;
+    color: var(--darkgray);
+}
+.button:hover {
+	background: var(--darkpink);
+	color: white;
+}
+
+.profile {
+    height: 50px;
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid var(--darkpink);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.profile:hover {
+    background: var(--darkpink);
+}

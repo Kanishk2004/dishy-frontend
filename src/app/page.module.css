@@ -1,7 +1,15 @@
+.loadingContainer {
+  height: calc(100vh - 100px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .container {
   width: 100%;
+  height: calc(100vh - 100px);
 	display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
   color: var(--lightgray);
-	/* align-items: center; */
 }
