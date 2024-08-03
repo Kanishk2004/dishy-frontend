@@ -11,20 +11,16 @@
 	--darkgray: #373233;
 	--gray: #524a4c;
 	--lightgray: #6d6265;
+	--softgray: #e5e5e5;
+
 	--white: #ffffff;
 
-	--softgray: #e5e5e5;
 }
 
 * {
 	margin: 0;
 	border: 0;
 	box-sizing: border-box;
-}
-
-body {
-	background-color: var(--bg);
-	color: var(--text);
 }
 
 a {
@@ -41,4 +37,11 @@ a {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
+}
+
+.loadingContainer {
+	height: calc(100vh - 100px);
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
