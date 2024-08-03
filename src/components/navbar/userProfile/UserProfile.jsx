@@ -1,34 +1,14 @@
 'use client';
 import Link from 'next/link';
 import styles from './userProfile.module.css';
-import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { useAuth } from '@/context/AuthContext';
 
-const UserProfile = () => {
-
-    const {setIsAuthenticated} = useAuth();
-
-	const router = useRouter();
+const UserProfile = ({ user }) => {
+	const { logout } = useAuth();
 
 	const handleLogout = async () => {
-		try {
-			let response = await fetch('http://localhost:8080/api/v1/users/logout', {
-				method: 'POST',
-				credentials: 'include',
-			});
-
-			response = await response.json();
-
-			if (response.success) {
-				setIsAuthenticated(false);
-				router.push('/login');
-			} else {
-				console.error('Logout failed: ', response.message);
-			}
-		} catch (error) {
-			console.log('Error: ', error);
-		}
+		await logout();
 	};
 
 	return (
@@ -38,7 +18,12 @@ const UserProfile = () => {
 			</Link>
 			<Link href={'/profile'}>
 				<div className={styles.profile}>
-					<Image src={'/avatar.png'} alt="avatar" width={40} height={40} />
+					<Image
+						src={user?.avatar || '/avatar.png'}
+						alt="avatar"
+						width={40}
+						height={40}
+					/>
 				</div>
 			</Link>
 		</div>

@@ -2,44 +2,18 @@
 import { useState } from 'react';
 import styles from './loginForm.module.css';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
+import MessageBox from '../messageBox/MessageBox';
 
 const LoginForm = () => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 
-	const { setIsAuthenticated } = useAuth();
-
-	const router = useRouter();
+	const { login } = useAuth();
 
 	const handleLogin = async (e) => {
 		e.preventDefault();
-
-		try {
-			let response = await fetch('http://localhost:8080/api/v1/users/login', {
-				method: 'POST',
-				body: JSON.stringify({
-					email,
-					password,
-				}),
-				headers: {
-					'Content-type': 'application/json',
-				},
-				credentials: 'include',
-			});
-
-			response = await response.json();
-
-			if (response.success) {
-				setIsAuthenticated(true);
-				router.push('/');
-			} else {
-				console.error('Login failed: ', response.message);
-			}
-		} catch (error) {
-			console.log('Error: ', error);
-		}
+		await login(email, password);
 	};
 	return (
 		<div className={styles.container}>
@@ -64,10 +38,11 @@ const LoginForm = () => {
 				/>
 				<button type="submit">Log in</button>
 			</form>
+
 			<p>
 				Don&apos;t have an account?{' '}
 				<Link href={'/register'}>
-					<b>Register</b>
+					<b>Sign Up</b>
 				</Link>
 			</p>
 		</div>
