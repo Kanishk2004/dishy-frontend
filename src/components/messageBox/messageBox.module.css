@@ -1,9 +1,22 @@
 .container {
 	position: absolute;
-    left: calc(100vw - 60%);
-    width: 300px;
+	left: calc(50% - 150px);
+	width: 300px;
 	padding: 10px;
-    border-radius: 7px;
+	border-radius: 7px;
+	box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+
+	top: -100px;
+	animation: slideDown 1s ease-out forwards;
+}
+
+@keyframes slideDown {
+	0% {
+		top: -100px; /* Starting point above the viewport */
+	}
+	100% {
+		top: 30px; /* Final position */
+	}
 }
 
 .success {

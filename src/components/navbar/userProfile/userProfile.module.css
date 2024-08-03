@@ -1,31 +1,87 @@
 .container {
-    width: 150px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-.button {
-	padding: 10px;
-	border: 2px solid var(--darkpink);
-	border-radius: 7px;
-    color: var(--darkgray);
-}
-.button:hover {
-	background: var(--darkpink);
-	color: white;
-}
 
 .profile {
-    height: 50px;
-    width: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 2px solid var(--darkpink);
-    border-radius: 50%;
-    cursor: pointer;
+	height: 50px;
+	width: 50px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: 2px solid var(--darkpink);
+	border-radius: 50%;
+	cursor: pointer;
+}
+.profile:hover {
+	border: 3px solid var(--darkpink);
 }
 
-.profile:hover {
-    background: var(--darkpink);
+/* Profile Card */
+.profileCard {
+	width: 300px;
+	height: 250px;
+	padding: 10px 20px;
+	background: var(--softgray);
+	box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+	border-radius: 10px;
+	position: absolute;
+	top: 80px;
+	right: 50px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+    color: var(--darkgray);
+}
+
+.top {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.top p {
+	font-size: 13px;
+    
+}
+.closeBtn:hover {
+    cursor: pointer;
+    background: #b3b3b3;
+    border-radius: 50%;
+}
+
+.middle {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.523);
+    padding: 10px;
+    border-radius: 7px;
+}
+.imgContainer {
+    height: 80px;
+	width: 80px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: 3px solid var(--darkpink);
+	border-radius: 50%;
+	cursor: pointer;
+    margin-bottom: 7px;
+}
+
+.bottom {
+    display: flex;
+    justify-content: space-evenly;
+}
+.btn {
+    padding: 5px 10px;
+    margin-bottom: 10px;
+    border-radius: 7px;
+    font-size: 14px;
+    background: rgba(255, 255, 255, 0.523);
+}
+.btn:hover {
+    background: rgba(255, 255, 255, 0.895);
 }

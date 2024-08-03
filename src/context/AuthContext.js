@@ -62,7 +62,7 @@ export const AuthProvider = ({ children }) => {
 					success: true,
 					message: "logging out..."
 				});
-				router.push('/login');
+				router.push('/');
 			} else {
 				console.error('Logout failed: ', response.message);
 			}
