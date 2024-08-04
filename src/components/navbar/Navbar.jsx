@@ -5,6 +5,8 @@ import UserProfile from './userProfile/UserProfile';
 import { useAuth } from '@/context/AuthContext';
 import { useEffect } from 'react';
 import MessageBox from '../messageBox/MessageBox';
+import { useRouter } from 'next/router';
+import { apiURL } from '@/Constant';
 
 const Navbar = () => {
 	let {
@@ -14,24 +16,29 @@ const Navbar = () => {
 		setUser,
 		message,
 		setMessage,
+		setIsloading,
 	} = useAuth();
+
+	// const router = useRouter();
 
 	useEffect(() => {
 		const fetchUser = async () => {
-			fetch('http://localhost:8080/api/v1/users/me', {
-				method: 'GET',
-				credentials: 'include',
-			})
-				.then((res) => res.json())
-				.then((res) => {
-					setIsAuthenticated(true);
-					setUser(res.data);
-				})
-				.catch((err) => {
-					setIsAuthenticated(false);
-					setUser(null);
-					console.log(err);
+			try {
+				let response = await fetch(`${apiURL}/users/me`, {
+					method: 'GET',
+					credentials: 'include',
 				});
+				response = await response.json();
+
+				if (response.success) {
+					setIsAuthenticated(true);
+					setUser(response.data);
+					// router.push('/recipe');
+				}
+			} catch (error) {
+				setIsAuthenticated(false);
+				setUser(null);
+			}
 		};
 		fetchUser();
 	}, [isAuthenticated, setIsAuthenticated, setUser]);

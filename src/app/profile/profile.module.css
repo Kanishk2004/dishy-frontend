@@ -1,0 +1,24 @@
+.container {
+	display: flex;
+	padding: 20px;
+}
+
+.leftBar {
+	flex: 1;
+	padding: 20px;
+    min-height: calc(100vh - 200px);
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    border-radius: 10px;
+    color: var(--darkgray);
+    background: var(--softgray);
+}
+
+.rightBar {
+	flex: 4;
+    min-height: calc(100vh - 200px);
+	margin-left: 20px;
+	padding: 20px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    border-radius: 10px;
+    background: var(--softgray);
+}

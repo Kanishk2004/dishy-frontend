@@ -17,6 +17,10 @@
 .profile:hover {
 	border: 3px solid var(--darkpink);
 }
+.avatar {
+	border-radius: 50%;
+	background: white;
+}
 
 /* Profile Card */
 .profileCard {

@@ -3,7 +3,6 @@ import { useState } from 'react';
 import styles from './loginForm.module.css';
 import Link from 'next/link';
 import { useAuth } from '@/context/AuthContext';
-import MessageBox from '../messageBox/MessageBox';
 
 const LoginForm = () => {
 	const [email, setEmail] = useState('');

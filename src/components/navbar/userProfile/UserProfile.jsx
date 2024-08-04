@@ -44,6 +44,7 @@ const UserProfile = ({ user }) => {
 		<div className={styles.container}>
 			<div className={styles.profile} onClick={toggleProfileCard}>
 				<Image
+					className={styles.avatar}
 					src={user?.avatar || '/avatar.png'}
 					alt="avatar"
 					width={40}
@@ -68,6 +69,7 @@ const UserProfile = ({ user }) => {
 					<div className={styles.middle}>
 						<div className={styles.imgContainer}>
 							<Image
+							className={styles.avatar}
 								src={user?.avatar || '/avatar.png'}
 								alt="avatar"
 								width={70}

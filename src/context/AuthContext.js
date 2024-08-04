@@ -1,5 +1,6 @@
 'use client';
 
+import { apiURL } from '@/Constant';
 import { useRouter } from 'next/navigation';
 import { createContext, useState, useContext } from 'react';
 
@@ -9,12 +10,13 @@ export const AuthProvider = ({ children }) => {
 	const [isAuthenticated, setIsAuthenticated] = useState(false);
 	const [user, setUser] = useState(null);
 	const [message, setMessage] = useState(null);
+	const [activeTab, setActiveTab] = useState('profile');
 
 	const router = useRouter();
 
 	const login = async (email, password) => {
 		try {
-			let response = await fetch('http://localhost:8080/api/v1/users/login', {
+			let response = await fetch(`${apiURL}/users/login`, {
 				method: 'POST',
 				body: JSON.stringify({
 					email,
@@ -35,7 +37,7 @@ export const AuthProvider = ({ children }) => {
 					success: true,
 					message: 'Login successfull',
 				});
-				router.push('/');
+				router.push('/recipe');
 			}
 		} catch (error) {
 			setMessage({
@@ -48,7 +50,7 @@ export const AuthProvider = ({ children }) => {
 
 	const logout = async () => {
 		try {
-			let response = await fetch('http://localhost:8080/api/v1/users/logout', {
+			let response = await fetch(`${apiURL}/users/logout`, {
 				method: 'POST',
 				credentials: 'include',
 			});
@@ -60,7 +62,7 @@ export const AuthProvider = ({ children }) => {
 				setUser(null);
 				setMessage({
 					success: true,
-					message: "logging out..."
+					message: 'logged out.',
 				});
 				router.push('/');
 			} else {
@@ -71,6 +73,34 @@ export const AuthProvider = ({ children }) => {
 		}
 	};
 
+	const updateAccount = async (fullName, email, phone, bio) => {
+		try {
+			let response = await fetch(`${apiURL}/users/update-account`, {
+				method: 'POST',
+				body: JSON.stringify({
+					fullName,
+					email,
+					phone,
+					bio,
+				}),
+				headers: {
+					'Content-type': 'application/json',
+				},
+				credentials: 'include',
+			});
+
+			response = await response.json();
+			setMessage({
+				success: true,
+				message: 'Account details updated!',
+			});
+		} catch (error) {
+			setMessage({
+				success: false,
+				message: 'Something went wrong!',
+			});
+		}
+	};
 	return (
 		<AuthContext.Provider
 			value={{
@@ -82,6 +112,9 @@ export const AuthProvider = ({ children }) => {
 				setIsAuthenticated,
 				message,
 				setMessage,
+				activeTab,
+				setActiveTab,
+				updateAccount,
 			}}>
 			{children}
 		</AuthContext.Provider>

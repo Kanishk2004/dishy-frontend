@@ -2,7 +2,8 @@
 import { useState } from 'react';
 import styles from './registerForm.module.css';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useAuth } from '@/context/AuthContext';
+import { apiURL } from '@/Constant';
 
 // username
 // fullName
@@ -17,40 +18,48 @@ const LoginForm = () => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [phone, setPhone] = useState('');
+	const [isUploading, setIsUploading] = useState(false);
 
-	const router = useRouter();
+	const { login, setMessage } = useAuth();
 
 	const handleRegister = async (e) => {
 		e.preventDefault();
 
+		setIsUploading(true);
+
+		const formData = new FormData();
+		formData.append('username', username);
+		formData.append('fullName', fullName);
+		formData.append('email', email);
+		formData.append('password', password);
+		formData.append('phone', phone);
+
+		const res = await fetch('/avatar.png');
+		const blob = await res.blob();
+		formData.append('avatar', blob, 'avatar.png');
+
 		try {
-			let response = await fetch(
-				'http://localhost:8080/api/v1/users/register',
-				{
-					method: 'POST',
-					body: JSON.stringify({
-						username,
-						fullName,
-						email,
-						password,
-						phone,
-					}),
-					headers: {
-						'Content-type': 'application/json',
-					},
-					credentials: 'include',
-				}
-			);
+			let response = await fetch(`${apiURL}/users/register`, {
+				method: 'POST',
+				body: formData,
+				credentials: 'include',
+			});
 
 			response = await response.json();
 
+			setIsUploading(false);
+
 			if (response.success) {
-				router.push('/login');
+				await login(email, password);
 			} else {
 				console.error('Login failed: ', response.message);
 			}
 		} catch (error) {
-			console.log('Error: ', error);
+			setIsUploading(false);
+			setMessage({
+				success: false,
+				message: 'Something went wrong!',
+			});
 		}
 	};
 	return (
@@ -91,25 +100,18 @@ const LoginForm = () => {
 					value={password}
 				/>
 				<input
-					type="tel"
+					type="number"
 					name="phone"
 					id="phone"
-					placeholder="Contact Number"
+					placeholder="Phone"
 					onChange={(e) => setPhone(e.target.value)}
 					value={phone}
 				/>
-				<input
-					type="file"
-					name="avatar"
-					id="avatar"
-					placeholder="Profile pic"
-					// onChange={(e) => setPassword(e.target.value)}
-					// value={phone}
-				/>
 				<button type="submit">Register</button>
 			</form>
+			{isUploading && <p>Please wait, Creating user..</p>}
 			<p>
-				Alrady have an account?{' '}
+				Already have an account?{' '}
 				<Link href={'/login'}>
 					<b>Log In</b>
 				</Link>
