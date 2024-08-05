@@ -24,8 +24,8 @@ const EditForm = ({ user, updateAccount }) => {
 	};
 
 	const handleSave = async () => {
-		await updateAccount(fullName, email, phone, bio);
-        setIsReadOnly(true);
+		await updateAccount(username, fullName, email, phone, bio);
+		setIsReadOnly(true);
 	};
 
 	return (
@@ -64,6 +64,15 @@ const EditForm = ({ user, updateAccount }) => {
 					value={email}
 					onChange={(e) => setEmail(e.target.value)}
 				/>
+				{user?.isEmailVerified ? (
+					<span className={styles.verified}>
+						<i>verified</i>
+					</span>
+				) : (
+					<span className={styles.unVerified}>
+						<i>unverified</i>
+					</span>
+				)}
 			</div>
 
 			<div className={styles.inputContainer}>
@@ -76,6 +85,15 @@ const EditForm = ({ user, updateAccount }) => {
 					value={phone}
 					onChange={(e) => setPhone(e.target.value)}
 				/>
+				{user?.isPhoneVerified ? (
+					<span className={styles.verified}>
+						<i>verified</i>
+					</span>
+				) : (
+					<span className={styles.unVerified}>
+						<i>unverified</i>
+					</span>
+				)}
 			</div>
 
 			<div className={styles.inputContainer}>

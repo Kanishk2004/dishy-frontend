@@ -6,10 +6,11 @@
 .inputContainer{
     display: flex;
     gap: 20px;
+    width: max-content;
 }
 .inputContainer input, .inputContainer textarea{
     flex: 3;
-    width: 400px;
+    width: 300px;
     color: var(--gray);
     padding: 10px;
     border-radius: 5px;
@@ -39,4 +40,19 @@
 }
 .saveBtn:hover {
     background: rgb(227, 227, 0);
+}
+
+.verified {
+    color: green;
+    text-align: center;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+}
+.unVerified {
+    color: red;
+    text-align: center;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
 }

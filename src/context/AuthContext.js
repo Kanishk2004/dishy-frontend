@@ -73,11 +73,12 @@ export const AuthProvider = ({ children }) => {
 		}
 	};
 
-	const updateAccount = async (fullName, email, phone, bio) => {
+	const updateAccount = async (username, fullName, email, phone, bio) => {
 		try {
 			let response = await fetch(`${apiURL}/users/update-account`, {
-				method: 'POST',
+				method: 'PATCH',
 				body: JSON.stringify({
+					username,
 					fullName,
 					email,
 					phone,
@@ -90,10 +91,14 @@ export const AuthProvider = ({ children }) => {
 			});
 
 			response = await response.json();
-			setMessage({
-				success: true,
-				message: 'Account details updated!',
-			});
+			if (response.success) {
+				setUser(response.data);
+
+				setMessage({
+					success: true,
+					message: 'Account details updated!',
+				});
+			}
 		} catch (error) {
 			setMessage({
 				success: false,
