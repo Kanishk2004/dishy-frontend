@@ -11,6 +11,7 @@ export const AuthProvider = ({ children }) => {
 	const [user, setUser] = useState(null);
 	const [message, setMessage] = useState(null);
 	const [activeTab, setActiveTab] = useState('profile');
+	const [myRecipies, setMyRecipies] = useState(null);
 
 	const router = useRouter();
 
@@ -106,6 +107,27 @@ export const AuthProvider = ({ children }) => {
 			});
 		}
 	};
+
+	const fetchUserRecipies = async (userId) => {
+		try {
+			let response = await fetch(`${apiURL}/recipies/u/${userId}`, {
+				method: 'GET',
+				credentials: 'include',
+			});
+			response = await response.json();
+
+			if (response.success) {
+				setMyRecipies(response.data);
+				setMessage({
+					success: true,
+					message: 'User recipies fetched successfully',
+				});
+			}
+		} catch (error) {
+			setMyRecipies(null);
+		}
+	};
+
 	return (
 		<AuthContext.Provider
 			value={{
@@ -120,6 +142,9 @@ export const AuthProvider = ({ children }) => {
 				activeTab,
 				setActiveTab,
 				updateAccount,
+				fetchUserRecipies,
+				myRecipies,
+				setMyRecipies,
 			}}>
 			{children}
 		</AuthContext.Provider>
