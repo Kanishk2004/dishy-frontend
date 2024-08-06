@@ -8,11 +8,11 @@ import ImageForm from './imageForm/ImageForm';
 
 const ManageAccount = () => {
 	const { user, updateAccount } = useAuth();
-	const [editImage, setEditImage] = useState(false);
+	const [imageForm, setImageForm] = useState(false);
 
 	return (
 		<div className={styles.container}>
-			{editImage && <ImageForm setEditImage={setEditImage} />}
+			{imageForm && <ImageForm setImageForm={setImageForm} />}
 			<div className={styles.profile}>
 				<div className={styles.profileImgContainer}>
 					<Image
@@ -24,7 +24,7 @@ const ManageAccount = () => {
 					/>
 					<span
 						className={styles.editBtn}
-						onClick={() => setEditImage(!editImage)}>
+						onClick={() => setImageForm(!imageForm)}>
 						<Image src={'/edit.png'} alt="edit" width={24} height={24} />
 					</span>
 				</div>

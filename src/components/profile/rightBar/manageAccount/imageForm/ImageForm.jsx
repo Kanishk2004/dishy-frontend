@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { useAuth } from '@/context/AuthContext';
 import { apiURL } from '@/Constant';
 
-const ImageForm = ({ setEditImage }) => {
+const ImageForm = ({ setImageForm }) => {
 	const { setMessage, setUser } = useAuth();
 	const [isUploading, setIsUploading] = useState(false);
 	const [selectedImage, setSelectedImage] = useState(null);
@@ -28,7 +28,7 @@ const ImageForm = ({ setEditImage }) => {
 
 	const handleAvatarUpload = async () => {
 		setIsUploading(true);
-        
+
 		const formData = new FormData();
 		formData.append('avatar', selectedImage);
 
@@ -49,7 +49,7 @@ const ImageForm = ({ setEditImage }) => {
 					success: true,
 					message: 'Avatar upload successfull',
 				});
-				setEditImage(false);
+				setImageForm(false);
 			} else {
 				console.error('Login failed: ', response.message);
 			}
@@ -64,6 +64,9 @@ const ImageForm = ({ setEditImage }) => {
 
 	return (
 		<div className={styles.container}>
+			<div className={styles.closeBtn} onClick={() => setImageForm(false)}>
+				<Image src={'/close.png'} alt="close" width={40} height={40} />
+			</div>
 			<div className={styles.formContainer}>
 				<div
 					{...getRootProps({ className: 'dropzone' })}
@@ -80,7 +83,9 @@ const ImageForm = ({ setEditImage }) => {
 							width={100}
 							height={100}
 						/>
-						<button onClick={handleAvatarUpload}>Upload</button>
+						<button className={styles.uploadBtn} onClick={handleAvatarUpload}>
+							Upload
+						</button>
 					</div>
 				)}
 				{isUploading && <p>Uploading...</p>}

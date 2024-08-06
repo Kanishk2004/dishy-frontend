@@ -18,6 +18,8 @@ const MyRecipe = () => {
 					cuisine={recipe?.cuisine}
 					category={recipe?.category}
 					date={recipe?.createdAt}
+					totalTime={recipe?.totalTime}
+					ingredients={recipe?.ingredients.length}
 				/>
 			))}
 		</div>
