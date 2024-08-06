@@ -8,7 +8,7 @@ const MyRecipe = () => {
 
 	return (
 		<div className={styles.container}>
-			{!myRecipies && <h3>You posted 0 recipies</h3>}
+			{(!myRecipies || myRecipies.length === 0) && <h3>You posted 0 recipies</h3>}
 			{myRecipies?.map((recipe) => (
 				<RecipeCard
 					key={recipe?._id}

@@ -12,6 +12,7 @@ export const AuthProvider = ({ children }) => {
 	const [message, setMessage] = useState(null);
 	const [activeTab, setActiveTab] = useState('profile');
 	const [myRecipies, setMyRecipies] = useState(null);
+	const [allRecipies, setAllRecipies] = useState(null);
 
 	const router = useRouter();
 
@@ -38,7 +39,7 @@ export const AuthProvider = ({ children }) => {
 					success: true,
 					message: 'Login successfull',
 				});
-				router.push('/recipe');
+				router.push('/recipies');
 			}
 		} catch (error) {
 			setMessage({
@@ -108,9 +109,9 @@ export const AuthProvider = ({ children }) => {
 		}
 	};
 
-	const fetchUserRecipies = async (userId) => {
+	const fetchUserRecipies = async () => {
 		try {
-			let response = await fetch(`${apiURL}/recipies/u/${userId}`, {
+			let response = await fetch(`${apiURL}/recipies/myRecipies`, {
 				method: 'GET',
 				credentials: 'include',
 			});
@@ -120,11 +121,35 @@ export const AuthProvider = ({ children }) => {
 				setMyRecipies(response.data);
 				setMessage({
 					success: true,
-					message: 'User recipies fetched successfully',
+					message: 'User details fetched successfully',
 				});
 			}
 		} catch (error) {
 			setMyRecipies(null);
+		}
+	};
+
+	const fetchAllRecipies = async () => {
+		try {
+			let response = await fetch(`${apiURL}/recipies/`, {
+				method: 'GET',
+				credentials: 'include',
+			});
+			response = await response.json();
+
+			if (response.success) {
+				setAllRecipies(response.data);
+				setMessage({
+					success: true,
+					message: 'Recipies fetched successfully',
+				});
+			}
+		} catch (error) {
+			setAllRecipies(null);
+			setMessage({
+				success: false,
+				message: 'Something went wrong',
+			});
 		}
 	};
 
@@ -145,6 +170,8 @@ export const AuthProvider = ({ children }) => {
 				fetchUserRecipies,
 				myRecipies,
 				setMyRecipies,
+				fetchAllRecipies,
+				allRecipies,
 			}}>
 			{children}
 		</AuthContext.Provider>

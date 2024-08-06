@@ -8,10 +8,10 @@ import MyRecipe from './myRecipe/MyRecipe';
 import PostRecipe from './postRecipe/PostRecipe';
 
 const RightBar = () => {
-	const { activeTab, fetchUserRecipies, myRecipies, user } = useAuth();
+	const { activeTab, fetchUserRecipies, myRecipies } = useAuth();
 
 	useEffect(() => {
-		fetchUserRecipies(user?._id);
+		fetchUserRecipies();
 		console.log(myRecipies);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);

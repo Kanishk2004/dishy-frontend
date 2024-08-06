@@ -5,6 +5,7 @@
 	background: #f2f2f2;
     border-radius: 8px;
     padding: 20px 10px;
+	position: relative;
 }
 
 .profile {
@@ -23,6 +24,7 @@
 }
 
 .profileImgContainer {
+	position: relative;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -32,4 +34,17 @@
 }
 .profileImg {
 	border-radius: 50%;
+}
+
+.editBtn {
+	position: absolute;
+	right: 10px;
+	bottom: 10px;
+	border: 2px solid var(--darkpink);
+	border-radius: 50%;
+	padding: 5px;
+	display: flex;
+	align-items: center;
+	background: var(--lightpink);
+	cursor: pointer;
 }

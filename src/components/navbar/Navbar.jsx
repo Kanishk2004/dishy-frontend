@@ -61,8 +61,8 @@ const Navbar = () => {
 				<Link href={'/'} className={styles.link}>
 					Home
 				</Link>
-				<Link href={'/recipe'} className={styles.link}>
-					Recipe
+				<Link href={'/recipies'} className={styles.link}>
+					Recipies
 				</Link>
 				<Link href={'/blog'} className={styles.link}>
 					Blog
