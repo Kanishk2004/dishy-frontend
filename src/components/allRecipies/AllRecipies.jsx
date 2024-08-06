@@ -23,7 +23,7 @@ const AllRecipies = () => {
 				</div>
 				<div className={styles.sortBy}>
 					<select id="options" name="options">
-						<option value="latest" selected>
+						<option value="latest" defaultValue={'Sort By'}>
 							Sort By
 						</option>
 						<option value="latest">Latest</option>
@@ -46,6 +46,7 @@ const AllRecipies = () => {
 							date={recipe?.createdAt}
 							totalTime={recipe?.totalTime}
 							ingredients={recipe?.ingredients.length}
+							recipeId={recipe?._id}
 						/>
 					))}
 				</div>
