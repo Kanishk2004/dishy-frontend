@@ -13,8 +13,6 @@ export const AuthProvider = ({ children }) => {
 	const [activeTab, setActiveTab] = useState('profile');
 	const [myRecipies, setMyRecipies] = useState(null);
 	const [allRecipies, setAllRecipies] = useState(null);
-	const [avgRating, setAvgRating] = useState('');
-
 
 	const router = useRouter();
 
@@ -155,22 +153,6 @@ export const AuthProvider = ({ children }) => {
 		}
 	};
 
-	const getAvgRecipeRating = async (recipeId) => {
-		try {
-			let response = await fetch(`${apiURL}/ratings/avg/${recipeId}`, {
-				method: 'GET',
-				credentials: 'include',
-			});
-			response = await response.json();
-
-			if (response.success) {
-				setAvgRating(response.data.avgRating);
-			}
-		} catch (error) {
-			setAvgRating(null);
-		}
-	};
-
 	return (
 		<AuthContext.Provider
 			value={{
@@ -190,8 +172,6 @@ export const AuthProvider = ({ children }) => {
 				setMyRecipies,
 				fetchAllRecipies,
 				allRecipies,
-				getAvgRecipeRating,
-				avgRating
 			}}>
 			{children}
 		</AuthContext.Provider>

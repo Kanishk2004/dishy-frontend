@@ -1,0 +1,17 @@
+.authorDetail {
+	width: fit-content;
+	border-radius: 8px;
+	display: flex;
+	gap: 15px;
+	padding: 10px;
+	background: var(--softgray);
+}
+.authorDetail div {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+.authorDetail p {
+	font-size: 12px;
+	margin-bottom: 3px;
+}

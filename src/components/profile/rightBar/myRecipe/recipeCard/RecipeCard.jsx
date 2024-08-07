@@ -2,8 +2,8 @@
 import Image from 'next/image';
 import styles from './recipeCard.module.css';
 import { useEffect, useState } from 'react';
-import { useAuth } from '@/context/AuthContext';
 import { useRouter } from 'next/navigation';
+import { apiURL } from '@/Constant';
 
 const RecipeCard = ({
 	img,
@@ -16,18 +16,33 @@ const RecipeCard = ({
 	ingredients,
 	recipeId,
 }) => {
+	const [avgRating, setAvgRating] = useState('');
 
 	const router = useRouter();
 
-	const handleViewRecipe = (recipeId)=>{
-		router.push(`/recipies/${recipeId}`)
-	}
+	const handleViewRecipe = (recipeId) => {
+		router.push(`/recipies/${recipeId}`);
+	};
 
-	// const {getAvgRecipeRating, avgRating} = useAuth();
-	// useEffect(() => {
-	// 	getAvgRecipeRating(recipeId);
-	// // eslint-disable-next-line react-hooks/exhaustive-deps
-	// }, []);
+	useEffect(() => {
+		const getAvgRecipeRating = async (recipeId) => {
+			try {
+				let response = await fetch(`${apiURL}/ratings/avg/${recipeId}`, {
+					method: 'GET',
+					credentials: 'include',
+				});
+				response = await response.json();
+
+				if (response.success) {
+					setAvgRating(response.data.avgRating);
+				}
+			} catch (error) {
+				setAvgRating('');
+			}
+		};
+		getAvgRecipeRating(recipeId);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	return (
 		<div className={styles.container}>
@@ -84,7 +99,7 @@ const RecipeCard = ({
 							</div>
 							<p className={styles.detailName}>Ingredients</p>
 						</div>
-						{/* <div>
+						<div>
 							<div className={styles.clockContainer}>
 								<Image src={'/star.png'} alt="book" width={20} height={20} />
 								<p className={styles.totalTime}>
@@ -92,11 +107,15 @@ const RecipeCard = ({
 								</p>
 							</div>
 							<p className={styles.detailName}>Rating</p>
-						</div> */}
+						</div>
 					</div>
 
 					<p className={styles.desc}>{desc.toString().slice(0, 100) + '...'}</p>
-					<button className={styles.btn} onClick={()=> handleViewRecipe(recipeId)}>View Recipe</button>
+					<button
+						className={styles.btn}
+						onClick={() => handleViewRecipe(recipeId)}>
+						View Recipe
+					</button>
 					{/* <p className={styles.date}>{date.toString().slice(0, 10)}</p> */}
 				</div>
 			</div>
