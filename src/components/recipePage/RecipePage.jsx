@@ -30,13 +30,7 @@ const RecipePage = ({ recipe, author, rating }) => {
 				<div className={styles.recipeInfo}>
 					<div className={styles.textContainer}>
 						<h1>{recipe?.title}</h1>
-						<p>
-							{recipe?.description} Lorem ipsum dolor sit amet, consectetur
-							adipisicing elit. Ipsam a, incidunt, ullam sunt odit debitis
-							voluptatem, accusantium doloremque nobis vero illo! Vero ipsa quis
-							a, expedita aspernatur dignissimos nisi nemo quam quo praesentium
-							tempore aliquam vel culpa consequatur eaque sint
-						</p>
+						<p>{recipe?.description}</p>
 					</div>
 					<div className={styles.authorAndRatingContainer}>
 						<div className={styles.ratingDetail}>
@@ -87,8 +81,15 @@ const RecipePage = ({ recipe, author, rating }) => {
 					</div>
 				</div>
 				<div className={styles.pictureContainer}>
-					{recipe?.imageUrl.map((img)=>(
-						<Image key={img} className={styles.img} src={img} alt='picture' width={300} height={200}/>
+					{recipe?.imageUrl.map((img) => (
+						<Image
+							key={img}
+							className={styles.img}
+							src={img}
+							alt="picture"
+							width={300}
+							height={200}
+						/>
 					))}
 				</div>
 			</div>
