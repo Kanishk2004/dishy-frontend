@@ -1,23 +1,14 @@
 import Image from 'next/image';
 import styles from './recipePage.module.css';
 import AuthorCard from './authorCard/AuthorCard';
-import { Suspense } from 'react';
-import Loading from '../loading/Loading';
 import PrepTime from './prepTime/PrepTime';
+import FavIcon from './favoriteIcon/FavIcon';
 
 const RecipePage = ({ recipe, author, rating }) => {
 	return (
 		<div className={styles.container}>
 			<div className={styles.topContainer}>
-				<div className={styles.favContainer}>
-					<Image
-						className={styles.favIcon}
-						src={'/white-favorite.png'}
-						alt="favorite"
-						width={30}
-						height={30}
-					/>
-				</div>
+				<FavIcon recipeId={recipe?._id} />
 				<div className={styles.imgContainer}>
 					<Image
 						className={styles.img}

@@ -14,6 +14,9 @@ export const AuthProvider = ({ children }) => {
 	const [myRecipies, setMyRecipies] = useState(null);
 	const [allRecipies, setAllRecipies] = useState(null);
 
+	const [userFavorites, setUserFavorites] = useState(null);
+	const [loadingFav, setLoadingFav] = useState(false);
+
 	const router = useRouter();
 
 	const login = async (email, password) => {
@@ -32,6 +35,13 @@ export const AuthProvider = ({ children }) => {
 
 			response = await response.json();
 
+			if (!response.success) {
+				setMessage({
+					success: false,
+					message: response.message,
+				});
+			}
+
 			if (response.success) {
 				setIsAuthenticated(true);
 				setUser(response.data.user);
@@ -44,9 +54,8 @@ export const AuthProvider = ({ children }) => {
 		} catch (error) {
 			setMessage({
 				success: false,
-				message: 'Login failed - Invalid credentials',
+				message: 'Login failed',
 			});
-			console.log('Login failed - Invalid credentials');
 		}
 	};
 
@@ -67,11 +76,18 @@ export const AuthProvider = ({ children }) => {
 					message: 'logged out.',
 				});
 				router.push('/');
-			} else {
-				console.error('Logout failed: ', response.message);
+			}
+			if (!response.success) {
+				setMessage({
+					success: false,
+					message: response.message,
+				});
 			}
 		} catch (error) {
-			console.log('Error: ', error);
+			setMessage({
+				success: false,
+				message: 'Logout falied!',
+			});
 		}
 	};
 
@@ -101,6 +117,12 @@ export const AuthProvider = ({ children }) => {
 					message: 'Account details updated!',
 				});
 			}
+			if (!response.success) {
+				setMessage({
+					success: true,
+					message: response.message,
+				});
+			}
 		} catch (error) {
 			setMessage({
 				success: false,
@@ -110,22 +132,34 @@ export const AuthProvider = ({ children }) => {
 	};
 
 	const fetchUserRecipies = async () => {
-		try {
-			let response = await fetch(`${apiURL}/recipies/myRecipies`, {
-				method: 'GET',
-				credentials: 'include',
-			});
-			response = await response.json();
+		if (user) {
+			try {
+				let response = await fetch(`${apiURL}/recipies/myRecipies`, {
+					method: 'GET',
+					credentials: 'include',
+				});
+				response = await response.json();
 
-			if (response.success) {
-				setMyRecipies(response.data);
+				if (response.success) {
+					setMyRecipies(response.data);
+					setMessage({
+						success: true,
+						message: 'User recipies fetched successfully',
+					});
+				}
+				if (!response.success) {
+					setMessage({
+						success: false,
+						message: response.message,
+					});
+				}
+			} catch (error) {
+				setMyRecipies(null);
 				setMessage({
-					success: true,
-					message: 'User details fetched successfully',
+					success: false,
+					message: 'Something went wrong',
 				});
 			}
-		} catch (error) {
-			setMyRecipies(null);
 		}
 	};
 
@@ -144,11 +178,92 @@ export const AuthProvider = ({ children }) => {
 					message: 'Recipies fetched successfully',
 				});
 			}
+			if (!response.success) {
+				setMessage({
+					success: false,
+					message: response.message,
+				});
+			}
 		} catch (error) {
 			setAllRecipies(null);
 			setMessage({
 				success: false,
 				message: 'Something went wrong',
+			});
+		}
+	};
+
+	const getUserFavorites = async () => {
+		if (user) {
+			try {
+				setLoadingFav(true);
+				let response = await fetch(`${apiURL}/favorites/`, {
+					method: 'GET',
+					headers: {
+						'Content-type': 'application/json',
+					},
+					credentials: 'include',
+				});
+				response = await response.json();
+				if (response.success) {
+					setUserFavorites(response.data.recipies);
+				}
+				setLoadingFav(false);
+				if (!response.success) {
+					setUserFavorites(null);
+				}
+			} catch (error) {
+				setMessage({
+					success: false,
+					message: 'Something went wrong',
+				});
+			}
+		}
+	};
+
+	const toggleFavorite = async (recipeId) => {
+		if (user === null) {
+			setMessage({
+				success: false,
+				message: 'You need to login before adding favorites',
+			});
+		}
+
+		if (user) {
+			setLoadingFav(true);
+			try {
+				let response = await fetch(`${apiURL}/favorites/toggle/${recipeId}`, {
+					method: 'POST',
+					headers: {
+						'Content-type': 'application/json',
+					},
+					credentials: 'include',
+				});
+				response = await response.json();
+				if (response.success) {
+					getUserFavorites();
+					setMessage({
+						success: true,
+						message: 'Favorites updated successfully',
+					});
+				}
+				setLoadingFav(false);
+				if (!response.success) {
+					setMessage({
+						success: false,
+						message: response.message,
+					});
+				}
+			} catch (error) {
+				setMessage({
+					success: false,
+					message: 'Something went wrong',
+				});
+			}
+		} else {
+			setMessage({
+				success: false,
+				message: 'You need to login before adding favorites',
 			});
 		}
 	};
@@ -172,6 +287,10 @@ export const AuthProvider = ({ children }) => {
 				setMyRecipies,
 				fetchAllRecipies,
 				allRecipies,
+				toggleFavorite,
+				getUserFavorites,
+				userFavorites,
+				loadingFav,
 			}}>
 			{children}
 		</AuthContext.Provider>

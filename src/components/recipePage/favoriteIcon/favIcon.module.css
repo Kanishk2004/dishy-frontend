@@ -1,0 +1,20 @@
+.container {
+	background: var(--darkpink);
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 8px;
+	border-radius: 50%;
+	cursor: pointer;
+	box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.container:hover {
+	background: var(--lightpink);
+}
+.favIcon {
+    background: none;
+    border-radius: 50%;
+}

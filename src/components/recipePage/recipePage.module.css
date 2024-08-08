@@ -17,23 +17,6 @@
 	position: relative;
 }
 
-.favContainer {
-	background: var(--darkpink);
-	position: absolute;
-	top: 5px;
-	right: 5px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	padding: 8px;
-	border-radius: 50%;
-	cursor: pointer;
-	box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-}
-.favContainer:hover {
-	background: var(--lightpink);
-}
-
 .img {
 	border-radius: 8px;
 	object-fit: cover;

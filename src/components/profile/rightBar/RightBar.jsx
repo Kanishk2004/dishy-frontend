@@ -2,19 +2,14 @@
 import styles from './rightBar.module.css';
 import ManageAccount from '../rightBar/manageAccount/ManageAccount';
 import { useAuth } from '@/context/AuthContext';
-import { Suspense, useEffect } from 'react';
+import { Suspense } from 'react';
 import Loading from '@/components/loading/Loading';
 import MyRecipe from './myRecipe/MyRecipe';
 import PostRecipe from './postRecipe/PostRecipe';
+import Favorites from './favorites/Favorites';
 
 const RightBar = () => {
-	const { activeTab, fetchUserRecipies, myRecipies } = useAuth();
-
-	useEffect(() => {
-		fetchUserRecipies();
-		console.log(myRecipies);
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	const { activeTab } = useAuth();
 
 	return (
 		<div className={styles.container}>
@@ -23,7 +18,7 @@ const RightBar = () => {
 				{activeTab === 'myRecipe' && <MyRecipe />}
 				{activeTab === 'postRecipe' && <PostRecipe />}
 				{activeTab === 'stats' && <h2>Stats</h2>}
-				{activeTab === 'favorites' && <h2>Favorites</h2>}
+				{activeTab === 'favorites' && <Favorites />}
 			</Suspense>
 		</div>
 	);

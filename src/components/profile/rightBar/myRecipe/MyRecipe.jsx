@@ -1,10 +1,16 @@
 'use client';
+import { useEffect } from 'react';
 import styles from './myRecipe.module.css';
 import RecipeCard from './recipeCard/RecipeCard';
 import { useAuth } from '@/context/AuthContext';
 
 const MyRecipe = () => {
-	const { myRecipies } = useAuth();
+	const { myRecipies, fetchUserRecipies } = useAuth();
+
+	useEffect(() => {
+		fetchUserRecipies();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	return (
 		<div className={styles.container}>

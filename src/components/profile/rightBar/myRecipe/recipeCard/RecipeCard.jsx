@@ -1,9 +1,9 @@
 'use client';
 import Image from 'next/image';
 import styles from './recipeCard.module.css';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { apiURL } from '@/Constant';
+import { useAuth } from '@/context/AuthContext';
 
 const RecipeCard = ({
 	img,
@@ -11,12 +11,13 @@ const RecipeCard = ({
 	desc,
 	cuisine,
 	category,
-	date,
 	totalTime,
 	ingredients,
 	recipeId,
 }) => {
-	const [avgRating, setAvgRating] = useState('');
+	const { toggleFavorite, getUserFavorites, userFavorites, loadingFav } =
+		useAuth();
+	// const [avgRating, setAvgRating] = useState('');
 
 	const router = useRouter();
 
@@ -25,32 +26,25 @@ const RecipeCard = ({
 	};
 
 	useEffect(() => {
-		const getAvgRecipeRating = async (recipeId) => {
-			try {
-				let response = await fetch(`${apiURL}/ratings/avg/${recipeId}`, {
-					method: 'GET',
-					credentials: 'include',
-				});
-				response = await response.json();
-
-				if (response.success) {
-					setAvgRating(response.data.avgRating);
-				}
-			} catch (error) {
-				setAvgRating('');
-			}
-		};
-		getAvgRecipeRating(recipeId);
+		getUserFavorites();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	return (
 		<div className={styles.container}>
 			<div className={styles.imgContainer}>
-				<div className={styles.favorite}>
+				<div
+					className={styles.favorite}
+					onClick={() => toggleFavorite(recipeId)}>
 					<Image
 						className={styles.favIcon}
-						src={'/white-favorite.png'}
+						src={
+							loadingFav
+								? '/circle-loading.gif'
+								: userFavorites?.includes(recipeId)
+								? '/white-filled-fav.png'
+								: '/white-favorite.png'
+						}
 						alt="favorite"
 						width={20}
 						height={20}
@@ -99,15 +93,6 @@ const RecipeCard = ({
 							</div>
 							<p className={styles.detailName}>Ingredients</p>
 						</div>
-						<div>
-							<div className={styles.clockContainer}>
-								<Image src={'/star.png'} alt="book" width={20} height={20} />
-								<p className={styles.totalTime}>
-									<b>{avgRating}</b>
-								</p>
-							</div>
-							<p className={styles.detailName}>Rating</p>
-						</div>
 					</div>
 
 					<p className={styles.desc}>{desc.toString().slice(0, 100) + '...'}</p>
@@ -116,7 +101,6 @@ const RecipeCard = ({
 						onClick={() => handleViewRecipe(recipeId)}>
 						View Recipe
 					</button>
-					{/* <p className={styles.date}>{date.toString().slice(0, 10)}</p> */}
 				</div>
 			</div>
 		</div>

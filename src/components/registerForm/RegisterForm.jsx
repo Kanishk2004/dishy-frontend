@@ -51,8 +51,12 @@ const LoginForm = () => {
 
 			if (response.success) {
 				await login(email, password);
-			} else {
-				console.error('Login failed: ', response.message);
+			}
+			if (!response.success) {
+				setMessage({
+					success: false,
+					message: response.message,
+				});
 			}
 		} catch (error) {
 			setIsUploading(false);
