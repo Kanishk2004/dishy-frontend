@@ -5,6 +5,7 @@ import Footer from '@/components/footer/Footer';
 import { AuthProvider } from '@/context/AuthContext';
 import { RecipeProvider } from '@/context/RecipeContext';
 import { FavProvider } from '@/context/FavContext';
+import MessageBox from '@/components/messageBox/MessageBox';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -22,6 +23,7 @@ export default function RootLayout({ children }) {
 					<RecipeProvider>
 						<FavProvider>
 							<div className="container">
+								<MessageBox />
 								<Navbar />
 								{children}
 								<Footer />

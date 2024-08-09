@@ -4,20 +4,13 @@ import styles from './navbar.module.css';
 import UserProfile from './userProfile/UserProfile';
 import { useAuth } from '@/context/AuthContext';
 import { useEffect } from 'react';
-import MessageBox from '../messageBox/MessageBox';
 import { apiURL } from '@/Constant';
+import { useRouter } from 'next/navigation';
 
 const Navbar = () => {
-	let {
-		isAuthenticated,
-		setIsAuthenticated,
-		user,
-		setUser,
-		message,
-		setMessage,
-	} = useAuth();
+	let { isAuthenticated, setIsAuthenticated, user, setUser } = useAuth();
 
-	// const router = useRouter();
+	const router = useRouter();
 
 	useEffect(() => {
 		const fetchUser = async () => {
@@ -32,7 +25,7 @@ const Navbar = () => {
 					if (response.success) {
 						setIsAuthenticated(true);
 						setUser(response.data);
-						// router.push('/recipe');
+						router.push('/recipe');
 					}
 					if (!response.success) {
 						setIsAuthenticated(false);
@@ -44,21 +37,11 @@ const Navbar = () => {
 			}
 		};
 		fetchUser();
-	// eslint-disable-next-line react-hooks/exhaustive-deps
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
-
-	console.log('Is Authenticated? = ', isAuthenticated);
-
-	setTimeout(() => {
-		setMessage(null);
-	}, 2000);
 
 	return (
 		<div className={styles.container}>
-			{message && (
-				<MessageBox message={message?.message} success={message?.success} />
-			)}
-
 			<Link href={'/'} className={styles.logo}>
 				dishy
 			</Link>

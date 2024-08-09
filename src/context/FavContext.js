@@ -26,10 +26,9 @@ export const FavProvider = ({ children }) => {
 			setLoadingFav(false);
 			if (!response.success) {
 				setUserFavorites(null);
-				alert(response?.message);
 			}
 		} catch (error) {
-			alert('Something went wrong!');
+			console.log('Something went wrong!');
 		}
 	};
 
@@ -47,12 +46,9 @@ export const FavProvider = ({ children }) => {
 			if (response.success) {
 				getUserFavorites();
 			}
-			if (!response.success) {
-				alert(response?.message);
-			}
 			setLoadingFav(false);
 		} catch (error) {
-			alert(error);
+			console.log('Something went wrong!');
 		}
 	};
 

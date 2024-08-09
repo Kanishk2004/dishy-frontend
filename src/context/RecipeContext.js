@@ -21,12 +21,8 @@ export const RecipeProvider = ({ children }) => {
 			if (response.success) {
 				setMyRecipies(response.data);
 			}
-			if (!response.success) {
-				alert(response?.message);
-			}
 		} catch (error) {
 			setMyRecipies(null);
-			alert('Something went wrong!');
 		}
 	};
 
@@ -41,12 +37,8 @@ export const RecipeProvider = ({ children }) => {
 			if (response.success) {
 				setAllRecipies(response.data);
 			}
-			if (!response.success) {
-				alert(response?.message);
-			}
 		} catch (error) {
 			setAllRecipies(null);
-			alert('Something went wrong!');
 		}
 	};
 

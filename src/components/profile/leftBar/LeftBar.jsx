@@ -3,45 +3,51 @@ import { useAuth } from '@/context/AuthContext';
 import styles from './leftBar.module.css';
 import Image from 'next/image';
 import { useRecipe } from '@/context/RecipeContext';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 const LeftBar = () => {
 	const { logout } = useAuth();
 	const { activeTab, setActiveTab } = useRecipe();
+
+	const searchParams = useSearchParams();
+	const paramValue = searchParams.get('section');
+
+	const router = useRouter();
 
 	return (
 		<div className={styles.container}>
 			<div className={styles.top}>
 				<div
 					className={`${styles.tab} ${
-						activeTab === 'profile' && styles.active
+						paramValue === 'profile' && styles.active
 					}`}
-					onClick={() => setActiveTab('profile')}>
+					onClick={() => router.push('/profile?section=profile')}>
 					Manage Account
 				</div>
 				<div
 					className={`${styles.tab} ${
-						activeTab === 'myRecipe' && styles.active
+						paramValue === 'myRecipe' && styles.active
 					}`}
-					onClick={() => setActiveTab('myRecipe')}>
+					onClick={() => router.push('/profile?section=myRecipe')}>
 					My Recipies
 				</div>
 				<div
 					className={`${styles.tab} ${
-						activeTab === 'postRecipe' && styles.active
+						paramValue === 'postRecipe' && styles.active
 					}`}
-					onClick={() => setActiveTab('postRecipe')}>
+					onClick={() => router.push('/profile?section=postRecipe')}>
 					Post Recipe
 				</div>
 				<div
-					className={`${styles.tab} ${activeTab === 'stats' && styles.active}`}
-					onClick={() => setActiveTab('stats')}>
+					className={`${styles.tab} ${paramValue === 'stats' && styles.active}`}
+					onClick={() => router.push('/profile?section=stats')}>
 					Stats
 				</div>
 				<div
 					className={`${styles.tab} ${
-						activeTab === 'favorites' && styles.active
+						paramValue === 'favorites' && styles.active
 					}`}
-					onClick={() => setActiveTab('favorites')}>
+					onClick={() => router.push('/profile?section=favorites')}>
 					Favorites
 				</div>
 				<div

@@ -7,18 +7,22 @@ import MyRecipe from './myRecipe/MyRecipe';
 import PostRecipe from './postRecipe/PostRecipe';
 import Favorites from './favorites/Favorites';
 import { useRecipe } from '@/context/RecipeContext';
+import { useSearchParams } from 'next/navigation';
 
 const RightBar = () => {
 	const { activeTab } = useRecipe();
 
+	const searchParams = useSearchParams();
+	const paramValue = searchParams.get('section');
+
 	return (
 		<div className={styles.container}>
 			<Suspense fallback={<Loading />}>
-				{activeTab === 'profile' && <ManageAccount />}
-				{activeTab === 'myRecipe' && <MyRecipe />}
-				{activeTab === 'postRecipe' && <PostRecipe />}
-				{activeTab === 'stats' && <h2>Stats</h2>}
-				{activeTab === 'favorites' && <Favorites />}
+				{paramValue === 'profile' && <ManageAccount />}
+				{paramValue === 'myRecipe' && <MyRecipe />}
+				{paramValue === 'postRecipe' && <PostRecipe />}
+				{paramValue === 'stats' && <h2>Stats</h2>}
+				{paramValue === 'favorites' && <Favorites />}
 			</Suspense>
 		</div>
 	);
