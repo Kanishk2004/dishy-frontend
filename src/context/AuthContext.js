@@ -10,12 +10,6 @@ export const AuthProvider = ({ children }) => {
 	const [isAuthenticated, setIsAuthenticated] = useState(false);
 	const [user, setUser] = useState(null);
 	const [message, setMessage] = useState(null);
-	const [activeTab, setActiveTab] = useState('profile');
-	const [myRecipies, setMyRecipies] = useState(null);
-	const [allRecipies, setAllRecipies] = useState(null);
-
-	const [userFavorites, setUserFavorites] = useState(null);
-	const [loadingFav, setLoadingFav] = useState(false);
 
 	const router = useRouter();
 
@@ -93,7 +87,7 @@ export const AuthProvider = ({ children }) => {
 
 	const updateAccount = async (username, fullName, email, phone, bio) => {
 		try {
-			let response = await fetch(`${apiURL}/users/update-account`, {
+			let response = await fetch(`${apiURL}/users/me`, {
 				method: 'PATCH',
 				body: JSON.stringify({
 					username,
@@ -131,143 +125,6 @@ export const AuthProvider = ({ children }) => {
 		}
 	};
 
-	const fetchUserRecipies = async () => {
-		if (user) {
-			try {
-				let response = await fetch(`${apiURL}/recipies/myRecipies`, {
-					method: 'GET',
-					credentials: 'include',
-				});
-				response = await response.json();
-
-				if (response.success) {
-					setMyRecipies(response.data);
-					setMessage({
-						success: true,
-						message: 'User recipies fetched successfully',
-					});
-				}
-				if (!response.success) {
-					setMessage({
-						success: false,
-						message: response.message,
-					});
-				}
-			} catch (error) {
-				setMyRecipies(null);
-				setMessage({
-					success: false,
-					message: 'Something went wrong',
-				});
-			}
-		}
-	};
-
-	const fetchAllRecipies = async () => {
-		try {
-			let response = await fetch(`${apiURL}/recipies/`, {
-				method: 'GET',
-				credentials: 'include',
-			});
-			response = await response.json();
-
-			if (response.success) {
-				setAllRecipies(response.data);
-				setMessage({
-					success: true,
-					message: 'Recipies fetched successfully',
-				});
-			}
-			if (!response.success) {
-				setMessage({
-					success: false,
-					message: response.message,
-				});
-			}
-		} catch (error) {
-			setAllRecipies(null);
-			setMessage({
-				success: false,
-				message: 'Something went wrong',
-			});
-		}
-	};
-
-	const getUserFavorites = async () => {
-		if (user) {
-			try {
-				setLoadingFav(true);
-				let response = await fetch(`${apiURL}/favorites/`, {
-					method: 'GET',
-					headers: {
-						'Content-type': 'application/json',
-					},
-					credentials: 'include',
-				});
-				response = await response.json();
-				if (response.success) {
-					setUserFavorites(response.data.recipies);
-				}
-				setLoadingFav(false);
-				if (!response.success) {
-					setUserFavorites(null);
-				}
-			} catch (error) {
-				setMessage({
-					success: false,
-					message: 'Something went wrong',
-				});
-			}
-		}
-	};
-
-	const toggleFavorite = async (recipeId) => {
-		if (user === null) {
-			setMessage({
-				success: false,
-				message: 'You need to login before adding favorites',
-			});
-		}
-
-		if (user) {
-			setLoadingFav(true);
-			try {
-				let response = await fetch(`${apiURL}/favorites/toggle/${recipeId}`, {
-					method: 'POST',
-					headers: {
-						'Content-type': 'application/json',
-					},
-					credentials: 'include',
-				});
-				response = await response.json();
-				if (response.success) {
-					getUserFavorites();
-					setMessage({
-						success: true,
-						message: 'Favorites updated successfully',
-					});
-				}
-				setLoadingFav(false);
-				if (!response.success) {
-					setMessage({
-						success: false,
-						message: response.message,
-					});
-				}
-			} catch (error) {
-				setMessage({
-					success: false,
-					message: 'Something went wrong',
-				});
-			}
-		} else {
-			setMessage({
-				success: false,
-				message: 'You need to login before adding favorites',
-			});
-		}
-	};
-
 	return (
 		<AuthContext.Provider
 			value={{
@@ -279,18 +136,7 @@ export const AuthProvider = ({ children }) => {
 				setIsAuthenticated,
 				message,
 				setMessage,
-				activeTab,
-				setActiveTab,
 				updateAccount,
-				fetchUserRecipies,
-				myRecipies,
-				setMyRecipies,
-				fetchAllRecipies,
-				allRecipies,
-				toggleFavorite,
-				getUserFavorites,
-				userFavorites,
-				loadingFav,
 			}}>
 			{children}
 		</AuthContext.Provider>

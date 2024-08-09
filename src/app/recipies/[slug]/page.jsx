@@ -4,6 +4,16 @@ import RecipePage from '@/components/recipePage/RecipePage';
 import { Suspense } from 'react';
 import Loading from '@/components/loading/Loading';
 
+export const generateMetadata = async ({ params }) => {
+	const { slug } = params;
+	const recipe = await getRecipe(slug);
+
+	return {
+		title: `Dishy - ${recipe.title ? recipe.title : 'Post title'}`,
+		description: recipe.description,
+	};
+};
+
 const getRecipe = async (slug) => {
 	try {
 		let response = await fetch(`${apiURL}/recipies/${slug}`, {
@@ -48,16 +58,6 @@ const getRecipeRating = async (recipeId) => {
 	} catch (error) {
 		console.log('Error: ', error);
 	}
-};
-
-export const generateMetadata = async ({ params }) => {
-	const { slug } = params;
-	const recipe = await getRecipe(slug);
-
-	return {
-		title: `Dishy - ${recipe.title ? recipe.title : 'Post title'}`,
-		description: recipe.description,
-	};
 };
 
 const recipe = async ({ params }) => {

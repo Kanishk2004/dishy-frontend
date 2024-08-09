@@ -21,6 +21,7 @@ const ManageAccount = () => {
 						alt="avatar"
 						width={200}
 						height={200}
+						priority={false}
 					/>
 					<span
 						className={styles.editBtn}

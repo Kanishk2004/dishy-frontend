@@ -2,9 +2,11 @@
 import { useAuth } from '@/context/AuthContext';
 import styles from './leftBar.module.css';
 import Image from 'next/image';
+import { useRecipe } from '@/context/RecipeContext';
 
 const LeftBar = () => {
-	const { logout, activeTab, setActiveTab } = useAuth();
+	const { logout } = useAuth();
+	const { activeTab, setActiveTab } = useRecipe();
 
 	return (
 		<div className={styles.container}>
@@ -42,9 +44,6 @@ const LeftBar = () => {
 					onClick={() => setActiveTab('favorites')}>
 					Favorites
 				</div>
-			</div>
-
-			<div className={styles.bottom}>
 				<div
 					className={`${styles.tab} ${styles.logout}`}
 					onClick={() => logout()}>

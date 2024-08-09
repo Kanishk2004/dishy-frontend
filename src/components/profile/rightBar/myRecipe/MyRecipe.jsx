@@ -2,10 +2,10 @@
 import { useEffect } from 'react';
 import styles from './myRecipe.module.css';
 import RecipeCard from './recipeCard/RecipeCard';
-import { useAuth } from '@/context/AuthContext';
+import { useRecipe } from '@/context/RecipeContext';
 
 const MyRecipe = () => {
-	const { myRecipies, fetchUserRecipies } = useAuth();
+	const { myRecipies, fetchUserRecipies } = useRecipe();
 
 	useEffect(() => {
 		fetchUserRecipies();

@@ -25,6 +25,21 @@ const RecipePage = ({ recipe, author, rating }) => {
 					</div>
 					<div className={styles.authorAndRatingContainer}>
 						<div className={styles.ratingDetail}>
+							<Image src={'/cuisine.png'} alt="star img" width={30} height={30} />
+							<div>
+								<p>Cuisine</p>
+								<p>
+									<b>{recipe?.cuisine}</b>
+								</p>
+							</div>
+							<div>
+								<p>Category</p>
+								<p>
+									<b>{recipe?.category}</b>
+								</p>
+							</div>
+						</div>
+						<div className={styles.ratingDetail}>
 							<Image src={'/star.png'} alt="star img" width={30} height={30} />
 							<div>
 								<p>Rating</p>
@@ -80,6 +95,7 @@ const RecipePage = ({ recipe, author, rating }) => {
 							alt="picture"
 							width={300}
 							height={200}
+							priority={false}
 						/>
 					))}
 				</div>

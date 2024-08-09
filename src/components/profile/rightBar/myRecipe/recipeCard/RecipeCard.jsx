@@ -3,6 +3,7 @@ import Image from 'next/image';
 import styles from './recipeCard.module.css';
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { useFav } from '@/context/FavContext';
 import { useAuth } from '@/context/AuthContext';
 
 const RecipeCard = ({
@@ -16,8 +17,8 @@ const RecipeCard = ({
 	recipeId,
 }) => {
 	const { toggleFavorite, getUserFavorites, userFavorites, loadingFav } =
-		useAuth();
-	// const [avgRating, setAvgRating] = useState('');
+		useFav();
+	const { user, setMessage } = useAuth();
 
 	const router = useRouter();
 
@@ -30,12 +31,21 @@ const RecipeCard = ({
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
+	const toggleFav = () => {
+		if (!user) {
+			setMessage({
+				success: false,
+				message: 'You need to login before adding favorites',
+			});
+		} else {
+			toggleFavorite(recipeId);
+		}
+	};
+
 	return (
 		<div className={styles.container}>
 			<div className={styles.imgContainer}>
-				<div
-					className={styles.favorite}
-					onClick={() => toggleFavorite(recipeId)}>
+				<div className={styles.favorite} onClick={toggleFav}>
 					<Image
 						className={styles.favIcon}
 						src={
@@ -56,6 +66,7 @@ const RecipeCard = ({
 					alt="recipe"
 					width={300}
 					height={200}
+					priority={false}
 				/>
 			</div>
 			<div className={styles.recipeInfoContainer}>

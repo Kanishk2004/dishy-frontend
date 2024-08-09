@@ -5,7 +5,6 @@ import UserProfile from './userProfile/UserProfile';
 import { useAuth } from '@/context/AuthContext';
 import { useEffect } from 'react';
 import MessageBox from '../messageBox/MessageBox';
-import { useRouter } from 'next/router';
 import { apiURL } from '@/Constant';
 
 const Navbar = () => {
@@ -16,32 +15,39 @@ const Navbar = () => {
 		setUser,
 		message,
 		setMessage,
-		setIsloading,
 	} = useAuth();
 
 	// const router = useRouter();
 
 	useEffect(() => {
 		const fetchUser = async () => {
-			try {
-				let response = await fetch(`${apiURL}/users/me`, {
-					method: 'GET',
-					credentials: 'include',
-				});
-				response = await response.json();
+			if (!isAuthenticated) {
+				try {
+					let response = await fetch(`${apiURL}/users/me`, {
+						method: 'GET',
+						credentials: 'include',
+					});
+					response = await response.json();
 
-				if (response.success) {
-					setIsAuthenticated(true);
-					setUser(response.data);
-					// router.push('/recipe');
+					if (response.success) {
+						setIsAuthenticated(true);
+						setUser(response.data);
+						// router.push('/recipe');
+					}
+					if (!response.success) {
+						setIsAuthenticated(false);
+						setUser(null);
+					}
+				} catch (error) {
+					console.log('Something went wrong');
 				}
-			} catch (error) {
-				setIsAuthenticated(false);
-				setUser(null);
 			}
 		};
 		fetchUser();
-	}, [isAuthenticated, setIsAuthenticated, setUser]);
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
+
+	console.log('Is Authenticated? = ', isAuthenticated);
 
 	setTimeout(() => {
 		setMessage(null);

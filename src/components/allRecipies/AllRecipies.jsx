@@ -1,11 +1,11 @@
 'use client';
 import styles from './allRecipies.module.css';
 import RecipeCard from '../profile/rightBar/myRecipe/recipeCard/RecipeCard';
-import { useAuth } from '@/context/AuthContext';
 import { useEffect } from 'react';
+import { useRecipe } from '@/context/RecipeContext';
 
 const AllRecipies = () => {
-	const { allRecipies, fetchAllRecipies } = useAuth();
+	const { allRecipies, fetchAllRecipies } = useRecipe();
 
 	useEffect(() => {
 		fetchAllRecipies();

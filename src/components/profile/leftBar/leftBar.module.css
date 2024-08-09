@@ -12,12 +12,6 @@
 	flex-direction: column;
 	gap: 10px;
 }
-.bottom {
-	flex: 1;
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-end;
-}
 
 .tab {
 	height: 40px;
@@ -46,6 +40,7 @@
 	flex-direction: row;
     align-items: center;
 	justify-content: space-between;
+	margin-top: 40px;
 }
 .logout:hover {
 	background: red;

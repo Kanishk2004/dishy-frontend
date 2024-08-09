@@ -3,10 +3,12 @@ import styles from './favorites.module.css';
 import RecipeCard from '../myRecipe/recipeCard/RecipeCard';
 import { useAuth } from '@/context/AuthContext';
 import { useEffect, useState } from 'react';
+import { useFav } from '@/context/FavContext';
+import { useRecipe } from '@/context/RecipeContext';
 
 const Favorites = () => {
-	const { userFavorites, allRecipies, fetchAllRecipies, getUserFavorites } =
-		useAuth();
+	const { userFavorites, getUserFavorites } = useFav();
+	const { allRecipies, fetchAllRecipies } = useRecipe();
 
 	const [favArr, setFavArr] = useState(null);
 

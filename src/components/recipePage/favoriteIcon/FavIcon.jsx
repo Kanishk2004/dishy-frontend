@@ -1,12 +1,12 @@
 'use client';
 import Image from 'next/image';
 import styles from './favIcon.module.css';
-import { useAuth } from '@/context/AuthContext';
 import { useEffect } from 'react';
+import { useFav } from '@/context/FavContext';
 
 const FavIcon = ({ recipeId }) => {
 	const { toggleFavorite, getUserFavorites, userFavorites, loadingFav } =
-		useAuth();
+		useFav();
 
 	useEffect(() => {
 		getUserFavorites();

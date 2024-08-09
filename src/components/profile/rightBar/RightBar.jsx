@@ -1,15 +1,15 @@
 'use client';
 import styles from './rightBar.module.css';
 import ManageAccount from '../rightBar/manageAccount/ManageAccount';
-import { useAuth } from '@/context/AuthContext';
 import { Suspense } from 'react';
 import Loading from '@/components/loading/Loading';
 import MyRecipe from './myRecipe/MyRecipe';
 import PostRecipe from './postRecipe/PostRecipe';
 import Favorites from './favorites/Favorites';
+import { useRecipe } from '@/context/RecipeContext';
 
 const RightBar = () => {
-	const { activeTab } = useAuth();
+	const { activeTab } = useRecipe();
 
 	return (
 		<div className={styles.container}>
