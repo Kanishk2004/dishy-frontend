@@ -6,7 +6,6 @@ import { createContext, useState, useContext } from 'react';
 const RecipeContext = createContext();
 
 export const RecipeProvider = ({ children }) => {
-	const [activeTab, setActiveTab] = useState('profile');
 	const [myRecipies, setMyRecipies] = useState(null);
 	const [allRecipies, setAllRecipies] = useState(null);
 
@@ -45,8 +44,6 @@ export const RecipeProvider = ({ children }) => {
 	return (
 		<RecipeContext.Provider
 			value={{
-				activeTab,
-				setActiveTab,
 				fetchUserRecipies,
 				myRecipies,
 				setMyRecipies,

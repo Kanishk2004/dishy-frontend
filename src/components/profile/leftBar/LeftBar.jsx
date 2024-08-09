@@ -7,7 +7,6 @@ import { useRouter, useSearchParams } from 'next/navigation';
 
 const LeftBar = () => {
 	const { logout } = useAuth();
-	const { activeTab, setActiveTab } = useRecipe();
 
 	const searchParams = useSearchParams();
 	const paramValue = searchParams.get('section');

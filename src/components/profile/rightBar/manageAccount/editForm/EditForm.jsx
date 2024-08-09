@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import styles from './editForm.module.css';
-import { apiURL } from '@/Constant';
 
 const EditForm = ({ user, updateAccount }) => {
 	const [username, setUsername] = useState('');

@@ -23,6 +23,7 @@ const ManageAccount = () => {
 						height={200}
 						priority={false}
 					/>
+
 					<span
 						className={styles.editBtn}
 						onClick={() => setImageForm(!imageForm)}>

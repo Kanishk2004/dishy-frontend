@@ -69,7 +69,7 @@ const UserProfile = ({ user }) => {
 					<div className={styles.middle}>
 						<div className={styles.imgContainer}>
 							<Image
-							className={styles.avatar}
+								className={styles.avatar}
 								src={user?.avatar || '/avatar.png'}
 								alt="avatar"
 								width={70}
@@ -80,7 +80,7 @@ const UserProfile = ({ user }) => {
 					</div>
 
 					<div className={styles.bottom}>
-						<Link href={'/profile'} className={styles.btn}>
+						<Link href={'/profile?section=profile'} className={styles.btn}>
 							Profile
 						</Link>
 						<Link href={'/'} className={styles.btn} onClick={handleLogout}>

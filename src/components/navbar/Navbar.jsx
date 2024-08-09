@@ -25,7 +25,7 @@ const Navbar = () => {
 					if (response.success) {
 						setIsAuthenticated(true);
 						setUser(response.data);
-						router.push('/recipe');
+						router.push('/recipies');
 					}
 					if (!response.success) {
 						setIsAuthenticated(false);
