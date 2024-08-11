@@ -1,0 +1,17 @@
+.ratingDetail {
+	width: fit-content;
+	border-radius: 8px;
+	display: flex;
+	gap: 15px;
+	padding: 10px;
+	background: var(--softgray);
+}
+.ratingDetail div {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+.ratingDetail p {
+	font-size: 12px;
+	margin-bottom: 3px;
+}

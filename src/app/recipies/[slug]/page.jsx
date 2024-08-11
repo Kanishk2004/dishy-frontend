@@ -18,6 +18,9 @@ const getRecipe = async (slug) => {
 	try {
 		let response = await fetch(`${apiURL}/recipies/${slug}`, {
 			method: 'GET',
+			headers: {
+				'Content-type': 'application/json',
+			},
 			credentials: 'include',
 		});
 		response = await response.json();
@@ -30,47 +33,15 @@ const getRecipe = async (slug) => {
 		console.log('Error: ', error);
 	}
 };
-const getRecipeAuthor = async (recipeId) => {
-	try {
-		let response = await fetch(`${apiURL}/recipies/author/${recipeId}`, {
-			method: 'GET',
-			credentials: 'include',
-		});
-		response = await response.json();
-		if (response.success) {
-			return response.data;
-		}
-	} catch (error) {
-		console.log('Error: ', error);
-	}
-};
-const getRecipeRating = async (recipeId) => {
-	try {
-		let response = await fetch(`${apiURL}/ratings/avg/${recipeId}`, {
-			method: 'GET',
-			credentials: 'include',
-		});
-		response = await response.json();
-
-		if (response.success) {
-			return response.data;
-		}
-	} catch (error) {
-		console.log('Error: ', error);
-	}
-};
 
 const recipe = async ({ params }) => {
 	const { slug } = params;
-
 	const recipe = await getRecipe(slug);
-	const author = await getRecipeAuthor(slug);
-	const rating = await getRecipeRating(slug);
 
 	return (
 		<div className={styles.container}>
 			<Suspense fallback={<Loading />}>
-				<RecipePage recipe={recipe} author={author} rating={rating} />
+				<RecipePage recipe={recipe} />
 			</Suspense>
 		</div>
 	);

@@ -3,8 +3,13 @@ import styles from './recipePage.module.css';
 import AuthorCard from './authorCard/AuthorCard';
 import PrepTime from './prepTime/PrepTime';
 import FavIcon from './favoriteIcon/FavIcon';
+import AddRating from './addRating/AddRating';
+import RatingCard from './ratingCard/RatingCard';
+import { Suspense } from 'react';
+import Loading from '../loading/Loading';
+import CuisineCard from './cuisineCard/CuisineCard';
 
-const RecipePage = ({ recipe, author, rating }) => {
+const RecipePage = ({ recipe, rating }) => {
 	return (
 		<div className={styles.container}>
 			<div className={styles.topContainer}>
@@ -24,41 +29,17 @@ const RecipePage = ({ recipe, author, rating }) => {
 						<p>{recipe?.description}</p>
 					</div>
 					<div className={styles.authorAndRatingContainer}>
-						<div className={styles.ratingDetail}>
-							<Image src={'/cuisine.png'} alt="star img" width={30} height={30} />
-							<div>
-								<p>Cuisine</p>
-								<p>
-									<b>{recipe?.cuisine}</b>
-								</p>
-							</div>
-							<div>
-								<p>Category</p>
-								<p>
-									<b>{recipe?.category}</b>
-								</p>
-							</div>
-						</div>
-						<div className={styles.ratingDetail}>
-							<Image src={'/star.png'} alt="star img" width={30} height={30} />
-							<div>
-								<p>Rating</p>
-								<p>
-									<b>{rating?.avgRating}</b>
-								</p>
-							</div>
-							<div>
-								<p>Reviews</p>
-								<p>
-									<b>{rating?.ratingCount}</b>
-								</p>
-							</div>
-						</div>
-						<AuthorCard
-							avatar={author?.avatar}
-							fullName={author?.fullName || author?.username}
-							createdAt={recipe?.createdAt.slice(0, 10)}
-						/>
+						<Suspense fallback={<Loading />}>
+							<CuisineCard
+								cuisine={recipe?.cuisine}
+								category={recipe?.category}
+							/>
+							<RatingCard recipeId={recipe?._id} />
+							<AuthorCard
+								recipeId={recipe?._id}
+								createdAt={recipe?.createdAt.slice(0, 10)}
+							/>
+						</Suspense>
 					</div>
 				</div>
 			</div>
@@ -85,6 +66,7 @@ const RecipePage = ({ recipe, author, rating }) => {
 							))}
 						</ol>
 					</div>
+					<AddRating recipeId={recipe?._id} />
 				</div>
 				<div className={styles.pictureContainer}>
 					{recipe?.imageUrl.map((img) => (

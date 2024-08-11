@@ -6,6 +6,7 @@ import { AuthProvider } from '@/context/AuthContext';
 import { RecipeProvider } from '@/context/RecipeContext';
 import { FavProvider } from '@/context/FavContext';
 import MessageBox from '@/components/messageBox/MessageBox';
+import { RatingProvider } from '@/context/RatingContext';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -22,12 +23,14 @@ export default function RootLayout({ children }) {
 				<AuthProvider>
 					<RecipeProvider>
 						<FavProvider>
-							<div className="container">
-								<MessageBox />
-								<Navbar />
-								{children}
-								<Footer />
-							</div>
+							<RatingProvider>
+								<div className="container">
+									<MessageBox />
+									<Navbar />
+									{children}
+									<Footer />
+								</div>
+							</RatingProvider>
 						</FavProvider>
 					</RecipeProvider>
 				</AuthProvider>

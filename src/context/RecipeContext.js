@@ -8,6 +8,7 @@ const RecipeContext = createContext();
 export const RecipeProvider = ({ children }) => {
 	const [myRecipies, setMyRecipies] = useState(null);
 	const [allRecipies, setAllRecipies] = useState(null);
+	const [recipeAuthor, setRecipeAuthor] = useState(null);
 
 	const fetchUserRecipies = async () => {
 		try {
@@ -41,6 +42,24 @@ export const RecipeProvider = ({ children }) => {
 		}
 	};
 
+	const getRecipeAuthor = async (recipeId) => {
+		try {
+			let response = await fetch(`${apiURL}/recipies/author/${recipeId}`, {
+				method: 'GET',
+				headers: {
+					'Content-type': 'application/json',
+				},
+				credentials: 'include',
+			});
+			response = await response.json();
+			if (response.success) {
+				setRecipeAuthor(response.data);
+			}
+		} catch (error) {
+			console.log('Error: ', error);
+		}
+	};
+
 	return (
 		<RecipeContext.Provider
 			value={{
@@ -49,6 +68,8 @@ export const RecipeProvider = ({ children }) => {
 				setMyRecipies,
 				fetchAllRecipies,
 				allRecipies,
+				getRecipeAuthor,
+				recipeAuthor,
 			}}>
 			{children}
 		</RecipeContext.Provider>
