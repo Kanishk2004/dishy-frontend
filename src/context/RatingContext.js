@@ -62,7 +62,35 @@ export const RatingProvider = ({ children }) => {
 			res = await res.json();
 
 			if (res.success) {
-				return { success: true, message: 'Rating added successfully' };
+				console.log(res.data)
+				return {
+					success: true,
+					message: 'Rating added successfully',
+				};
+			}
+			if (!res.success) {
+				return { success: false, message: 'Something went wrong!' };
+			}
+		} catch (error) {
+			console.log(error);
+			return { success: false, message: 'Something went wrong!' };
+		}
+	};
+
+	const deleteRating = async (ratingId) => {
+		try {
+			let res = await fetch(`${apiURL}/ratings/${ratingId}`, {
+				method: 'DELETE',
+				headers: {
+					'Content-type': 'application/json',
+				},
+				credentials: 'include',
+			});
+
+			res = await res.json();
+
+			if (res.success) {
+				return { success: true, message: 'Rating Deleted!' };
 			}
 			if (!res.success) {
 				return { success: false, message: 'Something went wrong!' };
@@ -81,6 +109,7 @@ export const RatingProvider = ({ children }) => {
 				getUserRatings,
 				getRecipeRating,
 				recipeRating,
+				deleteRating,
 			}}>
 			{children}
 		</RatingContext.Provider>

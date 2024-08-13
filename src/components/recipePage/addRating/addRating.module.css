@@ -1,0 +1,49 @@
+.container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.innerContainer {
+    background: var(--transpink);
+    padding: 20px 40px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+}
+
+.starContainer {
+    display: flex;
+    gap: 10px;
+}
+
+.starImg {
+    cursor: pointer;
+}
+
+.btn {
+    padding: 10px;
+    background: var(--darkpink);
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.alreadyRated h3 {
+    color: var(--darkpink);
+    margin-bottom: 20px;
+}
+
+.deleteBtn {
+    padding: 10px 20px;
+    color: white;
+    background: var(--darkpink);
+    border-radius: 5px;
+    cursor: pointer;
+}
+.deleteBtn:hover {
+    background: var(--lightpink);
+}

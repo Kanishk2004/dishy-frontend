@@ -9,7 +9,7 @@ import { Suspense } from 'react';
 import Loading from '../loading/Loading';
 import CuisineCard from './cuisineCard/CuisineCard';
 
-const RecipePage = ({ recipe, rating }) => {
+const RecipePage = ({ recipe }) => {
 	return (
 		<div className={styles.container}>
 			<div className={styles.topContainer}>
@@ -66,7 +66,9 @@ const RecipePage = ({ recipe, rating }) => {
 							))}
 						</ol>
 					</div>
-					<AddRating recipeId={recipe?._id} />
+					<Suspense fallback={<Loading />}>
+						<AddRating recipeId={recipe?._id} />
+					</Suspense>
 				</div>
 				<div className={styles.pictureContainer}>
 					{recipe?.imageUrl.map((img) => (
