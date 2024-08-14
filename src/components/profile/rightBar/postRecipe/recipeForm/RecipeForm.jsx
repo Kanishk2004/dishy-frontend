@@ -1,6 +1,8 @@
 'use client';
 import { useState } from 'react';
 import styles from './recipeForm.module.css';
+import AddIngredients from './addIngredients/AddIngredients';
+import AddInstructions from './addInstructions/AddInstructions';
 
 const RecipeForm = () => {
 	const [title, setTitle] = useState('');
@@ -11,6 +13,8 @@ const RecipeForm = () => {
 	const [cookTime, setCookTime] = useState('');
 	const [category, setCategory] = useState('');
 	const [cuisine, setCuisine] = useState('');
+	const [ingredientsLastIndex, setIngredientsLastIndex] = useState(null);
+	const [instructionsLastIndex, setInstructionsLastIndex] = useState(null);
 
 	// title
 	// description
@@ -21,20 +25,6 @@ const RecipeForm = () => {
 	// category
 	// cuisine
 	// images
-	const handleAddIngredient = (e) => {
-		if (e.key === 'Enter' && e.target.value.trim() !== '') {
-			e.preventDefault();
-			setIngredients([...ingredients, e.target.value.trim()]);
-			e.target.value = '';
-		}
-	};
-	const handleAddInstruction = (e) => {
-		if (e.key === 'Enter' && e.target.value.trim() !== '') {
-			e.preventDefault();
-			setInstructions([...instructions, e.target.value.trim()]);
-			e.target.value = '';
-		}
-	};
 
 	return (
 		<form className={styles.container}>
@@ -58,36 +48,21 @@ const RecipeForm = () => {
 					onChange={(e) => setDescription(e.target.value)}
 				/>
 			</div>
-			<div className={styles.inputContainer}>
-				<label htmlFor="ingredients">Ingredients</label>
-				<input
-					type="text"
-					name="ingredients"
-					id="ingredients"
-					onKeyDown={handleAddIngredient}
-					placeholder="Press Enter to add"
-				/>
-				<ul>
-					{ingredients.map((ingredient, index) => (
-						<li key={index}>{ingredient}</li>
-					))}
-				</ul>
-			</div>
-			<div className={styles.inputContainer}>
-				<label htmlFor="instructions">Instructions</label>
-				<input
-					type="text"
-					name="instructions"
-					id="instructions"
-					onKeyDown={handleAddInstruction}
-					placeholder="Press Enter to add"
-				/>
-				<ol>
-					{instructions.map((instruction, index) => (
-						<li key={index}>{instruction}</li>
-					))}
-				</ol>
-			</div>
+
+			<AddIngredients
+				ingredients={ingredients}
+				lastIndex={ingredientsLastIndex}
+				setLastIndex={setIngredientsLastIndex}
+				setIngredients={setIngredients}
+			/>
+
+			<AddInstructions
+				instructions={instructions}
+				setInstructions={setInstructions}
+				lastIndex={instructionsLastIndex}
+				setLastIndex={setInstructionsLastIndex}
+			/>
+
 			<div className={styles.inputContainer}>
 				<label htmlFor="cuisine">Cuisine</label>
 				<input

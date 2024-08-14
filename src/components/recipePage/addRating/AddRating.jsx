@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import { useRating } from '@/context/RatingContext';
 
 const AddRating = ({ recipeId, totalStars = 5 }) => {
-	const { user, setMessage } = useAuth();
+	const { user } = useAuth();
 	const { addRating, getUserRatings, deleteRating } = useRating();
 
 	const [rating, setRating] = useState(0);
