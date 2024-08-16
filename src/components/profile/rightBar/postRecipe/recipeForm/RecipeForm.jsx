@@ -3,8 +3,12 @@ import { useState } from 'react';
 import styles from './recipeForm.module.css';
 import AddIngredients from './addIngredients/AddIngredients';
 import AddInstructions from './addInstructions/AddInstructions';
+import ImageForm from './imageForm/ImageForm';
+import { useRecipe } from '@/context/RecipeContext';
 
 const RecipeForm = () => {
+	const { uploadRecipe } = useRecipe();
+
 	const [title, setTitle] = useState('');
 	const [description, setDescription] = useState('');
 	const [ingredients, setIngredients] = useState([]);
@@ -16,6 +20,8 @@ const RecipeForm = () => {
 	const [ingredientsLastIndex, setIngredientsLastIndex] = useState(null);
 	const [instructionsLastIndex, setInstructionsLastIndex] = useState(null);
 
+	const [uploading, setUploading] = useState(false);
+
 	// title
 	// description
 	// ingredients[]
@@ -25,6 +31,32 @@ const RecipeForm = () => {
 	// category
 	// cuisine
 	// images
+
+	const formData = new FormData();
+
+	const handleSave = (e) => {
+		e.preventDefault();
+
+		formData.append('title', title);
+		formData.append('description', description);
+		formData.append('ingredients', ingredients);
+		formData.append('instructions', instructions);
+		formData.append('prepTime', prepTime);
+		formData.append('cookTime', cookTime);
+		formData.append('category', category);
+		formData.append('cuisine', cuisine);
+	};
+
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+
+		setUploading(true);
+		console.log(formData);
+
+		await uploadRecipe(formData);
+
+		setUploading(false);
+	};
 
 	return (
 		<form className={styles.container}>
@@ -103,6 +135,11 @@ const RecipeForm = () => {
 					onChange={(e) => setCookTime(e.target.value)}
 				/>
 			</div>
+			<ImageForm formData={formData} />
+			{/* <button onS>Save</button> */}
+			<button onClick={(e) => handleSave(e)}>Save</button>
+			<button onClick={(e) => handleSubmit(e)}>Post</button>
+			{uploading && 'Uploading recipe....'}
 		</form>
 	);
 };

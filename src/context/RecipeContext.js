@@ -60,6 +60,29 @@ export const RecipeProvider = ({ children }) => {
 		}
 	};
 
+	const uploadRecipe = async (data) => {
+		try {
+			let res = await fetch(`${apiURL}/recipies/`, {
+				method: 'POST',
+				body: data,
+				headers: {
+					'Content-type': 'application/json',
+				},
+				credentials: 'include',
+			});
+
+			res = await res.json();
+			if (res.success) {
+				console.log('Successfully posted the recipe');
+			}
+			if (!res.success) {
+				console.log('Something went wrong');
+			}
+		} catch (error) {
+			console.log('Something went wrong');
+		}
+	};
+
 	return (
 		<RecipeContext.Provider
 			value={{
@@ -70,6 +93,7 @@ export const RecipeProvider = ({ children }) => {
 				allRecipies,
 				getRecipeAuthor,
 				recipeAuthor,
+				uploadRecipe,
 			}}>
 			{children}
 		</RecipeContext.Provider>

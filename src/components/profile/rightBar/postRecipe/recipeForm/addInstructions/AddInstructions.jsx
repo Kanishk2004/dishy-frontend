@@ -23,31 +23,39 @@ const AddInstructions = ({
 	};
 
 	return (
-		<div className={styles.inputContainer}>
-			<label htmlFor="instructions">Instructions</label>
-			<input
-				type="text"
-				name="instructions"
-				id="instructions"
-				onKeyDown={handleAddInstructions}
-				placeholder="Press Enter to add"
-			/>
-			<ol>
-				{instructions.map((instruction, index) => (
-					<div key={index}>
-						<li>{instruction}</li>
-						{index === lastIndex && (
-							<Image
-								src={'/delete.png'}
-								alt={'delete'}
-								width={20}
-								height={20}
-								onClick={() => handleDelete(index)}
-							/>
-						)}
-					</div>
-				))}
-			</ol>
+		<div className={styles.container}>
+			<div className={styles.inputContainer}>
+				<label htmlFor="instructions">Instructions</label>
+				<input
+					type="text"
+					name="instructions"
+					id="instructions"
+					onKeyDown={handleAddInstructions}
+					placeholder="Press Enter to add"
+				/>
+			</div>
+
+			<div className={styles.orderedList}>
+				<div className={styles.dummyDiv}></div>
+				<ol>
+					{instructions.map((instruction, index) => (
+						<div key={index} className={styles.deleteDiv}>
+							<li>{instruction}</li>
+							{index === lastIndex && (
+								<span>
+									<Image
+										src={'/delete.png'}
+										alt={'delete'}
+										width={20}
+										height={20}
+										onClick={() => handleDelete(index)}
+									/>
+								</span>
+							)}
+						</div>
+					))}
+				</ol>
+			</div>
 		</div>
 	);
 };

@@ -2,7 +2,6 @@
 import { useAuth } from '@/context/AuthContext';
 import styles from './leftBar.module.css';
 import Image from 'next/image';
-import { useRecipe } from '@/context/RecipeContext';
 import { useRouter, useSearchParams } from 'next/navigation';
 
 const LeftBar = () => {
