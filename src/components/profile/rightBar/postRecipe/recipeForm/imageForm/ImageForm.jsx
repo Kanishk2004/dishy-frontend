@@ -4,12 +4,10 @@ import styles from './imageForm.module.css';
 import { useDropzone } from 'react-dropzone';
 import Image from 'next/image';
 import { useAuth } from '@/context/AuthContext';
-import { apiURL } from '@/Constant';
+import imageCompression from 'browser-image-compression';
 
-const ImageForm = ({ setImageForm, formData }) => {
-	const { setMessage, setUser } = useAuth();
-	const [save, setSave] = useState(false);
-	const [selectedImages, setSelectedImages] = useState([]);
+const ImageForm = ({ selectedImages, setSelectedImages }) => {
+	const { setMessage } = useAuth();
 
 	const onDrop = useCallback(
 		async (acceptedFiles) => {
@@ -28,7 +26,12 @@ const ImageForm = ({ setImageForm, formData }) => {
 						maxWidthOrHeight: 1024, // Set the max width or height of the image
 					});
 
-					return Object.assign(compressedFile, {
+					const convertedFile = new File([compressedFile], file.name, {
+						type: file.type,
+						lastModified: file.lastModified,
+					});
+
+					return Object.assign(convertedFile, {
 						preview: URL.createObjectURL(compressedFile),
 					});
 				})
@@ -45,14 +48,6 @@ const ImageForm = ({ setImageForm, formData }) => {
 		accept: 'image/*',
 		multiple: true,
 	});
-
-	const handleRecipeImage = async (e) => {
-		e.preventDefault();
-		selectedImages.forEach((image, index) => {
-			formData.append(`image${index + 1}`, image);
-		});
-		setSave(true);
-	};
 
 	const removeImage = (index, e) => {
 		e.preventDefault();
@@ -90,11 +85,6 @@ const ImageForm = ({ setImageForm, formData }) => {
 							</button>
 						</div>
 					))}
-					<button
-						className={styles.uploadBtn}
-						onClick={(e) => handleRecipeImage(e)}>
-						{save ? 'Saved' : 'Save'}
-					</button>
 				</div>
 			)}
 		</div>

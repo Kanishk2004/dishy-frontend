@@ -1,6 +1,7 @@
 'use client';
 
 import { apiURL } from '@/Constant';
+import { useRouter } from 'next/navigation';
 import { createContext, useState, useContext } from 'react';
 
 const RecipeContext = createContext();
@@ -9,6 +10,8 @@ export const RecipeProvider = ({ children }) => {
 	const [myRecipies, setMyRecipies] = useState(null);
 	const [allRecipies, setAllRecipies] = useState(null);
 	const [recipeAuthor, setRecipeAuthor] = useState(null);
+
+	const router = useRouter();
 
 	const fetchUserRecipies = async () => {
 		try {
@@ -65,15 +68,13 @@ export const RecipeProvider = ({ children }) => {
 			let res = await fetch(`${apiURL}/recipies/`, {
 				method: 'POST',
 				body: data,
-				headers: {
-					'Content-type': 'application/json',
-				},
 				credentials: 'include',
 			});
 
 			res = await res.json();
 			if (res.success) {
 				console.log('Successfully posted the recipe');
+				router.push(`/recipies/${res.data._id}`);
 			}
 			if (!res.success) {
 				console.log('Something went wrong');

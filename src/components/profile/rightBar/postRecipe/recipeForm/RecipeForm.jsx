@@ -19,39 +19,31 @@ const RecipeForm = () => {
 	const [cuisine, setCuisine] = useState('');
 	const [ingredientsLastIndex, setIngredientsLastIndex] = useState(null);
 	const [instructionsLastIndex, setInstructionsLastIndex] = useState(null);
+	const [selectedImages, setSelectedImages] = useState([]);
 
 	const [uploading, setUploading] = useState(false);
 
-	// title
-	// description
-	// ingredients[]
-	// instructions[]
-	// prepTime
-	// cookTime
-	// category
-	// cuisine
-	// images
-
 	const formData = new FormData();
-
-	const handleSave = (e) => {
-		e.preventDefault();
-
-		formData.append('title', title);
-		formData.append('description', description);
-		formData.append('ingredients', ingredients);
-		formData.append('instructions', instructions);
-		formData.append('prepTime', prepTime);
-		formData.append('cookTime', cookTime);
-		formData.append('category', category);
-		formData.append('cuisine', cuisine);
-	};
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
+		formData.append('title', title);
+		formData.append('description', description);
+		ingredients.map((ingredient) => formData.append('ingredients', ingredient));
+		instructions.map((instruction) =>
+			formData.append('instructions', instruction)
+		);
+		formData.append('prepTime', prepTime);
+		formData.append('cookTime', cookTime);
+		formData.append('category', category);
+		formData.append('cuisine', cuisine);
+
+		selectedImages.forEach((file) => {
+			formData.append(`images`, file);
+		});
+
 		setUploading(true);
-		console.log(formData);
 
 		await uploadRecipe(formData);
 
@@ -135,10 +127,16 @@ const RecipeForm = () => {
 					onChange={(e) => setCookTime(e.target.value)}
 				/>
 			</div>
-			<ImageForm formData={formData} />
-			{/* <button onS>Save</button> */}
-			<button onClick={(e) => handleSave(e)}>Save</button>
-			<button onClick={(e) => handleSubmit(e)}>Post</button>
+			<ImageForm
+				formData={formData}
+				selectedImages={selectedImages}
+				setSelectedImages={setSelectedImages}
+			/>
+			<div className={styles.btnContainer}>
+				<button onClick={(e) => handleSubmit(e)} className={styles.postBtn}>
+					Post
+				</button>
+			</div>
 			{uploading && 'Uploading recipe....'}
 		</form>
 	);
