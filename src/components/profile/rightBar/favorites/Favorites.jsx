@@ -1,7 +1,6 @@
 'use client';
 import styles from './favorites.module.css';
 import RecipeCard from '../myRecipe/recipeCard/RecipeCard';
-import { useAuth } from '@/context/AuthContext';
 import { useEffect, useState } from 'react';
 import { useFav } from '@/context/FavContext';
 import { useRecipe } from '@/context/RecipeContext';
@@ -32,7 +31,7 @@ const Favorites = () => {
 
 	return (
 		<div className={styles.container}>
-			{(!userFavorites || userFavorites.length === 0) && (
+			{(!favArr || favArr.length === 0) && (
 				<h3>You have 0 Favorite recipies</h3>
 			)}
 			{favArr?.map((recipe) => (

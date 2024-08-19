@@ -1,26 +1,25 @@
 .container {
 	display: flex;
-    gap: 20px;
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+	gap: 20px;
+	box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 	background: #f2f2f2;
-    border-radius: 8px;
-    padding: 20px 10px;
+	border-radius: 8px;
+	padding: 20px 10px;
 	position: relative;
 }
 
 .profile {
 	width: 300px;
-    /* min-height: calc(100vh - 200px); */
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	gap: 20px;
-    border-right: 2px solid var(--softgray);
-    padding-right: 10px;
+	border-right: 2px solid var(--softgray);
+	padding-right: 10px;
 }
 .profile p {
-    text-align: center;
-    font-size: 15px;
+	text-align: center;
+	font-size: 15px;
 }
 
 .profileImgContainer {
@@ -47,4 +46,56 @@
 	align-items: center;
 	background: var(--lightpink);
 	cursor: pointer;
+}
+
+.verificationContainer {
+	display: flex;
+	gap: 20px;
+	margin-top: 20px;
+}
+.verificationBtn {
+	background: var(--btn);
+	color: white;
+	padding: 10px;
+	border-radius: 5px;
+	width: 100px;
+	cursor: pointer;
+}
+.verificationBtn:hover {
+	background-color: var(--btnActive);
+}
+
+.verifyOtpContainer {
+	position: absolute;
+	width: calc(100% - 20px);
+	height: calc(100% - 40px);
+	background: rgba(0, 0, 0, 0.578);
+	border-radius: 5px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.otpForm {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	background: rgb(216, 216, 216);
+	border-radius: 5px;
+	width: 50%;
+	height: 70%;
+	padding: 20px;
+}
+.otpForm input {
+	padding: 10px;
+	border-radius: 5px;
+	width: 80%;
+}
+.otpForm button {
+	padding: 10px;
+	width: 200px;
+	cursor: pointer;
+	background: var(--btn);
+	color: white;
+	border-radius: 5px;
 }
