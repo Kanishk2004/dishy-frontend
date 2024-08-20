@@ -8,17 +8,20 @@ import ImageForm from './imageForm/ImageForm';
 import { apiURL } from '@/Constant';
 
 const ManageAccount = () => {
-	const { user, updateAccount, setUser } = useAuth();
+	const { user, updateAccount, setUser, setMessage } = useAuth();
 
 	const [imageForm, setImageForm] = useState(false);
 	const [verifyEmailOtp, setVerifyEmailOtp] = useState(false);
 	const [otp, setOtp] = useState('');
+	const [oldPass, setOldPass] = useState('');
+	const [newPass, setNewPass] = useState('');
 
 	const [otpSent, setOtpSent] = useState(false);
+	const [changePasswordMode, setChangePasswordMode] = useState(false);
 
 	const sendOtp = async () => {
 		try {
-			setOtpSent(true)
+			setOtpSent(true);
 			let res = await fetch(`${apiURL}/users/verify-email`, {
 				method: 'POST',
 				headers: {
@@ -31,10 +34,10 @@ const ManageAccount = () => {
 			if (res.success) {
 				setVerifyEmailOtp(true);
 			}
-			setOtpSent(false)
+			setOtpSent(false);
 		} catch (error) {
 			console.log('Something went wrong');
-			setOtpSent(false)
+			setOtpSent(false);
 		}
 	};
 
@@ -59,6 +62,38 @@ const ManageAccount = () => {
 			}
 		} catch (error) {
 			console.log('Something went wrong');
+		}
+	};
+
+	const handleChangePassword = async (e) => {
+		e.preventDefault();
+		try {
+			let res = await fetch(`${apiURL}/users/change-password`, {
+				method: 'POST',
+				body: JSON.stringify({
+					oldPassword: oldPass,
+					newPassword: newPass,
+				}),
+				headers: {
+					'Content-type': 'application/json',
+				},
+				credentials: 'include',
+			});
+			res = await res.json();
+			if (res.success) {
+				setMessage({
+					success: true,
+					message: 'Password updated successfully',
+				});
+				setChangePasswordMode(false);
+			}
+		} catch (error) {
+			console.log('Something went wrong');
+			setMessage({
+				success: false,
+				message: 'Password updated failed',
+			});
+			setChangePasswordMode(false);
 		}
 	};
 
@@ -102,6 +137,13 @@ const ManageAccount = () => {
 							<button className={styles.verificationBtn}>Verify Mobile</button>
 						</div>
 					)}
+					<div className={styles.verificationDiv}>
+						<button
+							className={`${styles.verificationBtn} ${styles.yellowBtn}`}
+							onClick={() => setChangePasswordMode(true)}>
+							Change Password
+						</button>
+					</div>
 				</div>
 				{otpSent && <p>Generating and sending OTP....</p>}
 			</div>
@@ -117,6 +159,27 @@ const ManageAccount = () => {
 							onChange={(e) => setOtp(e.target.value)}
 						/>
 						<button onClick={(e) => submitOtp(e)}>Verify</button>
+					</form>
+				</div>
+			)}
+			{changePasswordMode && (
+				<div className={styles.verifyOtpContainer}>
+					<form className={styles.otpForm}>
+						<input
+							type="password"
+							id="oldPass"
+							name="oldPass"
+							placeholder="Enter Old Password"
+							onChange={(e) => setOldPass(e.target.value)}
+						/>
+						<input
+							type="password"
+							id="newPass"
+							name="newPass"
+							placeholder="Enter New Password"
+							onChange={(e) => setNewPass(e.target.value)}
+						/>
+						<button onClick={(e) => handleChangePassword(e)}>Change</button>
 					</form>
 				</div>
 			)}

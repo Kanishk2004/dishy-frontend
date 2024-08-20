@@ -58,11 +58,17 @@
 	color: white;
 	padding: 10px;
 	border-radius: 5px;
-	width: 100px;
 	cursor: pointer;
 }
 .verificationBtn:hover {
 	background-color: var(--btnActive);
+}
+.yellowBtn {
+	background: rgb(238, 238, 0);
+	color: var(--gray);
+}
+.yellowBtn:hover {
+	background-color: rgb(230, 230, 0);
 }
 
 .verifyOtpContainer {
