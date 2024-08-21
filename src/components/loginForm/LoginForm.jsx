@@ -18,7 +18,7 @@ const LoginForm = () => {
 		<div className={styles.container}>
 			<h2 className={styles.heading}>Log In To Your Account</h2>
 
-			<form className={styles.form} onSubmit={handleLogin} action="/">
+			<form className={styles.form} onSubmit={handleLogin}>
 				<input
 					type="email"
 					name="email"
@@ -38,6 +38,11 @@ const LoginForm = () => {
 				<button type="submit">Log in</button>
 			</form>
 
+			<p>
+				<Link href={'/forgot-password'}>
+					<b>Forgot password?</b>
+				</Link>
+			</p>
 			<p>
 				Don&apos;t have an account?{' '}
 				<Link href={'/register'}>
