@@ -5,6 +5,7 @@
 	padding: 10px;
 	border-radius: 7px;
 	box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+	z-index: 4;
 
 	top: -100px;
 	animation: slideDown 1s ease-out forwards;

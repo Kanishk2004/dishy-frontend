@@ -9,12 +9,12 @@ const HeroPage = () => {
 				<h3>Home page</h3>
 			</div>
 			<div className={styles.imageContainer}>
-				<Image
+				{/* <Image
 					src={'/recipe-illustration.png'}
 					alt="hero image"
 					width={500}
 					height={500}
-				/>
+				/> */}
 			</div>
 		</div>
 	);

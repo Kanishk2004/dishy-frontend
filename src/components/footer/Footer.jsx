@@ -16,24 +16,26 @@ const Footer = () => {
 					</p>
 				</div>
 
-				<div className={styles.links}>
-					<h3>Quick links</h3>
-					<Link href={'/'}>Home</Link>
-					<Link href={'/recipies'}>Recipies</Link>
-					<Link href={'/blog'}>Blog</Link>
-				</div>
+				<div className={styles.linkDiv}>
+					<div className={styles.links}>
+						<h3>Quick links</h3>
+						<Link href={'/'}>Home</Link>
+						<Link href={'/recipies'}>Recipies</Link>
+						<Link href={'/blog'}>Blog</Link>
+					</div>
 
-				<div className={styles.links}>
-					<h3>Quick links</h3>
-					<Link href={'/'}>Share Recipe</Link>
-					<Link href={'/recipies'}>Contact</Link>
-					<Link href={'/blog'}>About Us</Link>
-				</div>
+					<div className={styles.links}>
+						<h3>Quick links</h3>
+						<Link href={'/'}>Share Recipe</Link>
+						<Link href={'/recipies'}>Contact</Link>
+						<Link href={'/blog'}>About Us</Link>
+					</div>
 
-				<div className={styles.links}>
-					<h3>Legal</h3>
-					<Link href={'/'}>Terms of use</Link>
-					<Link href={'/recipies'}>Privacy & Cookies</Link>
+					<div className={styles.links}>
+						<h3>Legal</h3>
+						<Link href={'/'}>Terms of use</Link>
+						<Link href={'/recipies'}>Privacy & Cookies</Link>
+					</div>
 				</div>
 			</div>
 
