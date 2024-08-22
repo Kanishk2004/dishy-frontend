@@ -3,12 +3,15 @@ import Link from 'next/link';
 import styles from './navbar.module.css';
 import UserProfile from './userProfile/UserProfile';
 import { useAuth } from '@/context/AuthContext';
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { apiURL } from '@/Constant';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
+import MobileMenu from './mobileMenu/MobileMenu';
 
 const Navbar = () => {
 	let { isAuthenticated, setIsAuthenticated, user, setUser } = useAuth();
+	const [open, setOpen] = useState(false);
 
 	const router = useRouter();
 
@@ -40,6 +43,10 @@ const Navbar = () => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
+	const toggleMenu = () => {
+		setOpen(!open);
+	};
+
 	return (
 		<div className={styles.container}>
 			<Link href={'/'} className={styles.logo}>
@@ -60,18 +67,35 @@ const Navbar = () => {
 					About
 				</Link>
 			</div>
+			<div className={styles.profileDiv}>
+				{isAuthenticated ? (
+					<UserProfile user={user} />
+				) : (
+					<div className={styles.buttons}>
+						<Link href={'/login'} className={styles.button}>
+							Log in
+						</Link>
+						<Link href={'/register'} className={styles.button}>
+							Sign up
+						</Link>
+					</div>
+				)}
 
-			{isAuthenticated ? (
-				<UserProfile user={user} />
-			) : (
-				<div className={styles.buttons}>
-					<Link href={'/login'} className={styles.button}>
-						Log in
-					</Link>
-					<Link href={'/register'} className={styles.button}>
-						Sign up
-					</Link>
+				<div className={styles.menuIcon} onClick={toggleMenu}>
+					<Image
+						src={open ? '/menuClose.png' : '/menu.png'}
+						alt="menu"
+						width={35}
+						height={35}
+					/>
 				</div>
+			</div>
+			{open && (
+				<MobileMenu
+					open={open}
+					setOpen={setOpen}
+					isAuthenticated={isAuthenticated}
+				/>
 			)}
 		</div>
 	);

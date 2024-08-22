@@ -1,8 +1,4 @@
 :root {
-	/* --bg: #ffffff; */
-	/* --bgsoft: #ff9aa9; */
-	/* --text: #373233; */
-	/* --textsoft: #e5e5e5; */
 	--btn: #3673fd;
 	--btnActive: #004cff;
 
@@ -10,14 +6,12 @@
 	--lightpink: #ff9aa9;
 	--transpink: #ffe5e9;
 
-	/* --darkgray: #373233; */
 	--darkgray: #524a4c;
 	--gray: #524a4c;
 	--lightgray: #6d6265;
 	--softgray: #e5e5e5;
 
 	--white: #ffffff;
-
 }
 
 * {
@@ -47,4 +41,19 @@ a {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+}
+
+
+@media (max-width: 1280px) {
+	.container {
+		max-width: 1024px;
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+}
+
+@media (max-width: 1024px) {
+	.container {
+		width: 768px;
+	}
 }

@@ -4,6 +4,7 @@
 	justify-content: space-between;
 	align-items: center;
 	border-bottom: 2px solid var(--softgray);
+	position: relative;
 }
 
 .logo {
@@ -14,7 +15,7 @@
 
 .links {
 	width: 400px;
-    height: 40px;
+	height: 40px;
 	display: flex;
 	justify-content: space-between;
 }
@@ -38,6 +39,7 @@
 	padding: 10px;
 	border: 2px solid var(--darkpink);
 	border-radius: 7px;
+	background-color: white;
 }
 .button:hover {
 	background: var(--darkpink);
@@ -46,4 +48,57 @@
 .button:nth-child(2) {
 	background: var(--darkpink);
 	color: white;
+}
+
+/* RESPONSIVE DESIGN CSS */
+.mobileMenu {
+	position: absolute;
+	right: 0px;
+	top: 100px;
+	background: var(--softgray);
+	padding: 10px;
+	display: none;
+	border-radius: 5px;
+	z-index: 2;
+}
+.mobileLinks {
+	display: flex;
+	flex-direction: column;
+	width: 200px;
+}
+.menuIcon {
+	display: none;
+}
+.mobileButtons {
+	width: 200px;
+	font-size: 20px;
+	display: flex;
+	justify-content: space-between;
+	margin-top: 15px;
+}
+.profileDiv {
+	display: flex;
+	gap: 20px;
+	align-items: center;
+}
+
+@media (max-width: 1024px) {
+	.links {
+		display: none;
+	}
+	.link {
+		background: rgb(255, 255, 255);
+		margin: 3px;
+		padding: 5px 10px;
+		border-radius: 5px;
+	}
+	.buttons {
+		display: none;
+	}
+	.menuIcon {
+		display: block;
+	}
+	.mobileMenu {
+		display: block;
+	}
 }
