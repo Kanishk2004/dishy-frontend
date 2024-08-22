@@ -32,3 +32,12 @@
 .deleteDiv span {
     cursor: pointer;
 }
+
+@media (max-width: 768px) {
+    .inputContainer {
+        flex-direction: column;
+    }
+    .orderedList {
+        flex-direction: column;
+    }
+}

@@ -102,6 +102,7 @@ const EditForm = ({ user, updateAccount }) => {
 					name="bio"
 					id="bio"
 					readOnly={isReadOnly}
+					rows={8}
 					value={bio}
 					onChange={(e) => setBio(e.target.value)}
 				/>

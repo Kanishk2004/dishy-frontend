@@ -18,7 +18,7 @@ const RightBar = () => {
 				{paramValue === 'profile' && <ManageAccount />}
 				{paramValue === 'myRecipe' && <MyRecipe />}
 				{paramValue === 'postRecipe' && <PostRecipe />}
-				{paramValue === 'stats' && <h2>Stats</h2>}
+				{paramValue === 'stats' && <h2>Stats - Under Maintenance...</h2>}
 				{paramValue === 'favorites' && <Favorites />}
 			</Suspense>
 		</div>

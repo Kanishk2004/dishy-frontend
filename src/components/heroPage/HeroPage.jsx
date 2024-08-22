@@ -6,7 +6,7 @@ const HeroPage = () => {
 		<div className={styles.container}>
 			<div className={styles.textContainer}>
 				<h1>dishy - The Flavor Network</h1>
-				<h3>Home page</h3>
+				<h3>Home page - Under Maintenance...</h3>
 			</div>
 			<div className={styles.imageContainer}>
 				{/* <Image

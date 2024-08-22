@@ -38,3 +38,9 @@
 .postBtn:hover {
     background: var(--lightpink);
 }
+
+@media (max-width: 768px) {
+    .inputContainer {
+        flex-direction: column;
+    }
+}

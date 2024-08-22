@@ -61,3 +61,21 @@
     border-radius: 5px;
     cursor: pointer;
 }
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+    .formContainer {
+        margin-top: 100px;
+        width: 300px;
+    }
+}
+
+@media (max-width: 640px) {
+    .formContainer {
+        width: 250px;
+        height: 400px;
+    }
+}

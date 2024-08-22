@@ -3,7 +3,7 @@
     flex-direction: column;
     gap: 20px;
 }
-.inputContainer{
+.inputContainer {
     display: flex;
     gap: 20px;
     width: max-content;
@@ -55,4 +55,20 @@
     font-size: 12px;
     display: flex;
     align-items: center;
+}
+
+@media (max-width: 1280px) {
+    .inputContainer input, .inputContainer textarea {
+        width: 200px;
+    }
+}
+
+@media (max-width: 768px) {
+    .inputContainer {
+        flex-direction: column;
+        gap: 5px;
+    }
+    .inputContainer input, .inputContainer textarea {
+        width: 270px;
+    }
 }

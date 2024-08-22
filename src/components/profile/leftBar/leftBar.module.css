@@ -54,11 +54,17 @@
 		align-items: center;
 	}
 	.tab {
-		width: 50px;
+		width: 200px;
 		justify-content: center;
 		align-items: center;
 	}
 	.tabText {
 		display: none;
+	}
+}
+
+@media (max-width: 1024px) {
+	.tab {
+		width: 50px;
 	}
 }

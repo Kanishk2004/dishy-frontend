@@ -164,23 +164,25 @@ const ManageAccount = () => {
 			)}
 			{changePasswordMode && (
 				<div className={styles.verifyOtpContainer}>
-					<form className={styles.otpForm}>
-						<input
-							type="password"
-							id="oldPass"
-							name="oldPass"
-							placeholder="Enter Old Password"
-							onChange={(e) => setOldPass(e.target.value)}
-						/>
-						<input
-							type="password"
-							id="newPass"
-							name="newPass"
-							placeholder="Enter New Password"
-							onChange={(e) => setNewPass(e.target.value)}
-						/>
-						<button onClick={(e) => handleChangePassword(e)}>Change</button>
-					</form>
+					<div>
+						<form className={styles.otpForm}>
+							<input
+								type="password"
+								id="oldPass"
+								name="oldPass"
+								placeholder="Enter Old Password"
+								onChange={(e) => setOldPass(e.target.value)}
+							/>
+							<input
+								type="password"
+								id="newPass"
+								name="newPass"
+								placeholder="Enter New Password"
+								onChange={(e) => setNewPass(e.target.value)}
+							/>
+							<button onClick={(e) => handleChangePassword(e)}>Save</button>
+						</form>
+					</div>
 				</div>
 			)}
 		</div>
