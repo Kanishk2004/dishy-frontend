@@ -22,3 +22,17 @@
     border-radius: 10px;
     background: var(--softgray);
 }
+
+@media (max-width: 1024px) {
+    .container {
+        padding: 10px;
+    }
+    .leftBar {
+        flex: 1;
+        width: 100px;
+        padding: 10px;
+    }
+    .rightBar {
+        flex: 7;
+    }
+}
