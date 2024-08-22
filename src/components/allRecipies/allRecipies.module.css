@@ -24,3 +24,13 @@
 	flex-wrap: wrap;
 	gap: 20px;
 }
+
+@media (max-width: 1024px) {
+	.container {
+		padding: 10px;
+		margin: 10px 0px;
+	}
+	.recipeContainer{
+		gap: 10px;
+	}
+}

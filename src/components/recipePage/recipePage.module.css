@@ -71,3 +71,41 @@
 	align-items: center;
     gap: 20px;
 }
+
+@media (max-width: 1350px) {
+	.topContainer{
+		flex-direction: column;
+	}
+	.img {
+		width: 100%;
+		height: 500px;
+	}
+	.pictureContainer {
+		height: 200px;
+	}
+}
+
+@media (max-width: 1024px) {
+	.img {
+		height: 400px;
+	}
+}
+
+@media (max-width: 768px) {
+	.img {
+		height: 300px;
+	}
+	.authorAndRatingContainer {
+		gap: 10px;
+		flex-wrap: wrap;
+	}
+	.bottomContainer {
+		flex-direction: column;
+	}
+}
+
+@media (max-width: 640px) {
+	.img {
+		height: 300px;
+	}
+}
