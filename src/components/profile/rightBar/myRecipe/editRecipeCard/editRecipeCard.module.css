@@ -1,0 +1,117 @@
+.container {
+	width: 500px;
+	background: #ffffff;
+	border-radius: 8px;
+	color: var(--gray);
+	padding: 10px;
+    display: flex;
+    gap: 20px;
+    position: relative;
+}
+.container:hover {
+	box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.imgContainer {
+	height: 100%;
+}
+
+.favorite {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	background: var(--darkpink);
+	padding: 5px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 50%;
+	cursor: pointer;
+}
+.favorite:hover {
+	background: var(--lightpink);
+}
+.favIcon {
+	background: none;
+	border-radius: 50%;
+}
+.img {
+	height: 100%;
+	object-fit: cover;
+	overflow: hidden;
+	border-radius: 8px;
+}
+
+.recipeInfoContainer {
+	display: flex;
+	flex-direction: column;
+}
+
+.cuisineAndCategory {
+	height: 20px;
+	margin-top: 10px;
+	display: flex;
+	justify-content: flex-start;
+}
+.cuisineAndCategory span {
+	color: var(--darkpink);
+	padding-right: 15px;
+	font-size: 14px;
+}
+
+.recipeInfo {
+	display: flex;
+	flex-direction: column;
+    width: 100%;
+}
+
+.recipeInfo h2 {
+	font-size: 20px;
+	padding: 10px 0px;
+	border-bottom: 2px solid var(--softgray);
+}
+
+.recipeDetails {
+	padding: 10px;
+	display: flex;
+	justify-content: flex-start;
+	gap: 30px;
+}
+.clockContainer {
+	display: flex;
+	align-items: center;
+	gap: 3px;
+}
+.totalTime {
+	color: var(--darkpink);
+}
+.detailName {
+	font-size: 12px;
+}
+
+.desc {
+	font-size: 15px;
+	height: 70px;
+}
+.btn {
+	background: var(--darkpink);
+	color: white;
+	padding: 5px 0px;
+	font-size: 15px;
+	cursor: pointer;
+	border-radius: 5px;
+}
+.btn:hover {
+	background: var(--lightpink);
+}
+.date {
+	font-size: 12px;
+}
+
+@media (max-width: 640px) {
+	.container {
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+	}
+}

@@ -1,8 +1,9 @@
 'use client';
 import { useEffect } from 'react';
 import styles from './myRecipe.module.css';
-import RecipeCard from './recipeCard/RecipeCard';
+import RecipeCard from '../../../recipeCard/RecipeCard';
 import { useRecipe } from '@/context/RecipeContext';
+import EditRecipeCard from './editRecipeCard/EditRecipeCard';
 
 const MyRecipe = () => {
 	const { myRecipies, fetchUserRecipies } = useRecipe();
@@ -18,7 +19,7 @@ const MyRecipe = () => {
 				<h3>You posted 0 recipies</h3>
 			)}
 			{myRecipies?.map((recipe) => (
-				<RecipeCard
+				<EditRecipeCard
 					key={recipe?._id}
 					img={recipe?.imageUrl[0]}
 					title={recipe?.title}

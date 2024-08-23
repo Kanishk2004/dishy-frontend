@@ -44,9 +44,9 @@ export const FavProvider = ({ children }) => {
 			});
 			response = await response.json();
 			if (response.success) {
+				setLoadingFav(false);
 				getUserFavorites();
 			}
-			setLoadingFav(false);
 		} catch (error) {
 			console.log('Something went wrong!');
 		}

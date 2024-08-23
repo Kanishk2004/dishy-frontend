@@ -1,6 +1,6 @@
 'use client';
 import styles from './favorites.module.css';
-import RecipeCard from '../myRecipe/recipeCard/RecipeCard';
+import RecipeCard from '../../../recipeCard/RecipeCard';
 import { useEffect, useState } from 'react';
 import { useFav } from '@/context/FavContext';
 import { useRecipe } from '@/context/RecipeContext';

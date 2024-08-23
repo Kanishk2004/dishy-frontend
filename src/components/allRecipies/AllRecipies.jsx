@@ -1,6 +1,6 @@
 'use client';
 import styles from './allRecipies.module.css';
-import RecipeCard from '../profile/rightBar/myRecipe/recipeCard/RecipeCard';
+import RecipeCard from '../recipeCard/RecipeCard';
 import { useEffect } from 'react';
 import { useRecipe } from '@/context/RecipeContext';
 
