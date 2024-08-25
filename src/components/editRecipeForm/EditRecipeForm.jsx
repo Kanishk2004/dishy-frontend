@@ -2,6 +2,9 @@
 import { useState } from 'react';
 import styles from './editRecipeForm.module.css';
 import Image from 'next/image';
+import { apiURL } from '@/Constant';
+import { useAuth } from '@/context/AuthContext';
+import { useRouter } from 'next/navigation';
 
 const EditRecipeForm = ({
 	img,
@@ -9,13 +12,15 @@ const EditRecipeForm = ({
 	desc,
 	cuisine,
 	category,
-	date,
 	ingredients,
 	instructions,
 	recipeId,
 	prepTime,
 	cookTime,
 }) => {
+	const router = useRouter();
+
+	const { setMessage } = useAuth();
 	const [newTitle, setNewTitle] = useState(title);
 	const [newDesc, setNewDesc] = useState(desc);
 	const [newPrepTime, setNewPrepTime] = useState(prepTime);
@@ -24,6 +29,7 @@ const EditRecipeForm = ({
 	const [newInstructions, setNewInstructions] = useState(instructions);
 	const [newCategory, setNewCategory] = useState(category);
 	const [newCuisine, setNewCuisine] = useState(cuisine);
+	const [uploading, setUploading] = useState(false);
 
 	const handleIngredientChange = (index, value) => {
 		const updatedIngredients = newIngredients.map((ingredient, i) =>
@@ -57,6 +63,60 @@ const EditRecipeForm = ({
 		setNewInstructions([...newInstructions, '']);
 	};
 
+	// const formData = new FormData();
+
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+
+		const updateData = {};
+		if (title !== newTitle.trim()) updateData.title = newTitle.trim();
+		if (desc !== newDesc.trim()) updateData.description = newDesc.trim();
+		if (prepTime !== newPrepTime) updateData.prepTime = newPrepTime;
+		if (cookTime !== newCookTime) updateData.cookTime = newCookTime;
+		if (category !== newCategory.trim())
+			updateData.category = newCategory.trim();
+		if (cuisine !== newCuisine.trim()) updateData.cuisine = newCuisine.trim();
+
+		if (JSON.stringify(ingredients) !== JSON.stringify(newIngredients)) {
+			updateData.ingredients = newIngredients;
+		}
+		if (JSON.stringify(instructions) !== JSON.stringify(newInstructions)) {
+			updateData.instructions = newInstructions;
+		}
+
+		try {
+			setUploading(true);
+
+			let res = await fetch(`${apiURL}/recipies/${recipeId}`, {
+				method: 'PATCH',
+				body: JSON.stringify(updateData),
+				headers: {
+					'Content-type': 'application/json',
+				},
+				credentials: 'include',
+			});
+
+			res = await res.json();
+			if (res.success) {
+				setMessage({
+					success: true,
+					message: res.message,
+				});
+				router.push('/profile?section=myRecipe');
+			}
+			if (!res.success) {
+				setMessage({
+					success: false,
+					message: res.message,
+				});
+			}
+			setUploading(false);
+		} catch (error) {
+			console.log('Something went wrong');
+			console.log(error);
+		}
+	};
+
 	return (
 		<form className={styles.container}>
 			<div className={styles.inputContainer}>
@@ -85,7 +145,8 @@ const EditRecipeForm = ({
 				<label htmlFor="ingredients">Ingredients</label>
 				<div className={styles.ingredientContainer}>
 					{newIngredients.map((ingredient, index) => (
-						<div key={index}>
+						<div key={index} className={styles.inputAndDelete}>
+							<p>{index + 1}. </p>
 							<input
 								type="text"
 								name="ingredients"
@@ -95,6 +156,7 @@ const EditRecipeForm = ({
 							/>
 							{index > 0 && (
 								<Image
+									className={styles.deleteIcon}
 									src={'/delete.png'}
 									alt="delete"
 									width={20}
@@ -105,10 +167,10 @@ const EditRecipeForm = ({
 						</div>
 					))}
 					<button
+						className={styles.addBtn}
 						type="button"
-						className={styles.addButton}
 						onClick={handleAddIngredient}>
-						Add Ingredient
+						<Image src={'/addIcon.png'} alt="add" width={30} height={30} />
 					</button>
 				</div>
 			</div>
@@ -117,7 +179,10 @@ const EditRecipeForm = ({
 				<label htmlFor="instructions">Instructions</label>
 				<div className={styles.ingredientContainer}>
 					{newInstructions.map((instruction, index) => (
-						<div key={index}>
+						<div
+							key={index}
+							className={`${styles.inputAndDelete} ${styles.instructionInputAndDelete}`}>
+							<p>{index + 1}. </p>
 							<input
 								type="text"
 								name="ingredients"
@@ -127,6 +192,7 @@ const EditRecipeForm = ({
 							/>
 							{index > 0 && (
 								<Image
+									className={styles.deleteIcon}
 									src={'/delete.png'}
 									alt="delete"
 									width={20}
@@ -137,53 +203,64 @@ const EditRecipeForm = ({
 						</div>
 					))}
 					<button
+						className={styles.addBtn}
 						type="button"
-						className={styles.addButton}
 						onClick={handleAddInstruction}>
-						Add Instruction
+						<Image src={'/addIcon.png'} alt="add" width={30} height={30} />
 					</button>
 				</div>
 			</div>
 			<div className={styles.inputContainer}>
 				<label htmlFor="prepTime">Preparation Time</label>
-				<input
-					type="text"
-					name="prepTime"
-					id="prepTime"
-					value={newPrepTime}
-					onChange={(e) => setNewPrepTime(e.target.value)}
-				/>
+				<div className={styles.smallInput}>
+					<input
+						type="text"
+						name="prepTime"
+						id="prepTime"
+						value={newPrepTime}
+						onChange={(e) => setNewPrepTime(e.target.value)}
+					/>
+				</div>
 			</div>
 			<div className={styles.inputContainer}>
 				<label htmlFor="cookTime">Cooking Time</label>
-				<input
-					type="text"
-					name="cookTime"
-					id="cookTime"
-					value={newCookTime}
-					onChange={(e) => setNewCookTime(e.target.value)}
-				/>
+				<div className={styles.smallInput}>
+					<input
+						type="text"
+						name="cookTime"
+						id="cookTime"
+						value={newCookTime}
+						onChange={(e) => setNewCookTime(e.target.value)}
+					/>
+				</div>
 			</div>
 			<div className={styles.inputContainer}>
 				<label htmlFor="category">Category</label>
-				<input
-					type="text"
-					name="category"
-					id="category"
-					value={newCategory}
-					onChange={(e) => setNewCategory(e.target.value)}
-				/>
+				<div className={styles.smallInput}>
+					<input
+						type="text"
+						name="category"
+						id="category"
+						value={newCategory}
+						onChange={(e) => setNewCategory(e.target.value)}
+					/>
+				</div>
 			</div>
 			<div className={styles.inputContainer}>
 				<label htmlFor="cuisine">Cuisine</label>
-				<input
-					type="text"
-					name="cuisine"
-					id="cuisine"
-					value={newCuisine}
-					onChange={(e) => setNewCuisine(e.target.value)}
-				/>
+				<div className={styles.smallInput}>
+					<input
+						type="text"
+						name="cuisine"
+						id="cuisine"
+						value={newCuisine}
+						onChange={(e) => setNewCuisine(e.target.value)}
+					/>
+				</div>
 			</div>
+			<button className={styles.submitBtn} onClick={(e) => handleSubmit(e)}>
+				{uploading ? 'Uploading...' : 'Save'}
+			</button>
 		</form>
 	);
 };

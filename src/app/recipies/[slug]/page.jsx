@@ -17,6 +17,7 @@ export const generateMetadata = async ({ params }) => {
 const getRecipe = async (slug) => {
 	try {
 		let response = await fetch(`${apiURL}/recipies/${slug}`, {
+			cache: 'no-store',
 			method: 'GET',
 			headers: {
 				'Content-type': 'application/json',
@@ -27,7 +28,6 @@ const getRecipe = async (slug) => {
 		if (!response.success) {
 			throw new Error('Something went wrong!');
 		}
-		// console.log(response.data);
 		return response.data;
 	} catch (error) {
 		console.log('Error: ', error);
