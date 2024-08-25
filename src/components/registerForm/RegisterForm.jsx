@@ -5,13 +5,6 @@ import Link from 'next/link';
 import { useAuth } from '@/context/AuthContext';
 import { apiURL } from '@/Constant';
 
-// username
-// fullName
-// email
-// password
-// avatar
-// phone
-
 const LoginForm = () => {
 	const [username, setUsername] = useState('');
 	const [fullName, setFullName] = useState('');

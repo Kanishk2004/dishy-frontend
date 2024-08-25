@@ -102,3 +102,9 @@
 		display: block;
 	}
 }
+
+@media (max-width: 475px) {
+	.logo {
+		font-size: 40px;
+	}
+}

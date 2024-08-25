@@ -136,3 +136,22 @@
 		width: 100%;
 	}
 }
+
+@media (max-width: 475px) {
+	.container {
+		padding: 10px 5px;
+	}
+	.profileImg {
+		width: 150px;
+		height: 150px;
+	}
+	.profile {
+		width: 100%;
+		padding-right: 0;
+		margin-bottom: 10px;
+	}
+	.profileImgContainer {
+		padding: 5px;
+		border: 3px solid var(--darkpink);
+	}
+}

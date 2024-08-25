@@ -15,3 +15,13 @@
 	font-size: 12px;
 	margin-bottom: 3px;
 }
+
+@media (max-width: 475px) {
+	.authorDetail {
+		gap: 8px;
+		padding: 5px;
+	}
+	.authorDetail p {
+		font-size: 10px;
+	}
+}

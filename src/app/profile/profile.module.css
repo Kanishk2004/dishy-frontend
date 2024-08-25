@@ -37,3 +37,16 @@
         padding: 10px;
     }
 }
+
+@media (max-width: 475px) {
+    .container {
+        padding: 5px;
+    }
+    .leftBar {
+        padding: 5px;
+    }
+    .rightBar {
+        padding: 5px;
+        margin-left: 5px;
+    }
+}

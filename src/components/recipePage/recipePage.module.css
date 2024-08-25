@@ -106,6 +106,33 @@
 
 @media (max-width: 640px) {
 	.img {
-		height: 300px;
+		height: 250px;
+	}
+}
+@media (max-width: 475px) {
+	.img {
+		height: 200px;
+	}
+	.container {
+		padding: 10px;
+	}
+	.textContainer h1 {
+		font-size: 30px;
+	}
+	.ingredients h2 {
+		font-size: 20px;
+	}
+	.authorAndRatingContainer {
+		gap: 5px;
+	}
+	.textContainer {
+		padding: 5px;
+		margin-bottom: 10px;
+	}
+	.ingredients ul {
+		padding: 10px;
+	}
+	.ingredients ol {
+		padding: 10px;
 	}
 }

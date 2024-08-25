@@ -68,3 +68,11 @@ a {
 		width: 475px;
 	}
 }
+
+@media (max-width: 475px) {
+	.container {
+		padding-left: 5px;
+		padding-right: 5px;
+		width: 370px;
+	}
+}

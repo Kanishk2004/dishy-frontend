@@ -68,3 +68,12 @@
 		width: 50px;
 	}
 }
+
+@media (max-width: 475px) {
+	.top {
+		gap: 5px;
+	}
+	.tab {
+		padding: 5px;
+	}
+}

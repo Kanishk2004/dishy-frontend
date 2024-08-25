@@ -18,3 +18,10 @@
     background: none;
     border-radius: 50%;
 }
+
+@media (max-width: 475px) {
+	.favIcon {
+		width: 20px;
+		height: 20px;
+	}
+}

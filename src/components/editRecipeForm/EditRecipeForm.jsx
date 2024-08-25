@@ -117,6 +117,37 @@ const EditRecipeForm = ({
 		}
 	};
 
+	const handleDelete = async (e) => {
+		e.preventDefault();
+
+		try {
+			let res = await fetch(`${apiURL}/recipies/${recipeId}`, {
+				method: 'DELETE',
+				headers: {
+					'Content-type': 'application/json',
+				},
+				credentials: 'include',
+			});
+			res = await res.json();
+			if (res.success) {
+				setMessage({
+					success: true,
+					message: res.message,
+				});
+				router.push('/profile?section=myRecipe');
+			}
+			if (!res.success) {
+				setMessage({
+					success: false,
+					message: res.message,
+				});
+			}
+		} catch (error) {
+			console.log('Something went wrong');
+			console.log(error);
+		}
+	};
+
 	return (
 		<form className={styles.container}>
 			<div className={styles.inputContainer}>
@@ -258,9 +289,16 @@ const EditRecipeForm = ({
 					/>
 				</div>
 			</div>
-			<button className={styles.submitBtn} onClick={(e) => handleSubmit(e)}>
-				{uploading ? 'Uploading...' : 'Save'}
-			</button>
+			<div className={styles.btnContainer}>
+				<button className={styles.submitBtn} onClick={(e) => handleSubmit(e)}>
+					{uploading ? 'Uploading...' : 'Save'}
+				</button>
+				<button
+					className={`${styles.submitBtn} ${styles.deleteBtn}`}
+					onClick={(e) => handleDelete(e)}>
+					Delete Recipe
+				</button>
+			</div>
 		</form>
 	);
 };

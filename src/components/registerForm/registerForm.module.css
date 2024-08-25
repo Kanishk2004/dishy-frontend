@@ -1,15 +1,11 @@
 .container {
-	/* height: calc(100vh - 100px); */
-    /* height: 500px; */
-    margin-top: 50px;
-    margin-bottom: 50px;
+	min-height: calc(100vh - 100px);
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
 	gap: 30px;
 	color: var(--gray);
-    
 }
 
 .form {
@@ -30,6 +26,14 @@
 	background: var(--darkpink);
 	cursor: pointer;
 }
-.form button:hover{
-    background: var(--lightpink);
+.form button:hover {
+	background: var(--lightpink);
+}
+
+@media (max-width: 475px) {
+	.form input,
+	.form button {
+		width: 300px;
+		padding: 8px;
+	}
 }

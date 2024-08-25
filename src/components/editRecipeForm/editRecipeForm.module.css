@@ -61,16 +61,23 @@
     cursor: pointer;
 }
 
+.btnContainer {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+}
+
 .submitBtn {
     width: 200px;
     padding: 10px;
     background: var(--darkpink);
     border-radius: 5px;
     color: white;
-    margin-left: auto;
-    margin-right: auto;
     cursor: pointer;
     margin-top: 20px;
+}
+.deleteBtn {
+    background: red;
 }
 
 @media (max-width: 768px) {

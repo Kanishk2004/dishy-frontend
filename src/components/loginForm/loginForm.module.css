@@ -30,3 +30,13 @@
 .form button:hover{
     background: var(--lightpink);
 }
+
+@media (max-width: 475px) {
+	.form {
+		gap: 20px;
+	}
+	.form input, .form button {
+		width: 300px;
+		padding: 8px;
+	}
+}
