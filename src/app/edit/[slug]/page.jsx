@@ -38,7 +38,7 @@ const editRecipe = async ({ params }) => {
 
 	return (
 		<div className={styles.container}>
-            <h2>Edit Recipe</h2>
+			<h2>Edit Recipe</h2>
 			<EditRecipeForm
 				img={recipe?.imageUrl[0]}
 				title={recipe?.title}
@@ -46,8 +46,10 @@ const editRecipe = async ({ params }) => {
 				cuisine={recipe?.cuisine}
 				category={recipe?.category}
 				date={recipe?.createdAt}
-				totalTime={recipe?.totalTime}
-				ingredients={recipe?.ingredients.length}
+				prepTime={recipe?.prepTime}
+				cookTime={recipe?.cookTime}
+				ingredients={recipe?.ingredients}
+				instructions={recipe?.instructions}
 				recipeId={recipe?._id}
 			/>
 		</div>
