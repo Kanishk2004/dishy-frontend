@@ -15,6 +15,7 @@ const AuthorCard = ({ recipeId, createdAt }) => {
 	return (
 		<div className={styles.authorDetail}>
 			<Image
+				className={styles.img}
 				src={recipeAuthor?.avatar || '/avatar.png'}
 				alt="author img"
 				width={40}

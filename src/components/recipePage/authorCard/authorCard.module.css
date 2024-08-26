@@ -11,6 +11,9 @@
 	flex-direction: column;
 	justify-content: center;
 }
+.img {
+	border-radius: 50%;
+}
 .authorDetail p {
 	font-size: 12px;
 	margin-bottom: 3px;
