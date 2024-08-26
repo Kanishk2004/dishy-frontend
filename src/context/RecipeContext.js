@@ -29,9 +29,9 @@ export const RecipeProvider = ({ children }) => {
 		}
 	};
 
-	const fetchAllRecipies = async () => {
+	const fetchAllRecipies = async (sortType = 'new') => {
 		try {
-			let response = await fetch(`${apiURL}/recipies/`, {
+			let response = await fetch(`${apiURL}/recipies?sortType=${sortType}`, {
 				method: 'GET',
 				credentials: 'include',
 			});

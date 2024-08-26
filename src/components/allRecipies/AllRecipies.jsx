@@ -1,16 +1,24 @@
 'use client';
 import styles from './allRecipies.module.css';
 import RecipeCard from '../recipeCard/RecipeCard';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRecipe } from '@/context/RecipeContext';
 
 const AllRecipies = () => {
 	const { allRecipies, fetchAllRecipies } = useRecipe();
+	const [sortType, setSortType] = useState('new');
 
 	useEffect(() => {
 		fetchAllRecipies();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
+
+	const handleChange = async (e) => {
+		const selectedVal = e.target.value;
+		setSortType(selectedVal);
+
+		await fetchAllRecipies(selectedVal);
+	};
 
 	return (
 		<div className={styles.container}>
@@ -19,13 +27,10 @@ const AllRecipies = () => {
 					<h2>Tasty Recipies</h2>
 				</div>
 				<div className={styles.sortBy}>
-					<select id="options" name="options">
-						<option value="latest" defaultValue={'Sort By'}>
-							Sort By
-						</option>
-						<option value="latest">Latest</option>
-						<option value="popular">Popular</option>
-						<option value="oldest">Oldest</option>
+					<label htmlFor="options">Sort By</label>
+					<select id="options" name="options" onChange={handleChange}>
+						<option value="new">Latest</option>
+						<option value="old">Oldest</option>
 					</select>
 				</div>
 			</div>

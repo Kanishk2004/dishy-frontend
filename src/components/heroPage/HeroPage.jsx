@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import styles from './heroPage.module.css';
+import Link from 'next/link';
 
 const HeroPage = () => {
 	return (
@@ -7,6 +8,9 @@ const HeroPage = () => {
 			<div className={styles.textContainer}>
 				<h1>dishy - The Flavor Network</h1>
 				<h3>Home page - Under Maintenance...</h3>
+				<button>
+					<Link href={'/recipies'}>Explore Recipies</Link>
+				</button>
 			</div>
 			<div className={styles.imageContainer}>
 				{/* <Image

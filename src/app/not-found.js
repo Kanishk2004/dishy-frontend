@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 const notFound = () => {
 	return (
-		<div>
+		<div className='notFoundContainer'>
 			<h1>Not found</h1>
 			<h3>Developer being too lazy to develop this page!</h3>
 			<Link href={'/'}>

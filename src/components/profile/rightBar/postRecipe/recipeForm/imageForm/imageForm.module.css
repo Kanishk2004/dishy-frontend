@@ -42,9 +42,9 @@
 	align-items: center;
 	gap: 10px;
 }
-/* .imageStyle {
-	width: ;
-} */
+.imageStyle {
+	object-fit: cover;
+}
 .uploadBtn {
 	font-size: 15px;
 	padding: 5px 10px;

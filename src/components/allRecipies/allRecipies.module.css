@@ -11,6 +11,11 @@
 	align-items: center;
 	margin-bottom: 20px;
 }
+.sortBy {
+	display: flex;
+	gap: 10px;
+	align-items: center;
+}
 .sortBy select {
 	background: var(--softgray);
     padding: 5px;
@@ -32,5 +37,14 @@
 	}
 	.recipeContainer{
 		gap: 10px;
+	}
+}
+
+@media (max-width: 475px) {
+	.container {
+		padding: 5px;
+	}
+	.sortBy {
+		gap: 5px;
 	}
 }
