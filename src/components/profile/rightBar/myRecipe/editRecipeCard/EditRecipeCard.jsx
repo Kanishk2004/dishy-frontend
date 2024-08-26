@@ -1,9 +1,6 @@
 import Image from 'next/image';
 import styles from './editRecipeCard.module.css';
-import { useFav } from '@/context/FavContext';
-import { useAuth } from '@/context/AuthContext';
 import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
 
 const EditRecipeCard = ({
 	img,
@@ -85,7 +82,7 @@ const EditRecipeCard = ({
 						</div>
 					</div>
 
-					<p className={styles.desc}>{desc.toString().slice(0, 100) + '...'}</p>
+					<p className={styles.desc}>{desc.toString().slice(0, 70) + '...'}</p>
 					<button
 						className={styles.btn}
 						onClick={() => handleViewRecipe(recipeId)}>
