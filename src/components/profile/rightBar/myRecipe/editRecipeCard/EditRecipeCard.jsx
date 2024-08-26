@@ -82,7 +82,7 @@ const EditRecipeCard = ({
 						</div>
 					</div>
 
-					<p className={styles.desc}>{desc.toString().slice(0, 70) + '...'}</p>
+					<p className={styles.desc}>{desc.toString().slice(0, 50) + '...'}</p>
 					<button
 						className={styles.btn}
 						onClick={() => handleViewRecipe(recipeId)}>
