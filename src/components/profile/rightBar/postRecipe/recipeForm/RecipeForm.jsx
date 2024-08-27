@@ -34,8 +34,8 @@ const RecipeForm = () => {
 		instructions.map((instruction) =>
 			formData.append('instructions', instruction)
 		);
-		formData.append('prepTime', prepTime);
-		formData.append('cookTime', cookTime);
+		formData.append('prepTime', prepTime.toString());
+		formData.append('cookTime', cookTime.toString());
 		formData.append('category', category);
 		formData.append('cuisine', cuisine);
 
@@ -108,9 +108,9 @@ const RecipeForm = () => {
 				/>
 			</div>
 			<div className={styles.inputContainer}>
-				<label htmlFor="prepTime">Preparation Time</label>
+				<label htmlFor="prepTime">Preparation Time (min)</label>
 				<input
-					type="text"
+					type="number"
 					name="prepTime"
 					id="prepTime"
 					value={prepTime}
@@ -118,9 +118,9 @@ const RecipeForm = () => {
 				/>
 			</div>
 			<div className={styles.inputContainer}>
-				<label htmlFor="cookTime">Cooking Time</label>
+				<label htmlFor="cookTime">`Cooking Time (min)`</label>
 				<input
-					type="text"
+					type="number"
 					name="cookTime"
 					id="cookTime"
 					value={cookTime}
