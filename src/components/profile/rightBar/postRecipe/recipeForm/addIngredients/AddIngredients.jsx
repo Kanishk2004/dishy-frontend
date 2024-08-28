@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import styles from './addIngredients.module.css';
+import { useRef } from 'react';
 
 const AddIngredients = ({
 	ingredients,
@@ -7,11 +8,14 @@ const AddIngredients = ({
 	setLastIndex,
 	setIngredients,
 }) => {
+	const inputRef = useRef(null);
+
 	const handleAddIngredient = (e) => {
-		if (e.key === 'Enter' && e.target.value.trim() !== '') {
-			e.preventDefault();
-			setIngredients([...ingredients, e.target.value.trim()]);
-			e.target.value = '';
+		e.preventDefault();
+		const value = inputRef.current.value.trim();
+		if (value !== '') {
+			setIngredients([...ingredients, value]);
+			inputRef.current.value = '';
 			setLastIndex(ingredients.length);
 		}
 	};
@@ -30,9 +34,14 @@ const AddIngredients = ({
 					type="text"
 					name="ingredients"
 					id="ingredients"
-					onKeyDown={handleAddIngredient}
-					placeholder="Press Enter to add"
+					ref={inputRef}
+					placeholder="Enter Ingredients"
 				/>
+				<button
+					className={styles.addBtn}
+					onClick={(e) => handleAddIngredient(e)}>
+					<Image src={'/addIcon.png'} alt="add" width={20} height={20} />
+				</button>
 			</div>
 			<div className={styles.orderedList}>
 				<div className={styles.dummyDiv}></div>

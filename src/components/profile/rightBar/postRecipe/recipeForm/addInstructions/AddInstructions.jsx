@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import styles from './addInstructions.module.css';
+import { useRef } from 'react';
 
 const AddInstructions = ({
 	instructions,
@@ -7,11 +8,14 @@ const AddInstructions = ({
 	lastIndex,
 	setLastIndex,
 }) => {
+	const inputRef = useRef(null);
+
 	const handleAddInstructions = (e) => {
-		if (e.key === 'Enter' && e.target.value.trim() !== '') {
-			e.preventDefault();
-			setInstructions([...instructions, e.target.value.trim()]);
-			e.target.value = '';
+		e.preventDefault();
+		const value = inputRef.current.value.trim();
+		if (value !== '') {
+			setInstructions([...instructions, value]);
+			inputRef.current.value = '';
 			setLastIndex(instructions.length);
 		}
 	};
@@ -30,9 +34,14 @@ const AddInstructions = ({
 					type="text"
 					name="instructions"
 					id="instructions"
-					onKeyDown={handleAddInstructions}
-					placeholder="Press Enter to add"
+					ref={inputRef}
+					placeholder="Enter Instructions"
 				/>
+				<button
+					className={styles.addBtn}
+					onClick={(e) => handleAddInstructions(e)}>
+					<Image src={'/addIcon.png'} alt="add" width={20} height={20} />
+				</button>
 			</div>
 
 			<div className={styles.orderedList}>

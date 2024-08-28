@@ -1,43 +1,56 @@
 .inputContainer {
 	display: flex;
+	position: relative;
 }
 
-.inputContainer label{
-    flex: 1;
-    padding: 10px;
+.inputContainer label {
+	flex: 1;
+	padding: 10px;
 }
 
 .inputContainer input {
-    flex: 2;
-    padding: 10px;
-    border-radius: 5px;
+	flex: 2;
+	padding: 10px;
+	border-radius: 5px;
 }
 
 .orderedList {
-    padding: 10px;
-    display: flex;
-}   
+	padding: 10px;
+	display: flex;
+}
 .dummyDiv {
-    flex: 1;
+	flex: 1;
 }
 .orderedList ul {
-    flex: 2;
+	flex: 2;
 }
 
 .deleteDiv {
-    padding: 5px;
-    display: flex;
-    justify-content: space-between;
+	padding: 5px;
+	display: flex;
+	justify-content: space-between;
 }
 .deleteDiv span {
-    cursor: pointer;
+	cursor: pointer;
+}
+.addBtn {
+	position: absolute;
+	right: 2px;
+	top: 3px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: var(--gray);
+	padding: 5px;
+	border-radius: 50%;
+	cursor: pointer;
 }
 
 @media (max-width: 768px) {
-    .inputContainer {
-        flex-direction: column;
-    }
-    .orderedList {
-        flex-direction: column;
-    }
+	.inputContainer {
+		flex-direction: column;
+	}
+	.orderedList {
+		flex-direction: column;
+	}
 }
