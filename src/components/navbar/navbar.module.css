@@ -54,17 +54,30 @@
 .mobileMenu {
 	position: absolute;
 	right: 0px;
-	top: 100px;
+	top: 80px;
 	background: var(--softgray);
 	padding: 10px;
 	display: none;
 	border-radius: 5px;
 	z-index: 2;
 }
+.closeIcon {
+	padding: 5px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 50%;
+	margin-left: 80%;
+	margin-bottom: 10px;
+	background: white;
+}
 .mobileLinks {
 	display: flex;
 	flex-direction: column;
 	width: 200px;
+}
+.active {
+	border-bottom: 2px solid var(--darkpink);
 }
 .menuIcon {
 	display: none;
