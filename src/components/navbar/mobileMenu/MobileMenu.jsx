@@ -2,9 +2,12 @@
 import Link from 'next/link';
 import React, { useEffect, useRef } from 'react';
 import styles from '../navbar.module.css';
+import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 
 const MobileMenu = ({ open, setOpen, isAuthenticated }) => {
 	const menuRef = useRef(null);
+	const pathname = usePathname();
 
 	const handleClickOutside = (event) => {
 		if (menuRef.current && !menuRef.current.contains(event.target)) {
@@ -21,21 +24,38 @@ const MobileMenu = ({ open, setOpen, isAuthenticated }) => {
 			document.removeEventListener('mousedown', handleClickOutside);
 		};
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [open]);
+	}, []);
 
 	return (
 		<div ref={menuRef} className={styles.mobileMenu}>
+			<button className={styles.closeIcon} onClick={() => setOpen(false)}>
+				<Image src={'/menuClose.png'} alt="menu" width={20} height={20} />
+			</button>
 			<div className={styles.mobileLinks}>
-				<Link href={'/'} className={styles.link}>
+				<Link
+					href={'/'}
+					className={`${styles.link} ${pathname === '/' ? styles.active : ''}`}>
 					Home
 				</Link>
-				<Link href={'/recipies'} className={styles.link}>
+				<Link
+					href={'/recipies'}
+					className={`${styles.link} ${
+						pathname === '/recipies' ? styles.active : ''
+					}`}>
 					Recipies
 				</Link>
-				<Link href={'/blog'} className={styles.link}>
+				<Link
+					href={'/blog'}
+					className={`${styles.link} ${
+						pathname === '/blog' ? styles.active : ''
+					}`}>
 					Blog
 				</Link>
-				<Link href={'/about'} className={styles.link}>
+				<Link
+					href={'/about'}
+					className={`${styles.link} ${
+						pathname === '/about' ? styles.active : ''
+					}`}>
 					About
 				</Link>
 				{!isAuthenticated && (

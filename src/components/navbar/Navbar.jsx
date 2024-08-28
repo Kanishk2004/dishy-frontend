@@ -5,7 +5,7 @@ import UserProfile from './userProfile/UserProfile';
 import { useAuth } from '@/context/AuthContext';
 import { useEffect, useRef, useState } from 'react';
 import { apiURL } from '@/Constant';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import Image from 'next/image';
 import MobileMenu from './mobileMenu/MobileMenu';
 
@@ -14,6 +14,11 @@ const Navbar = () => {
 	const [open, setOpen] = useState(false);
 
 	const router = useRouter();
+	const pathname = usePathname();
+
+	useEffect(() => {
+		setOpen(false);
+	}, [pathname]);
 
 	useEffect(() => {
 		const fetchUser = async () => {
@@ -69,7 +74,7 @@ const Navbar = () => {
 			</div>
 			<div className={styles.profileDiv}>
 				{isAuthenticated ? (
-					<UserProfile user={user} />
+					<UserProfile user={user} onClick={() => setOpen(false)} />
 				) : (
 					<div className={styles.buttons}>
 						<Link href={'/login'} className={styles.button}>
@@ -82,12 +87,7 @@ const Navbar = () => {
 				)}
 
 				<div className={styles.menuIcon} onClick={toggleMenu}>
-					<Image
-						src={open ? '/menuClose.png' : '/menu.png'}
-						alt="menu"
-						width={35}
-						height={35}
-					/>
+					<Image src={'/menu.png'} alt="menu" width={35} height={35} />
 				</div>
 			</div>
 			{open && (

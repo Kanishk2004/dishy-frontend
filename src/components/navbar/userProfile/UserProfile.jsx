@@ -4,11 +4,13 @@ import styles from './userProfile.module.css';
 import Image from 'next/image';
 import { useAuth } from '@/context/AuthContext';
 import { useEffect, useRef, useState } from 'react';
+import { usePathname } from 'next/navigation';
 
 const UserProfile = ({ user }) => {
 	const { logout } = useAuth();
 	const [visible, setVisible] = useState(false);
 
+	const pathname = usePathname();
 	const profileCardRef = useRef(null);
 
 	const handleLogout = async () => {
@@ -39,6 +41,10 @@ const UserProfile = ({ user }) => {
 			document.removeEventListener('mousedown', handleClickOutside);
 		};
 	}, [visible]);
+
+	useEffect(() => {
+		setVisible(false);
+	}, [pathname]);
 
 	return (
 		<div className={styles.container}>
