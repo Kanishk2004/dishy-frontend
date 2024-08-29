@@ -9,10 +9,11 @@ const Footer = () => {
 				<div className={styles.brand}>
 					<h1>dishy</h1>
 					<p>
-						Lorem ipsum dolor, sit amet consectetur adipisicing elit. Blanditiis
-						libero atque amet nesciunt aliquid dolores corporis doloribus cumque
-						sequi quod. Id aut sunt asperiores? Quis unde aspernatur iste hic
-						dignissimos!
+						Discover a world of culinary delights with Dishy - The Flavour
+						Network! Share your favorite recipes, explore new and exciting
+						dishes, and connect with a community of food enthusiasts. Dishy
+						offers a platform to showcase your culinary creations, get inspired
+						by others, and rate and comment on recipes.
 					</p>
 				</div>
 
@@ -26,15 +27,18 @@ const Footer = () => {
 
 					<div className={styles.links}>
 						<h3>Quick links</h3>
-						<Link href={'/'}>Share Recipe</Link>
-						<Link href={'/recipies'}>Contact</Link>
-						<Link href={'/blog'}>About Us</Link>
+						<Link href={'/profile?section=postRecipe'}>Share Recipe</Link>
+						<Link
+							href={'https://www.linkedin.com/in/kanishk-chandna-9553931b0/'}>
+							Contact
+						</Link>
+						<Link href={'/about'}>About Us</Link>
 					</div>
 
 					<div className={styles.links}>
 						<h3>Legal</h3>
 						<Link href={'/'}>Terms of use</Link>
-						<Link href={'/recipies'}>Privacy & Cookies</Link>
+						<Link href={'/'}>Privacy & Cookies</Link>
 					</div>
 				</div>
 			</div>
@@ -43,15 +47,15 @@ const Footer = () => {
 				<p>&#169; 2024 dishy - The Flavor Network. All Rights Reserved</p>
 
 				<div className={styles.icons}>
-					<Link href={'/'}>
+					<Link href={'https://www.linkedin.com/in/kanishk-chandna-9553931b0/'}>
 						<Image
-							alt="facebook"
-							src={'/facebook.png'}
+							alt="linkedin logo"
+							src={'/linkedin.png'}
 							width={30}
 							height={30}
 						/>
 					</Link>
-					<Link href={'/'}>
+					<Link href={'https://www.instagram.com/kanishk__fr'}>
 						<Image
 							alt="instagram"
 							src={'/instagram.png'}
@@ -59,7 +63,7 @@ const Footer = () => {
 							height={30}
 						/>
 					</Link>
-					<Link href={'/'}>
+					<Link href={'https://in.pinterest.com/'}>
 						<Image
 							alt="pinterest"
 							src={'/pinterest.png'}
@@ -67,7 +71,7 @@ const Footer = () => {
 							height={30}
 						/>
 					</Link>
-					<Link href={'/'}>
+					<Link href={'https://x.com/Kanishk_fr'}>
 						<Image alt="twitter" src={'/twitter.png'} width={30} height={30} />
 					</Link>
 				</div>
