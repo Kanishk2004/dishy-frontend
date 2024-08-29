@@ -1,8 +1,91 @@
 .container {
+	height: 100%;
+	min-height: calc(100vh - 120px);
 	width: 100%;
-	height: calc(100vh - 100px);
+	display: flex;
+	align-items: center;
+	color: var(--gray);
+	background-image: linear-gradient(
+			90deg,
+			rgba(0, 0, 0, 1) 0%,
+			rgba(0, 0, 0, 0) 70%
+		),
+		url(/heropage/pexels-ash-122861-376464.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center center;
+	border-radius: 8px;
+}
+
+.textContainer {
+	margin: auto 30px;
+	color: white;
+	width: 600px;
+	height: 230px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+.textContainer p {
+	width: 400px;
+}
+.pink {
+	color: white;
+	background: var(--darkpink);
+	padding: 4px 6px;
+	border-radius: 8px;
+}
+
+.btnContainer {
+	width: 300px;
 	display: flex;
 	justify-content: space-between;
-	align-items: center;
-	color: var(--lightgray);
+}
+.btnContainer button {
+	padding: 10px;
+	color: white;
+	background-color: rgba(0, 0, 0, 0);
+	border: 3px solid var(--darkpink);
+	border-radius: 5px;
+	font-size: 15px;
+	cursor: pointer;
+}
+.btnContainer button:hover {
+	background: var(--darkpink);
+}
+
+@media (max-width: 1024px) {
+	.textContainer {
+		width: 400px;
+		height: 270px;
+	}
+	.textContainer p {
+		width: 300px;
+	}
+	.btnContainer {
+		width: 250px;
+	}
+}
+
+@media (max-width: 640px) {
+	.container {
+		background-image: linear-gradient(
+				0deg,
+				rgba(0, 0, 0, 1) 0%,
+				rgba(0, 0, 0, 0) 100%
+			),
+			url(/heropage/pexels-ash-122861-376464.jpg);
+	}
+	.textContainer {
+		text-align: center;
+	}
+	.textContainer h1 {
+		font-size: 27px;
+	}
+	.textContainer p {
+		font-size: 15px;
+	}
+	.btnContainer {
+		width: 100%;
+	}
 }
