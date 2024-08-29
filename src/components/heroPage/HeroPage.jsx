@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import styles from './heroPage.module.css';
 import Link from 'next/link';
 
@@ -17,10 +16,10 @@ const HeroPage = () => {
 				</p>
 				<div className={styles.btnContainer}>
 					<button>
-						<Link href={'/recipies'}>Explore Recipes</Link>
+						<Link href={'/register'}>Join Now</Link>
 					</button>
 					<button>
-						<Link href={'/register'}>Join Now</Link>
+						<Link href={'/recipies'}>Explore Recipes</Link>
 					</button>
 				</div>
 			</div>
