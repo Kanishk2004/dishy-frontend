@@ -63,7 +63,7 @@ const Navbar = () => {
 					Home
 				</Link>
 				<Link href={'/recipies'} className={styles.link}>
-					Recipies
+					Recipes
 				</Link>
 				<Link href={'/blog'} className={styles.link}>
 					Blog
