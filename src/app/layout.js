@@ -7,6 +7,7 @@ import { RecipeProvider } from '@/context/RecipeContext';
 import { FavProvider } from '@/context/FavContext';
 import MessageBox from '@/components/messageBox/MessageBox';
 import { RatingProvider } from '@/context/RatingContext';
+import { Analytics } from '@vercel/analytics/react';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -20,6 +21,7 @@ export default function RootLayout({ children }) {
 	return (
 		<html lang="en">
 			<body className={inter.className}>
+				<Analytics />
 				<AuthProvider>
 					<RecipeProvider>
 						<FavProvider>

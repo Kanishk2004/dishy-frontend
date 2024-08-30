@@ -33,11 +33,19 @@ const ManageAccount = () => {
 			res = await res.json();
 			if (res.success) {
 				setVerifyEmailOtp(true);
+				setMessage({
+					success: true,
+					message: "OTP Sent successfully"
+				})
 			}
 			setOtpSent(false);
 		} catch (error) {
 			console.log('Something went wrong');
 			setOtpSent(false);
+			setMessage({
+				success: false,
+				message: "Something went wrong"
+			})
 		}
 	};
 
@@ -59,9 +67,17 @@ const ManageAccount = () => {
 			if (res.success) {
 				setUser(res.data);
 				setVerifyEmailOtp(false);
+				setMessage({
+					success: true,
+					message: "Email verified!"
+				})
 			}
 		} catch (error) {
 			console.log('Something went wrong');
+			setMessage({
+				success: false,
+				message: "Something went wrong"
+			})
 		}
 	};
 
