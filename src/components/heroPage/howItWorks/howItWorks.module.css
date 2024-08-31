@@ -1,0 +1,30 @@
+.container {
+	width: 100%;
+	margin: 10px 0px;
+	background: var(--lightpink);
+	border-radius: 8px;
+	padding: 20px;
+	color: var(--gray);
+}
+.heading {
+	margin-bottom: 20px;
+	color: white;
+}
+.cardContainer {
+	display: flex;
+	justify-content: space-between;
+	gap: 15px;
+    font-size: 15px;
+}
+.cardContainer h2 {
+	color: var(--darkpink);
+    margin-bottom: 5px;
+}
+.card {
+	padding: 10px;
+	background: white;
+	border-radius: 8px;
+	display: flex;
+	gap: 10px;
+    align-items: center;
+}
