@@ -16,12 +16,14 @@ const FeatureSection = () => {
 							height={40}
 						/>
 					</div>
-					<h2 className={styles.cardTitle}>Share Your Favorite Recipes</h2>
-					<p className={styles.cardDesc}>
-						Easily share your culinary creations with our vibrant community.
-						Upload your recipes, add ingredients, and share your cooking tips to
-						inspire others
-					</p>
+					<div>
+						<h2 className={styles.cardTitle}>Share Your Favorite Recipes</h2>
+						<p className={styles.cardDesc}>
+							Easily share your culinary creations with our vibrant community.
+							Upload your recipes, add ingredients, and share your cooking tips
+							to inspire others
+						</p>
+					</div>
 				</div>
 				<div className={styles.card}>
 					<div className={styles.iconContainer}>
@@ -33,12 +35,14 @@ const FeatureSection = () => {
 							height={40}
 						/>
 					</div>
-					<h2 className={styles.cardTitle}> Discover New Dishes</h2>
-					<p className={styles.cardDesc}>
-						Explore a diverse collection of recipes from around the world.
-						Whether you’re looking for quick meals or gourmet dishes, find new
-						favorites to try in your kitchen.
-					</p>
+					<div>
+						<h2 className={styles.cardTitle}> Discover New Dishes</h2>
+						<p className={styles.cardDesc}>
+							Explore a diverse collection of recipes from around the world.
+							Whether you’re looking for quick meals or gourmet dishes, find new
+							favorites to try in your kitchen.
+						</p>
+					</div>
 				</div>
 				<div className={styles.card}>
 					<div className={styles.iconContainer}>
@@ -50,12 +54,14 @@ const FeatureSection = () => {
 							height={40}
 						/>
 					</div>
-					<h2 className={styles.cardTitle}>User-Friendly Interface</h2>
-					<p className={styles.cardDesc}>
-						Enjoy a seamless and intuitive experience on both desktop and mobile
-						devices. Our clean, responsive design ensures that you can share and
-						explore recipes effortlessly.
-					</p>
+					<div>
+						<h2 className={styles.cardTitle}>User-Friendly Interface</h2>
+						<p className={styles.cardDesc}>
+							Enjoy a seamless and intuitive experience on both desktop and
+							mobile devices. Our clean, responsive design ensures that you can
+							share and explore recipes effortlessly.
+						</p>
+					</div>
 				</div>
 				<div className={styles.card}>
 					<div className={styles.iconContainer}>
@@ -67,12 +73,14 @@ const FeatureSection = () => {
 							height={40}
 						/>
 					</div>
-					<h2 className={styles.cardTitle}>Create Favorites Collection</h2>
-					<p className={styles.cardDesc}>
-						Organize your favorite recipes with ease. Save recipes, create
-						favorites collections, and access your recipe library anytime,
-						anywhere.
-					</p>
+					<div>
+						<h2 className={styles.cardTitle}>Create Favorites Collection</h2>
+						<p className={styles.cardDesc}>
+							Organize your favorite recipes with ease. Save recipes, create
+							favorites collections, and access your recipe library anytime,
+							anywhere.
+						</p>
+					</div>
 				</div>
 			</div>
 		</div>
