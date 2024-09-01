@@ -63,49 +63,51 @@ const LoginForm = () => {
 		<div className={styles.container}>
 			<h2 className={styles.heading}>Register New Account</h2>
 
-			<form className={styles.form} onSubmit={handleRegister}>
-				<input
-					type="username"
-					name="username"
-					id="username"
-					placeholder="Username"
-					onChange={(e) => setUsername(e.target.value)}
-					value={username}
-				/>
-				<input
-					type="fullName"
-					name="fullName"
-					id="fullName"
-					placeholder="Full Name"
-					onChange={(e) => setFullName(e.target.value)}
-					value={fullName}
-				/>
-				<input
-					type="email"
-					name="email"
-					id="email"
-					placeholder="Email"
-					onChange={(e) => setEmail(e.target.value)}
-					value={email}
-				/>
-				<input
-					type="password"
-					name="password"
-					id="password"
-					placeholder="Password"
-					onChange={(e) => setPassword(e.target.value)}
-					value={password}
-				/>
-				<input
-					type="number"
-					name="phone"
-					id="phone"
-					placeholder="Phone"
-					onChange={(e) => setPhone(e.target.value)}
-					value={phone}
-				/>
-				<button type="submit">Register</button>
-			</form>
+			{!isUploading && (
+				<form className={styles.form} onSubmit={handleRegister}>
+					<input
+						type="username"
+						name="username"
+						id="username"
+						placeholder="Username"
+						onChange={(e) => setUsername(e.target.value)}
+						value={username}
+					/>
+					<input
+						type="fullName"
+						name="fullName"
+						id="fullName"
+						placeholder="Full Name"
+						onChange={(e) => setFullName(e.target.value)}
+						value={fullName}
+					/>
+					<input
+						type="email"
+						name="email"
+						id="email"
+						placeholder="Email"
+						onChange={(e) => setEmail(e.target.value)}
+						value={email}
+					/>
+					<input
+						type="password"
+						name="password"
+						id="password"
+						placeholder="Password"
+						onChange={(e) => setPassword(e.target.value)}
+						value={password}
+					/>
+					<input
+						type="number"
+						name="phone"
+						id="phone"
+						placeholder="Phone"
+						onChange={(e) => setPhone(e.target.value)}
+						value={phone}
+					/>
+					<button type="submit">Register</button>
+				</form>
+			)}
 			{isUploading && <p>Please wait, Creating user..</p>}
 			<p>
 				Already have an account?{' '}
