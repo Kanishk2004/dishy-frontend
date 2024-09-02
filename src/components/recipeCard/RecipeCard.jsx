@@ -16,8 +16,7 @@ const RecipeCard = ({
 	ingredients,
 	recipeId,
 }) => {
-	const { toggleFavorite, getUserFavorites, userFavorites, loadingFav } =
-		useFav();
+	const { toggleFavorite, userFavorites, loadingFav } = useFav();
 	const { user, setMessage } = useAuth();
 
 	const router = useRouter();
@@ -39,7 +38,7 @@ const RecipeCard = ({
 
 	let userFavoriteRecipesArray = [];
 	if (user) {
-		userFavoriteRecipesArray = user.userFavorites.recipies;
+		userFavoriteRecipesArray = user.userFavorites?.recipies;
 	}
 
 	return (
