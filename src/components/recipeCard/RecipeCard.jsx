@@ -26,11 +26,6 @@ const RecipeCard = ({
 		router.push(`/recipies/${recipeId}`);
 	};
 
-	useEffect(() => {
-		getUserFavorites();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
-
 	const toggleFav = () => {
 		if (!user) {
 			setMessage({
@@ -42,6 +37,11 @@ const RecipeCard = ({
 		}
 	};
 
+	let userFavoriteRecipesArray = [];
+	if (user) {
+		userFavoriteRecipesArray = user.userFavorites.recipies;
+	}
+
 	return (
 		<div className={styles.container}>
 			<div className={styles.imgContainer}>
@@ -51,7 +51,8 @@ const RecipeCard = ({
 						src={
 							loadingFav
 								? '/circle-loading.gif'
-								: userFavorites?.includes(recipeId)
+								: userFavoriteRecipesArray?.includes(recipeId) ||
+								  userFavorites?.includes(recipeId)
 								? '/white-filled-fav.png'
 								: '/white-favorite.png'
 						}
