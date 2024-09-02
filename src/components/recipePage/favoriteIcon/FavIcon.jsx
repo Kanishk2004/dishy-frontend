@@ -10,6 +10,11 @@ const FavIcon = ({ recipeId }) => {
 		useFav();
 	const { user, setMessage } = useAuth();
 
+	useEffect(() => {
+		getUserFavorites();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
+
 	const toggleFav = () => {
 		if (!user) {
 			setMessage({
@@ -21,11 +26,6 @@ const FavIcon = ({ recipeId }) => {
 		}
 	};
 
-	let userFavoriteRecipesArray = [];
-	if (user) {
-		userFavoriteRecipesArray = user.userFavorites.recipies;
-	}
-
 	return (
 		<div className={styles.container} onClick={toggleFav}>
 			<Image
@@ -33,8 +33,7 @@ const FavIcon = ({ recipeId }) => {
 				src={
 					loadingFav
 						? '/circle-loading.gif'
-						: userFavoriteRecipesArray?.includes(recipeId) ||
-						  userFavorites?.includes(recipeId)
+						: userFavorites?.includes(recipeId)
 						? '/white-filled-fav.png'
 						: '/white-favorite.png'
 				}
