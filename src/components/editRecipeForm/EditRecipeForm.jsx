@@ -30,6 +30,7 @@ const EditRecipeForm = ({
 	const [newCategory, setNewCategory] = useState(category);
 	const [newCuisine, setNewCuisine] = useState(cuisine);
 	const [uploading, setUploading] = useState(false);
+	const [deleting, setDeleting] = useState(false);
 
 	const handleIngredientChange = (index, value) => {
 		const updatedIngredients = newIngredients.map((ingredient, i) =>
@@ -121,6 +122,8 @@ const EditRecipeForm = ({
 		e.preventDefault();
 
 		try {
+			setDeleting(true);
+
 			let res = await fetch(`${apiURL}/recipies/${recipeId}`, {
 				method: 'DELETE',
 				headers: {
@@ -142,6 +145,7 @@ const EditRecipeForm = ({
 					message: res.message,
 				});
 			}
+			setDeleting(false);
 		} catch (error) {
 			console.log('Something went wrong');
 			console.log(error);
@@ -296,7 +300,16 @@ const EditRecipeForm = ({
 				<button
 					className={`${styles.submitBtn} ${styles.deleteBtn}`}
 					onClick={(e) => handleDelete(e)}>
-					Delete Recipe
+					{deleting ? (
+						<Image
+							src={'/circle-loading.gif'}
+							alt="loading animation"
+							width={20}
+							height={20}
+						/>
+					) : (
+						'Delete Recipe'
+					)}
 				</button>
 			</div>
 		</form>
