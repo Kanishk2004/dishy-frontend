@@ -5,6 +5,7 @@ import AddIngredients from './addIngredients/AddIngredients';
 import AddInstructions from './addInstructions/AddInstructions';
 import ImageForm from './imageForm/ImageForm';
 import { useRecipe } from '@/context/RecipeContext';
+import Image from 'next/image';
 
 const RecipeForm = () => {
 	const { uploadRecipe } = useRecipe();
@@ -134,10 +135,20 @@ const RecipeForm = () => {
 			/>
 			<div className={styles.btnContainer}>
 				<button onClick={(e) => handleSubmit(e)} className={styles.postBtn}>
-					Post
+					{uploading ? (
+						<Image
+							src={'/circle-loading.gif'}
+							alt="uploading animation"
+							width={20}
+							height={20}
+						/>
+					) : (
+						'Post'
+					)}
 				</button>
 			</div>
-			{uploading && 'Uploading recipe....'}
+			{uploading &&
+				'Uploading recipe.... Please do not refresh or close the page!'}
 		</form>
 	);
 };
