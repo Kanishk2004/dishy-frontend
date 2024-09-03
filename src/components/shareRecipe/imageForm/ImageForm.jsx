@@ -56,12 +56,7 @@ const ImageForm = ({ selectedImages, setSelectedImages }) => {
 
 	return (
 		<div className={styles.container}>
-			<div
-				{...getRootProps({ className: 'dropzone' })}
-				className={styles.dropzoneStyle}>
-				<input {...getInputProps()} />
-				<p>Drag & drop images here, or click to select up to 5 images</p>
-			</div>
+			<p className={styles.title}>Recipe Image: </p>
 			{selectedImages.length > 0 && (
 				<div className={styles.previewContainer}>
 					{selectedImages.map((image, index) => (
@@ -77,6 +72,7 @@ const ImageForm = ({ selectedImages, setSelectedImages }) => {
 								className={styles.removeBtn}
 								onClick={(e) => removeImage(index, e)}>
 								<Image
+									className={styles.deleteIcon}
 									src={'/delete.png'}
 									alt="delete"
 									width={15}
@@ -87,6 +83,12 @@ const ImageForm = ({ selectedImages, setSelectedImages }) => {
 					))}
 				</div>
 			)}
+			<div
+				{...getRootProps({ className: 'dropzone' })}
+				className={styles.dropzoneStyle}>
+				<input {...getInputProps()} />
+				<p>Drag & drop images here, or click to select up to 5 images</p>
+			</div>
 		</div>
 	);
 };

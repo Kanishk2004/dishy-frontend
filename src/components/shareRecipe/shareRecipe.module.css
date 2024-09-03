@@ -1,0 +1,41 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+}
+.topContainer {
+	display: flex;
+	justify-content: space-between;
+    align-items: center;
+    width: 100%;
+	padding: 10px 0px;
+	border-bottom: 2px solid var(--softgray);
+}
+
+.topContainer button {
+	padding: 10px 20px;
+	background: var(--darkpink);
+	color: white;
+	border-radius: 5px;
+	cursor: pointer;
+	font-size: 18px;
+}
+
+.form {
+    width: 600px;
+}
+
+.inputContainer {
+    padding: 10px;
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
+    color: var(--gray);
+}
+.inputContainer input, .inputContainer textarea {
+    /* background: var(--softgray); */
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid var(--lightpink);
+}
