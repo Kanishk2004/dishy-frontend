@@ -6,10 +6,11 @@ import ImageForm from './imageForm/ImageForm';
 import AddIngredients from './addIngredients/AddIngredients';
 import AddInstructions from './addInstructions/AddInstructions';
 import { useAuth } from '@/context/AuthContext';
+import Link from 'next/link';
 
 const ShareRecipe = () => {
 	const { uploadRecipe } = useRecipe();
-	const { setMessage } = useAuth();
+	const { setMessage, user } = useAuth();
 
 	const [title, setTitle] = useState('');
 	const [description, setDescription] = useState('');
@@ -125,98 +126,117 @@ const ShareRecipe = () => {
 
 	return (
 		<div className={styles.container}>
-			<div className={styles.topContainer}>
-				<h2>Create New Recipe</h2>
-				<button onClick={(e) => handleSubmit(e)}>Post</button>
-			</div>
-			<form className={styles.form}>
-				<div className={styles.inputContainer}>
-					<label htmlFor="title">Recipe Title: </label>
-					<input
-						type="text"
-						name="title"
-						id="title"
-						value={title}
-						onChange={(e) => setTitle(e.target.value)}
-						placeholder="Write Title"
-					/>
+			{!user && (
+				<div className={styles.unAuthorized}>
+					<h3>Please Login or Create account to post Recipes</h3>
+
+					<Link href={'/login'} className={styles.authBtn}>
+						Login
+					</Link>
+
+					<Link href={'/register'} className={styles.authBtn}>
+						Register
+					</Link>
 				</div>
-				<ImageForm
-					selectedImages={selectedImages}
-					setSelectedImages={setSelectedImages}
-				/>
-				<div className={styles.inputContainer}>
-					<label htmlFor="description">Description: </label>
-					<textarea
-						type="text"
-						name="description"
-						id="description"
-						rows={5}
-						value={description}
-						onChange={(e) => handleDescriptionChange(e)}
-						placeholder="Write Description"
-					/>
-					<p className={styles.descLength}>{descLen}/100</p>
+			)}
+			{user && (
+				<div className={styles.topContainer}>
+					<h2>Create New Recipe</h2>
+					<button onClick={(e) => handleSubmit(e)}>
+						{uploading ? 'Please wait...' : 'Post'}
+					</button>
 				</div>
-				<AddIngredients
-					ingredients={ingredients}
-					lastIndex={ingredientsLastIndex}
-					setLastIndex={setIngredientsLastIndex}
-					setIngredients={setIngredients}
-				/>
-				<AddInstructions
-					instructions={instructions}
-					setInstructions={setInstructions}
-					lastIndex={instructionsLastIndex}
-					setLastIndex={setInstructionsLastIndex}
-				/>
-				<div className={styles.timeDiv}>
+			)}
+			{user && (
+				<form className={styles.form}>
 					<div className={styles.inputContainer}>
-						<label htmlFor="cookTime">Cooking Time: </label>
+						<label htmlFor="title">Recipe Title: </label>
 						<input
-							type="number"
-							name="cookTime"
-							id="cookTime"
-							placeholder="Time in minutes"
-							value={cookTime}
-							onChange={(e) => setCookTime(e.target.value)}
+							type="text"
+							name="title"
+							id="title"
+							value={title}
+							onChange={(e) => setTitle(e.target.value)}
+							placeholder="Write Title"
 						/>
 					</div>
+					<ImageForm
+						selectedImages={selectedImages}
+						setSelectedImages={setSelectedImages}
+					/>
 					<div className={styles.inputContainer}>
-						<label htmlFor="prepTime">Prep Time: </label>
+						<label htmlFor="description">Description: </label>
+						<textarea
+							type="text"
+							name="description"
+							id="description"
+							rows={5}
+							value={description}
+							onChange={(e) => handleDescriptionChange(e)}
+							placeholder="Write Description"
+						/>
+						<p className={styles.descLength}>{descLen}/100</p>
+					</div>
+					<AddIngredients
+						ingredients={ingredients}
+						lastIndex={ingredientsLastIndex}
+						setLastIndex={setIngredientsLastIndex}
+						setIngredients={setIngredients}
+					/>
+					<AddInstructions
+						instructions={instructions}
+						setInstructions={setInstructions}
+						lastIndex={instructionsLastIndex}
+						setLastIndex={setInstructionsLastIndex}
+					/>
+					<div className={styles.timeDiv}>
+						<div className={styles.inputContainer}>
+							<label htmlFor="cookTime">Cooking Time: </label>
+							<input
+								type="number"
+								name="cookTime"
+								id="cookTime"
+								placeholder="Time in minutes"
+								value={cookTime}
+								onChange={(e) => setCookTime(e.target.value)}
+							/>
+						</div>
+						<div className={styles.inputContainer}>
+							<label htmlFor="prepTime">Prep Time: </label>
+							<input
+								type="number"
+								name="prepTime"
+								id="prepTime"
+								placeholder="Time in minutes"
+								value={prepTime}
+								onChange={(e) => setPrepTime(e.target.value)}
+							/>
+						</div>
+					</div>
+					<div className={`${styles.inputContainer} ${styles.cuisineDiv}`}>
+						<label htmlFor="cuisine">Cuisine: </label>
 						<input
-							type="number"
-							name="prepTime"
-							id="prepTime"
-							placeholder="Time in minutes"
-							value={prepTime}
-							onChange={(e) => setPrepTime(e.target.value)}
+							type="text"
+							name="cuisine"
+							id="cuisine"
+							value={cuisine}
+							placeholder="Write Cuisine"
+							onChange={(e) => setCuisine(e.target.value)}
 						/>
 					</div>
-				</div>
-				<div className={`${styles.inputContainer} ${styles.cuisineDiv}`}>
-					<label htmlFor="cuisine">Cuisine: </label>
-					<input
-						type="text"
-						name="cuisine"
-						id="cuisine"
-						value={cuisine}
-						placeholder="Write Cuisine"
-						onChange={(e) => setCuisine(e.target.value)}
-					/>
-				</div>
-				<div className={`${styles.inputContainer} ${styles.cuisineDiv}`}>
-					<label htmlFor="category">Category: </label>
-					<input
-						type="text"
-						name="category"
-						id="category"
-						value={category}
-						placeholder="Write Category"
-						onChange={(e) => setCategory(e.target.value)}
-					/>
-				</div>
-			</form>
+					<div className={`${styles.inputContainer} ${styles.cuisineDiv}`}>
+						<label htmlFor="category">Category: </label>
+						<input
+							type="text"
+							name="category"
+							id="category"
+							value={category}
+							placeholder="Write Category"
+							onChange={(e) => setCategory(e.target.value)}
+						/>
+					</div>
+				</form>
+			)}
 		</div>
 	);
 };

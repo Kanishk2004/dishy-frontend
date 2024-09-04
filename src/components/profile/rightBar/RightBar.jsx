@@ -7,20 +7,26 @@ import MyRecipe from './myRecipe/MyRecipe';
 import PostRecipe from './postRecipe/PostRecipe';
 import Favorites from './favorites/Favorites';
 import { useSearchParams } from 'next/navigation';
+import { useAuth } from '@/context/AuthContext';
 
 const RightBar = () => {
 	const searchParams = useSearchParams();
 	const paramValue = searchParams.get('section');
+	const { user } = useAuth();
 
 	return (
 		<div className={styles.container}>
-			<Suspense fallback={<Loading />}>
-				{paramValue === 'profile' && <ManageAccount />}
-				{paramValue === 'myRecipe' && <MyRecipe />}
-				{paramValue === 'postRecipe' && <PostRecipe />}
-				{paramValue === 'stats' && <h2>Stats - Under Development...</h2>}
-				{paramValue === 'favorites' && <Favorites />}
-			</Suspense>
+			{user ? (
+				<Suspense fallback={<Loading />}>
+					{paramValue === 'profile' && <ManageAccount />}
+					{paramValue === 'myRecipe' && <MyRecipe />}
+					{paramValue === 'postRecipe' && <PostRecipe />}
+					{paramValue === 'stats' && <h2>Stats - Under Development...</h2>}
+					{paramValue === 'favorites' && <Favorites />}
+				</Suspense>
+			) : (
+				'You need to login before to access this page'
+			)}
 		</div>
 	);
 };

@@ -22,7 +22,9 @@
 	cursor: pointer;
 	font-size: 18px;
 }
-
+.topContainer button:hover {
+	background: var(--lightpink);
+}
 .form {
 	width: 600px;
 	margin-top: 10px;
@@ -71,7 +73,7 @@
 		width: 350px;
 	}
 	.timeDiv div {
-        font-size: 15px;
+		font-size: 15px;
 		width: 40%;
 	}
 	.inputContainer input,
@@ -87,4 +89,24 @@
 	.topContainer button {
 		font-size: 13px;
 	}
+}
+
+.unAuthorized {
+	background: var(--lightpink);
+	border-radius: 8px;
+	color: white;
+	padding: 20px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	margin-top: 50px;
+	text-align: center;
+}
+.authBtn {
+	padding: 10px;
+	border-radius: 8px;
+	cursor: pointer;
+	background: white;
+	color: var(--gray);
+	font-size: 18px;
 }
