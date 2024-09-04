@@ -1,0 +1,8 @@
+.container {
+    background: white;
+	border-radius: 5px;
+	padding: 10px;
+}
+.recipeCardContainer {
+    margin-top: 5px;
+}

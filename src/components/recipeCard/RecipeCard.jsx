@@ -1,10 +1,6 @@
-'use client';
 import Image from 'next/image';
 import styles from './recipeCard.module.css';
-import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { useFav } from '@/context/FavContext';
-import { useAuth } from '@/context/AuthContext';
 
 const RecipeCard = ({
 	img,
@@ -16,50 +12,15 @@ const RecipeCard = ({
 	ingredients,
 	recipeId,
 }) => {
-	const { toggleFavorite, userFavorites, loadingFav } = useFav();
-	const { user, setMessage } = useAuth();
-
 	const router = useRouter();
 
 	const handleViewRecipe = (recipeId) => {
 		router.push(`/recipies/${recipeId}`);
 	};
 
-	const toggleFav = () => {
-		if (!user) {
-			setMessage({
-				success: false,
-				message: 'You need to login before adding favorites',
-			});
-		} else {
-			toggleFavorite(recipeId);
-		}
-	};
-
-	let userFavoriteRecipesArray = [];
-	if (user) {
-		userFavoriteRecipesArray = user.userFavorites?.recipies;
-	}
-
 	return (
 		<div className={styles.container}>
 			<div className={styles.imgContainer}>
-				<div className={styles.favorite} onClick={toggleFav}>
-					<Image
-						className={styles.favIcon}
-						src={
-							loadingFav
-								? '/circle-loading.gif'
-								: userFavoriteRecipesArray?.includes(recipeId) ||
-								  userFavorites?.includes(recipeId)
-								? '/white-filled-fav.png'
-								: '/white-favorite.png'
-						}
-						alt="favorite"
-						width={20}
-						height={20}
-					/>
-				</div>
 				<Image
 					className={styles.img}
 					src={img}

@@ -1,0 +1,22 @@
+.container {
+	background: white;
+	border-radius: 5px;
+	padding: 5px;
+	display: flex;
+	justify-content: space-between;
+}
+.stats {
+	text-align: center;
+}
+.stats h4 {
+	color: var(--darkpink);
+}
+.stats p {
+    font-size: 13px;
+}
+
+@media (max-width: 640px) {
+    .stats p {
+        font-size: 10px;
+    }
+}
