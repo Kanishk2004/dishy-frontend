@@ -3,7 +3,7 @@ import Link from 'next/link';
 import styles from './navbar.module.css';
 import UserProfile from './userProfile/UserProfile';
 import { useAuth } from '@/context/AuthContext';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { apiURL } from '@/Constant';
 import { usePathname, useRouter } from 'next/navigation';
 import Image from 'next/image';
@@ -64,6 +64,9 @@ const Navbar = () => {
 				</Link>
 				<Link href={'/recipies'} className={styles.link}>
 					Recipes
+				</Link>
+				<Link href={'/share'} className={styles.link}>
+					Add Recipe
 				</Link>
 				<Link href={'/blog'} className={styles.link}>
 					Blog

@@ -42,19 +42,6 @@ const LeftBar = () => {
 					/>
 				</div>
 				<div
-					className={`${styles.tab} ${
-						paramValue === 'postRecipe' && styles.active
-					}`}
-					onClick={() => router.push('/profile?section=postRecipe')}>
-					<p className={styles.tabText}>Post Recipe</p>
-					<Image
-						src={'/manageAccountTabs/post.png'}
-						alt="user"
-						width={20}
-						height={20}
-					/>
-				</div>
-				<div
 					className={`${styles.tab} ${paramValue === 'stats' && styles.active}`}
 					onClick={() => router.push('/profile?section=stats')}>
 					<p className={styles.tabText}>Stats</p>

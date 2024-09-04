@@ -235,6 +235,11 @@ const ShareRecipe = () => {
 							onChange={(e) => setCategory(e.target.value)}
 						/>
 					</div>
+					<div className={styles.bottomContainer}>
+						<button onClick={(e) => handleSubmit(e)}>
+							{uploading ? 'Please wait...' : 'Post'}
+						</button>
+					</div>
 				</form>
 			)}
 		</div>

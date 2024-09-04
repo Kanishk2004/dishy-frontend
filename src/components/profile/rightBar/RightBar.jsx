@@ -4,7 +4,6 @@ import ManageAccount from '../rightBar/manageAccount/ManageAccount';
 import { Suspense } from 'react';
 import Loading from '@/components/loading/Loading';
 import MyRecipe from './myRecipe/MyRecipe';
-import PostRecipe from './postRecipe/PostRecipe';
 import Favorites from './favorites/Favorites';
 import { useSearchParams } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
@@ -20,7 +19,6 @@ const RightBar = () => {
 				<Suspense fallback={<Loading />}>
 					{paramValue === 'profile' && <ManageAccount />}
 					{paramValue === 'myRecipe' && <MyRecipe />}
-					{paramValue === 'postRecipe' && <PostRecipe />}
 					{paramValue === 'stats' && <h2>Stats - Under Development...</h2>}
 					{paramValue === 'favorites' && <Favorites />}
 				</Suspense>

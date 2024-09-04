@@ -55,6 +55,19 @@
 	color: var(--gray);
 	text-align: right;
 }
+.bottomContainer {
+	text-align: center;
+	margin-top: 20px;
+}
+.bottomContainer button {
+	padding: 10px 20px;
+	background: var(--darkpink);
+	color: white;
+	border-radius: 5px;
+	cursor: pointer;
+	font-size: 18px;
+	width: 200px;
+}
 
 @media (max-width: 768px) {
 	.form {

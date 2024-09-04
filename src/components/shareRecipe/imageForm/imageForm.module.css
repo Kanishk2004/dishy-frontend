@@ -65,3 +65,14 @@
 	height: 50px;
 	margin-top: 50px;
 }
+
+@media (max-width: 768px) {
+	.previewContainer {
+		gap: 5px;
+		/* flex-wrap: nowrap; */
+	}
+	.imageStyle {
+		width: 150px;
+		height: 90px;
+	}
+}
