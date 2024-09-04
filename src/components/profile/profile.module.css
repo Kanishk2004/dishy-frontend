@@ -1,0 +1,118 @@
+.container {
+	width: 750px;
+	background: var(--softgray);
+	border-radius: 8px;
+	margin: 5px 0px;
+	color: var(--gray);
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	padding: 10px;
+}
+
+.topContainer {
+	background: white;
+	border-radius: 5px;
+	display: flex;
+	gap: 20px;
+	padding: 10px;
+}
+
+.imgContainer {
+	border-radius: 50%;
+	padding: 5px;
+	border: 3px solid var(--darkpink);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: max-content;
+}
+.profileImg {
+	border-radius: 50%;
+}
+
+.userInfo {
+	padding: 5px 0px;
+	min-height: 150px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	gap: 10px;
+}
+.nameContainer h5,
+.nameContainer h6 {
+	margin: 3px 0px;
+}
+.nameContainer {
+	font-size: 20px;
+	font-weight: bold;
+	border-top: 2px solid var(--softgray);
+	border-bottom: 2px solid var(--softgray);
+}
+.bioContainer {
+	font-size: 13px;
+	border-bottom: 2px solid var(--softgray);
+	padding: 5px 0px;
+}
+.profileBtnContainer button {
+	padding: 5px 10px;
+	border-radius: 5px;
+	cursor: pointer;
+	font-size: 15px;
+	background: var(--softgray);
+}
+.contactContainer {
+	background: white;
+	border-radius: 5px;
+
+	padding: 5px;
+}
+.upperContainer {
+	display: flex;
+	gap: 40px;
+}
+.contactContainer div {
+	flex: 1;
+}
+.contactContainer p {
+	font-size: 12px;
+}
+.green {
+	color: green;
+	font-weight: normal;
+	margin-left: 20px;
+}
+.red {
+	color: red;
+	font-weight: normal;
+	margin-left: 20px;
+}
+.btnContainer {
+    margin-top: 10px;
+    display: flex;
+    gap: 30px;
+    border-top: 2px solid var(--softgray);
+    padding-top: 5px;
+}
+.verifyBtn {
+    width: 50px;
+    padding: 5px 10px;
+    background: var(--btn);
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.otpContainer {
+    width: 300px;
+    padding: 5px;
+    text-align: center;
+    background: var(--lightpink);
+    border-radius: 5px;
+    color: white;
+    margin: 10px auto 0px auto;
+}
+.otpContainer input {
+    margin-top: 5px;
+    padding: 8px;
+    border-radius: 5px;
+}

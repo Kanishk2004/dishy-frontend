@@ -86,7 +86,7 @@ const UserProfile = ({ user }) => {
 					</div>
 
 					<div className={styles.bottom}>
-						<Link href={'/profile?section=profile'} className={styles.btn}>
+						<Link href={'/profile'} className={styles.btn}>
 							Profile
 						</Link>
 						<Link href={'/'} className={styles.btn} onClick={handleLogout}>
