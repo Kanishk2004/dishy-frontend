@@ -27,7 +27,7 @@ const Footer = () => {
 
 					<div className={styles.links}>
 						<h3>Quick links</h3>
-						<Link href={'/profile?section=postRecipe'}>Share Recipe</Link>
+						<Link href={'/share'}>Share Recipe</Link>
 						<Link
 							href={'https://www.linkedin.com/in/kanishk-chandna-9553931b0/'}>
 							Contact

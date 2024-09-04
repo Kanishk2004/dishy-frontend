@@ -1,46 +1,44 @@
 import Image from 'next/image';
-import styles from './addIngredients.module.css';
+import styles from './addInstructions.module.css';
 import { useRef } from 'react';
 
-const AddIngredients = ({
-	ingredients,
+const AddInstructions = ({
+	instructions,
+	setInstructions,
 	lastIndex,
 	setLastIndex,
-	setIngredients,
 }) => {
 	const inputRef = useRef(null);
 
-	const handleAddIngredient = (e) => {
+	const handleAddInstructions = (e) => {
 		e.preventDefault();
 		const value = inputRef.current.value.trim();
 		if (value !== '') {
-			setIngredients([...ingredients, value]);
+			setInstructions([...instructions, value]);
 			inputRef.current.value = '';
-			setLastIndex(ingredients.length);
+			setLastIndex(instructions.length);
 		}
 	};
 
 	const handleDelete = (index) => {
-		const updatedIngredients = ingredients.filter((_, i) => i !== index);
-		setIngredients(updatedIngredients);
-		setLastIndex(updatedIngredients.length - 1);
+		const updatedInstructions = instructions.filter((_, i) => i !== index);
+		setInstructions(updatedInstructions);
+		setLastIndex(updatedInstructions.length - 1);
 	};
 
 	return (
 		<div className={styles.container}>
-			<label htmlFor="ingredients">Ingredients: </label>
-
+			<label htmlFor="instructions">Instructions: </label>
 			<div className={styles.orderedList}>
-				<ul>
-					{ingredients.map((ingredient, index) => (
+				<ol>
+					{instructions.map((instruction, index) => (
 						<div key={index} className={styles.deleteDiv}>
 							<li>
 								<input
-								className={styles.previewInput}
+									className={styles.previewInput}
 									type="text"
-									name="ingredient"
-									id="ingredient"
-									value={ingredient}
+									value={instruction}
+									name="instruction"
 								/>
 							</li>
 							{index === lastIndex && (
@@ -56,21 +54,21 @@ const AddIngredients = ({
 							)}
 						</div>
 					))}
-				</ul>
+				</ol>
 			</div>
 			<div className={styles.inputContainer}>
 				<div>
 					<input
 						type="text"
 						className={styles.input}
-						name="ingredients"
-						id="ingredients"
+						name="instructions"
+						id="instructions"
 						ref={inputRef}
-						placeholder="Write Ingredients - Press + button to add"
+						placeholder="Enter Instructions - Press + button to add"
 					/>
 					<button
 						className={styles.addBtn}
-						onClick={(e) => handleAddIngredient(e)}>
+						onClick={(e) => handleAddInstructions(e)}>
 						<Image src={'/addIcon.png'} alt="add" width={20} height={20} />
 					</button>
 				</div>
@@ -79,4 +77,4 @@ const AddIngredients = ({
 	);
 };
 
-export default AddIngredients;
+export default AddInstructions;

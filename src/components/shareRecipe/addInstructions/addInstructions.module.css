@@ -19,14 +19,6 @@
 	width: 90%;
 	margin-right: 5px;
 }
-.previewInput {
-	padding: 8px;
-	border-radius: 5px;
-	border: 1px solid var(--lightpink);
-	width: 400px;
-	margin-top: 5px;
-	color: var(--gray);
-}
 .addBtn {
 	border-radius: 5px;
 	display: flex;
@@ -38,6 +30,14 @@
 }
 .addBtn img {
 	filter: brightness(0) invert(0);
+}
+.previewInput {
+	padding: 8px;
+	border-radius: 5px;
+	border: 1px solid var(--lightpink);
+	width: 400px;
+	margin-top: 5px;
+	color: var(--gray);
 }
 .deleteDiv {
 	color: var(--gray);
@@ -51,7 +51,6 @@
 	display: flex;
 	align-items: center;
 }
-
 @media (max-width: 768px) {
 	.previewInput {
 		width: 300px;
