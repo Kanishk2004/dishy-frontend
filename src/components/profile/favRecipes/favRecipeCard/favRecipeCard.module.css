@@ -1,29 +1,30 @@
 .imgContainer {
 	position: relative;
 }
-.editIconContainer {
-	position: absolute;
-	top: 3px;
-	right: 3px;
-	border-radius: 50%;
-	background: var(--darkpink);
-	padding: 5px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	cursor: pointer;
-}
-.editIcon {
-	filter: brightness(0) invert(1);
-}
 .recipeCard {
 	background: var(--softgray);
 	border-radius: 5px;
+}
+.cuisineAndCategory {
+	display: flex;
+	justify-content: flex-start;
+	margin-bottom: 3px;
+}
+.cuisineAndCategory span {
+	color: var(--darkpink);
+	padding-right: 15px;
+	font-size: 12px;
 }
 .img {
 	border-top-left-radius: 5px;
 	border-top-right-radius: 5px;
 	object-fit: cover;
+}
+.iconContainer {
+	display: flex;
+	justify-content: center;
+	gap: 5px;
+	align-items: center;
 }
 .infoContainer {
 	padding: 0px 5px 5px 5px;
@@ -31,10 +32,6 @@
 .title {
 	font-size: 13px;
 	font-weight: bold;
-}
-.date {
-	font-size: 10px;
-	text-align: right;
 }
 .btn {
 	width: 100%;

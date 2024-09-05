@@ -9,3 +9,10 @@
 	gap: 10px;
 	flex-wrap: wrap;
 }
+
+@media (max-width: 640px) {
+	.recipeCardContainer {
+		gap: 5px;
+		justify-content: space-between;
+	}
+}

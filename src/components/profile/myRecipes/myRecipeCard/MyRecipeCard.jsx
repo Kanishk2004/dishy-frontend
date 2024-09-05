@@ -13,7 +13,7 @@ const MyRecipeCard = ({ recipe }) => {
 		router.push(`/edit/${recipeId}`);
 	};
 	return (
-		<div key={recipe?._id} className={styles.recipeCard}>
+		<div className={styles.recipeCard}>
 			<div className={styles.imgContainer}>
 				<div
 					className={styles.editIconContainer}

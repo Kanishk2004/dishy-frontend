@@ -2,11 +2,12 @@
 import Image from 'next/image';
 import styles from './profile.module.css';
 import { useAuth } from '@/context/AuthContext';
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { apiURL } from '@/Constant';
 import Stats from './stats/Stats';
 import MyRecipes from './myRecipes/MyRecipes';
 import FavRecipes from './favRecipes/FavRecipes';
+import Loading from '../loading/Loading';
 
 const Profile = () => {
 	const { setUser, setMessage } = useAuth();
@@ -198,8 +199,12 @@ const Profile = () => {
 					)}
 				</div>
 			</div>
-			<MyRecipes />
-			<FavRecipes />
+			<Suspense fallback={<Loading />}>
+				<MyRecipes />
+			</Suspense>
+			<Suspense fallback={<Loading />}>
+				<FavRecipes />
+			</Suspense>
 		</div>
 	);
 };
