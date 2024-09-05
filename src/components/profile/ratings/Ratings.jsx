@@ -2,6 +2,7 @@
 import styles from './ratings.module.css';
 import { apiURL } from '@/Constant';
 import { useRating } from '@/context/RatingContext';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 const Ratings = ({ userProfile }) => {
@@ -50,7 +51,7 @@ const Ratings = ({ userProfile }) => {
 
 	return (
 		<div className={styles.container}>
-			<h5>My Ratings</h5>
+			<h5>My Ratings - ({userRatings.length})</h5>
 			{userRatings.length > 0 ? (
 				<table className={styles.ratingTable}>
 					<thead>
@@ -65,7 +66,11 @@ const Ratings = ({ userProfile }) => {
 					<tbody>
 						{userRatings.map((ratings) => (
 							<tr key={ratings._id}>
-								<td>{ratings.recipeDetails?.title || 'N/A'}</td>
+								<td className={styles.recipeTitle}>
+									<Link href={`/recipies/${ratings.recipeDetails._id}`}>
+										{ratings.recipeDetails?.title || 'N/A'}
+									</Link>
+								</td>
 								<td>{ratings.rating}</td>
 								<td>{calculateDaysDifference(ratings.createdAt)} days ago</td>
 								<td>
@@ -83,7 +88,7 @@ const Ratings = ({ userProfile }) => {
 					</tbody>
 				</table>
 			) : (
-				<p>No ratings available.</p>
+				<p className={styles.noRatings}>No ratings available.</p>
 			)}
 		</div>
 	);

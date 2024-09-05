@@ -25,6 +25,9 @@
 .ratingTable tr {
 	font-size: 13px;
 }
+.recipeTitle {
+	color: var(--darkpink);
+}
 .ratingTable button {
 	color: white;
 	background: rgb(255, 38, 38);
@@ -32,7 +35,9 @@
 	padding: 5px 10px;
 	cursor: pointer;
 }
-
+.noRatings {
+	font-size: 13px;
+}
 @media (max-width: 640px) {
 	.ratingTable thead {
 		font-size: 13px;
