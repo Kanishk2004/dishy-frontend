@@ -1,6 +1,11 @@
 import styles from './stats.module.css';
 
-const Stats = ({ recipeCount, avgRating, totalRating, recipesRated }) => {
+const Stats = ({
+	recipeCount = 0,
+	avgRating = 0,
+	totalRating = 0,
+	recipesRated = 0,
+}) => {
 	return (
 		<div className={styles.container}>
 			<div className={styles.stats}>

@@ -1,0 +1,64 @@
+.topContainer {
+	background: white;
+	border-radius: 5px;
+	display: flex;
+	gap: 20px;
+	padding: 10px;
+}
+
+.imgContainer {
+	border-radius: 50%;
+	padding: 5px;
+	border: 3px solid var(--darkpink);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: max-content;
+}
+.profileImg {
+	border-radius: 50%;
+}
+
+.userInfo {
+	padding: 5px 0px;
+	min-height: 150px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	gap: 10px;
+}
+.nameContainer h5,
+.nameContainer h6 {
+	margin: 3px 0px;
+}
+.label {
+	font-size: 13px;
+	font-weight: normal;
+}
+.nameContainer {
+	font-size: 20px;
+	font-weight: bold;
+	border-top: 2px solid var(--softgray);
+	border-bottom: 2px solid var(--softgray);
+}
+.bioContainer {
+	font-size: 13px;
+	border-bottom: 2px solid var(--softgray);
+	padding: 5px 0px;
+}
+.profileBtnContainer {
+	display: flex;
+	gap: 10px;
+}
+.profileBtnContainer button {
+	padding: 5px 10px;
+	border-radius: 5px;
+	cursor: pointer;
+	font-size: 15px;
+	background: var(--softgray);
+}
+.gearIcon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}

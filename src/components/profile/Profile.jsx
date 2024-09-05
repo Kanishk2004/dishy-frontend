@@ -8,13 +8,15 @@ import Stats from './stats/Stats';
 import MyRecipes from './myRecipes/MyRecipes';
 import FavRecipes from './favRecipes/FavRecipes';
 import Loading from '../loading/Loading';
+import UserDetails from './userDetails/UserDetails';
+import Ratings from './ratings/Ratings';
 
 const Profile = () => {
 	const { setUser, setMessage } = useAuth();
 	const [isOtpSent, setIsOtpSent] = useState(false);
 	const [processing, setProcessing] = useState(false);
 	const [otp, setOtp] = useState('');
-	const [userProfile, setUserProfile] = useState('');
+	const [userProfile, setUserProfile] = useState([]);
 
 	const getUserProfile = async () => {
 		try {
@@ -93,47 +95,7 @@ const Profile = () => {
 
 	return (
 		<div className={styles.container}>
-			<div className={styles.topContainer}>
-				<div className={styles.imgContainer}>
-					<Image
-						className={styles.profileImg}
-						src={userProfile?.avatar || '/avatar.png'}
-						alt="avatar"
-						width={150}
-						height={150}
-						priority={false}
-					/>
-				</div>
-				<div className={styles.userInfo}>
-					<div className={styles.nameContainer}>
-						<h6>
-							<span className={styles.label}>Username: </span>
-							{userProfile?.username}
-						</h6>
-						<h5>
-							<span className={styles.label}>Name: </span>
-							{userProfile?.fullName}
-						</h5>
-					</div>
-					<div className={styles.bioContainer}>
-						<p>
-							<span>Bio: </span>
-							{userProfile?.bio}
-						</p>
-					</div>
-					<div className={styles.profileBtnContainer}>
-						<button>Edit Profile</button>
-						<button className={styles.gearIcon}>
-							<Image
-								src={'/gearIcon.png'}
-								alt="Settings icon"
-								width={20}
-								height={20}
-							/>
-						</button>
-					</div>
-				</div>
-			</div>
+			<UserDetails userProfile={userProfile} />
 			<Stats
 				recipeCount={userProfile?.recipeCount}
 				avgRating={userProfile?.averageRating?.toString().slice(0, 4)}
@@ -205,6 +167,7 @@ const Profile = () => {
 			<Suspense fallback={<Loading />}>
 				<FavRecipes />
 			</Suspense>
+			<Ratings userProfile={userProfile} />
 		</div>
 	);
 };

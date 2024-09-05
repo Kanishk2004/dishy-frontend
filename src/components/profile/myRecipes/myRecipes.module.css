@@ -9,6 +9,12 @@
 	gap: 10px;
 	flex-wrap: wrap;
 }
+.addRecipeBtn {
+	padding: 5px 10px;
+	background: var(--darkpink);
+	color: white;
+	border-radius: 5px;
+}
 
 @media (max-width: 640px) {
 	.recipeCardContainer {

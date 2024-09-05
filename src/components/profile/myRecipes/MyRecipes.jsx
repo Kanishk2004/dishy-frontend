@@ -17,7 +17,7 @@ const MyRecipes = () => {
 			<h4>My Recipes - ({myRecipies?.length}) </h4>
 			<div className={styles.recipeCardContainer}>
 				{(!myRecipies || myRecipies.length === 0) && (
-					<h3>You posted 0 recipies</h3>
+					<button className={styles.addRecipeBtn}>Add Recipe</button>
 				)}
 				{myRecipies?.map((recipe) => (
 					<MyRecipeCard recipe={recipe} key={recipe?._id} />
