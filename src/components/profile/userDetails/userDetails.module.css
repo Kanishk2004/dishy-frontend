@@ -62,3 +62,30 @@
 	align-items: center;
 	justify-content: center;
 }
+
+@media (max-width: 640px) {
+	.profileImg {
+		width: 60px;
+		height: 60px;
+	}
+	.nameContainer h5,
+	.nameContainer h6 {
+		font-size: 14px;
+	}
+	.label {
+		font-size: 12px;
+	}
+	.bioContainer {
+		font-size: 12px;
+	}
+	.profileBtnContainer button {
+		font-size: 13px;
+	}
+}
+
+@media (max-width: 475px) {
+	.profileImg {
+		width: 50px;
+		height: 50px;
+	}
+}
