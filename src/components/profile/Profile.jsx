@@ -11,6 +11,7 @@ import UserDetails from './userDetails/UserDetails';
 import Ratings from './ratings/Ratings';
 import Link from 'next/link';
 import EditProfile from './editProfile/EditProfile';
+import UserSettings from './userSettings/UserSettings';
 
 const Profile = () => {
 	const { user, setUser, setMessage, updateAccount } = useAuth();
@@ -19,6 +20,7 @@ const Profile = () => {
 	const [otp, setOtp] = useState('');
 	const [userProfile, setUserProfile] = useState([]);
 	const [editMode, setEditMode] = useState(false);
+	const [settingsMode, setSettingsMode] = useState(false);
 
 	const getUserProfile = async () => {
 		try {
@@ -105,8 +107,14 @@ const Profile = () => {
 							setEditMode={setEditMode}
 							updateAccount={updateAccount}
 						/>
+					) : settingsMode ? (
+						<UserSettings setSettingsMode={setSettingsMode} />
 					) : (
-						<UserDetails userProfile={userProfile} setEditMode={setEditMode} />
+						<UserDetails
+							userProfile={userProfile}
+							setEditMode={setEditMode}
+							setSettingsMode={setSettingsMode}
+						/>
 					)}
 					<Stats
 						recipeCount={userProfile?.recipeCount}

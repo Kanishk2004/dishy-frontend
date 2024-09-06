@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import styles from './userDetails.module.css';
 
-const UserDetails = ({ userProfile, setEditMode }) => {
+const UserDetails = ({ userProfile, setEditMode, setSettingsMode }) => {
 	return (
 		<div className={styles.topContainer}>
 			<div className={styles.imgContainer}>
@@ -33,7 +33,9 @@ const UserDetails = ({ userProfile, setEditMode }) => {
 				</div>
 				<div className={styles.profileBtnContainer}>
 					<button onClick={() => setEditMode(true)}>Edit Profile</button>
-					<button className={styles.gearIcon}>
+					<button
+						className={styles.gearIcon}
+						onClick={() => setSettingsMode(true)}>
 						<Image
 							src={'/gearIcon.png'}
 							alt="Settings icon"
