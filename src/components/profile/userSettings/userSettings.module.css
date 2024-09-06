@@ -74,20 +74,53 @@
 	cursor: pointer;
 }
 
+.deleteAccountForm {
+	padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+.deleteAccountInputContainer {
+    width: 350px;
+	display: flex;
+	flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 5px;
+}
+.deleteAccountInputContainer label {
+	font-size: 12px;
+}
+.deleteAccountInputContainer input {
+	border: 2px solid red;
+    padding: 5px;
+    border-radius: 5px;
+}
+.deletebtn {
+    padding: 10px 20px;
+    background: red;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
 @media (max-width: 640px) {
-    .changePassForm {
-        align-items: flex-start;
-    }
-	.inputContainer {
-        width: 300px;
-		flex-direction: column;
-        align-items: flex-start;
-        gap: 0;
+	.changePassForm {
+		align-items: flex-start;
 	}
-    .inputContainer label {
-        padding: 3px;
-    }
-    .saveBtn {
-        width: 100px;
-    }
+	.inputContainer {
+		width: 300px;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 0;
+	}
+	.inputContainer label {
+		padding: 3px;
+	}
+	.saveBtn {
+		width: 100px;
+	}
 }

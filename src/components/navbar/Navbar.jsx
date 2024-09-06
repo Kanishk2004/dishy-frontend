@@ -59,19 +59,37 @@ const Navbar = () => {
 			</Link>
 
 			<div className={styles.links}>
-				<Link href={'/'} className={styles.link}>
+				<Link
+					href={'/'}
+					className={`${styles.link} ${pathname === '/' ? styles.active : ''}`}>
 					Home
 				</Link>
-				<Link href={'/recipies'} className={styles.link}>
+				<Link
+					href={'/recipies'}
+					className={`${styles.link} ${
+						pathname === '/recipies' ? styles.active : ''
+					}`}>
 					Recipes
 				</Link>
-				<Link href={'/share'} className={styles.link}>
+				<Link
+					href={'/share'}
+					className={`${styles.link} ${
+						pathname === '/share' ? styles.active : ''
+					}`}>
 					Add Recipe
 				</Link>
-				<Link href={'/blog'} className={styles.link}>
+				<Link
+					href={'/blog'}
+					className={`${styles.link} ${
+						pathname === '/blog' ? styles.active : ''
+					}`}>
 					Blog
 				</Link>
-				<Link href={'/about'} className={styles.link}>
+				<Link
+					href={'/about'}
+					className={`${styles.link} ${
+						pathname === '/about' ? styles.active : ''
+					}`}>
 					About
 				</Link>
 			</div>

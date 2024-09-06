@@ -5,12 +5,16 @@ import { useAuth } from '@/context/AuthContext';
 import { apiURL } from '@/Constant';
 
 const UserSettings = ({ setSettingsMode }) => {
-	const { setMessage, logout } = useAuth();
+	const { setMessage, logout, deleteAccount } = useAuth();
 	const [changePasswordMode, setChangePasswordMode] = useState(false);
 	const [oldPass, setOldPass] = useState('');
 	const [newPass, setNewPass] = useState('');
 	const [confNewPass, setConfNewPass] = useState('');
 	const [saving, setSaving] = useState(false);
+	const [deleteAccountMode, setDeleteAccountMode] = useState(false);
+	const [deleting, setDeleting] = useState(false);
+
+	const [password, setPassword] = useState('');
 
 	const handleChangePassword = async (e) => {
 		e.preventDefault();
@@ -60,7 +64,11 @@ const UserSettings = ({ setSettingsMode }) => {
 		await logout();
 	};
 
-	const handleDeleteAccount = () => {};
+	const handleAccountDelete = async () => {
+		setDeleting(true);
+		await deleteAccount(password);
+		setDeleting(false);
+	};
 
 	return (
 		<div className={styles.container}>
@@ -85,7 +93,7 @@ const UserSettings = ({ setSettingsMode }) => {
 						/>
 					</div>
 					<div className={styles.inputContainer}>
-						<label htmlFor="newPassw">New Password:</label>
+						<label htmlFor="newPass">New Password:</label>
 						<input
 							type="password"
 							id="newPass"
@@ -105,22 +113,51 @@ const UserSettings = ({ setSettingsMode }) => {
 						/>
 					</div>
 					<button
-						onClick={(e) => handleChangePassword(e)}
+						onClick={(e) => {
+							e.preventDefault(); // Prevent default form submission
+							handleChangePassword(e);
+						}}
 						className={styles.saveBtn}>
 						{saving ? 'Saving...' : 'Save'}
 					</button>
 				</form>
+			) : deleteAccountMode ? (
+				<div className={styles.deleteAccountForm}>
+					<div className={styles.deleteAccountInputContainer}>
+						<label htmlFor="password">
+							Enter Passowrd To Delete Your Account Permanently
+						</label>
+						<input
+							type="password"
+							id="password"
+							name="password"
+							placeholder="Enter Password"
+							onChange={(e) => setPassword(e.target.value)}
+						/>
+					</div>
+					<button className={styles.deletebtn} onClick={handleAccountDelete}>
+						{deleting ? 'Deleting...' : 'Delete Account Permanently'}
+					</button>
+				</div>
 			) : (
 				<div className={styles.mainContainer}>
 					<button
 						className={styles.changePassbtn}
-						onClick={() => setChangePasswordMode(true)}>
+						onClick={() => {
+							setChangePasswordMode(true);
+							setDeleteAccountMode(false); // Reset deleteAccountMode
+						}}>
 						Change Password
 					</button>
 					<button className={styles.logoutBtn} onClick={handleLogout}>
 						Logout
 					</button>
-					<button className={styles.logoutBtn} onClick={handleDeleteAccount}>
+					<button
+						className={styles.logoutBtn}
+						onClick={() => {
+							setDeleteAccountMode(true);
+							setChangePasswordMode(false); // Reset changePasswordMode
+						}}>
 						Delete Account
 					</button>
 				</div>

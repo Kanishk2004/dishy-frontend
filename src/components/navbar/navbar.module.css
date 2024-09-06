@@ -29,6 +29,9 @@
 .link:hover {
 	border-bottom: 2px solid var(--darkpink);
 }
+.active {
+	border-bottom: 2px solid var(--darkpink);
+}
 
 .buttons {
 	width: 200px;
