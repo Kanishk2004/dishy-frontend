@@ -102,3 +102,9 @@
 		gap: 5px;
 	}
 }
+
+@media (max-width: 475px) {
+	.container {
+		width: 350px;
+	}
+}

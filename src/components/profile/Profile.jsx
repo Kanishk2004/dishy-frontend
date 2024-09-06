@@ -1,5 +1,4 @@
 'use client';
-import Image from 'next/image';
 import styles from './profile.module.css';
 import { useAuth } from '@/context/AuthContext';
 import { Suspense, useEffect, useState } from 'react';
@@ -11,13 +10,15 @@ import Loading from '../loading/Loading';
 import UserDetails from './userDetails/UserDetails';
 import Ratings from './ratings/Ratings';
 import Link from 'next/link';
+import EditProfile from './editProfile/EditProfile';
 
 const Profile = () => {
-	const { user, setUser, setMessage } = useAuth();
+	const { user, setUser, setMessage, updateAccount } = useAuth();
 	const [isOtpSent, setIsOtpSent] = useState(false);
 	const [processing, setProcessing] = useState(false);
 	const [otp, setOtp] = useState('');
 	const [userProfile, setUserProfile] = useState([]);
+	const [editMode, setEditMode] = useState(false);
 
 	const getUserProfile = async () => {
 		try {
@@ -39,7 +40,7 @@ const Profile = () => {
 
 	useEffect(() => {
 		getUserProfile();
-	}, []);
+	}, [updateAccount]);
 
 	const sendOtp = async () => {
 		try {
@@ -98,10 +99,18 @@ const Profile = () => {
 		<div className={styles.container}>
 			{user ? (
 				<div className={styles.innerContainer}>
-					<UserDetails userProfile={userProfile} />
+					{editMode ? (
+						<EditProfile
+							userProfile={userProfile}
+							setEditMode={setEditMode}
+							updateAccount={updateAccount}
+						/>
+					) : (
+						<UserDetails userProfile={userProfile} setEditMode={setEditMode} />
+					)}
 					<Stats
 						recipeCount={userProfile?.recipeCount}
-						avgRating={userProfile?.averageRating?.toString().slice(0, 4)}
+						avgRating={userProfile?.averageRating?.toString().slice(0, 3)}
 						totalRating={userProfile?.totalRatings}
 						recipesRated={userProfile?.numberOfRecipesRated}
 					/>
