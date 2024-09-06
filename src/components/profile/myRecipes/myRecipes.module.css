@@ -1,0 +1,24 @@
+.container {
+	background: white;
+	border-radius: 5px;
+	padding: 5px;
+}
+.recipeCardContainer {
+	margin-top: 5px;
+	display: flex;
+	gap: 10px;
+	flex-wrap: wrap;
+}
+.addRecipeBtn {
+	padding: 5px 10px;
+	background: var(--darkpink);
+	color: white;
+	border-radius: 5px;
+}
+
+@media (max-width: 640px) {
+	.recipeCardContainer {
+		gap: 5px;
+		justify-content: space-between;
+	}
+}

@@ -1,0 +1,126 @@
+.container {
+	background: white;
+	border-radius: 5px;
+	padding: 10px;
+}
+.topDiv {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border-bottom: 2px solid var(--softgray);
+	padding-bottom: 5px;
+}
+.topDiv p {
+	font-size: 15px;
+}
+.closeBtn {
+	padding: 5px;
+	border-radius: 50%;
+	cursor: pointer;
+	background: var(--softgray);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.mainContainer {
+	display: flex;
+	gap: 10px;
+	padding: 10px 0px 0px 0px;
+}
+.mainContainer button {
+	padding: 10px 10px;
+	border-radius: 5px;
+	font-size: 13px;
+	cursor: pointer;
+}
+.logoutBtn {
+	background: rgb(255, 51, 51);
+	color: white;
+}
+.changePassbtn {
+	background: var(--btn);
+	color: white;
+}
+
+.changePassForm {
+	padding: 5px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 5px;
+}
+.inputContainer {
+	width: 400px;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+.inputContainer label {
+	font-size: 12px;
+	flex: 1;
+}
+.inputContainer input {
+	padding: 5px;
+	border: 2px solid var(--lightpink);
+	border-radius: 5px;
+	flex: 2;
+}
+.saveBtn {
+	width: 200px;
+	padding: 5px 0px;
+	background: var(--btn);
+	color: white;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.deleteAccountForm {
+	padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+.deleteAccountInputContainer {
+    width: 350px;
+	display: flex;
+	flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 5px;
+}
+.deleteAccountInputContainer label {
+	font-size: 12px;
+}
+.deleteAccountInputContainer input {
+	border: 2px solid red;
+    padding: 5px;
+    border-radius: 5px;
+}
+.deletebtn {
+    padding: 10px 20px;
+    background: red;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+@media (max-width: 640px) {
+	.changePassForm {
+		align-items: flex-start;
+	}
+	.inputContainer {
+		width: 300px;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 0;
+	}
+	.inputContainer label {
+		padding: 3px;
+	}
+	.saveBtn {
+		width: 100px;
+	}
+}

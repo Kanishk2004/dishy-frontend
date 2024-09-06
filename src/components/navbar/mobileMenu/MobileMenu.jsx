@@ -45,6 +45,13 @@ const MobileMenu = ({ open, setOpen, isAuthenticated }) => {
 					Recipies
 				</Link>
 				<Link
+					href={'/share'}
+					className={`${styles.link} ${
+						pathname === '/share' ? styles.active : ''
+					}`}>
+					Add Recipe
+				</Link>
+				<Link
 					href={'/blog'}
 					className={`${styles.link} ${
 						pathname === '/blog' ? styles.active : ''

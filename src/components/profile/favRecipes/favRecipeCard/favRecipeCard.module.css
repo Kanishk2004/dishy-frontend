@@ -1,0 +1,68 @@
+.imgContainer {
+	position: relative;
+}
+.recipeCard {
+	background: var(--softgray);
+	border-radius: 5px;
+}
+.cuisineAndCategory {
+	display: flex;
+	justify-content: flex-start;
+	margin-bottom: 3px;
+}
+.cuisineAndCategory span {
+	color: var(--darkpink);
+	padding-right: 15px;
+	font-size: 12px;
+}
+.img {
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	object-fit: cover;
+}
+.iconContainer {
+	display: flex;
+	justify-content: center;
+	gap: 5px;
+	align-items: center;
+}
+.infoContainer {
+	padding: 0px 5px 5px 5px;
+}
+.title {
+	font-size: 13px;
+	font-weight: bold;
+}
+.btn {
+	width: 100%;
+	padding: 5px 10px;
+	background: var(--darkpink);
+	color: white;
+	border-radius: 5px;
+	cursor: pointer;
+	margin-top: 5px;
+	font-size: 12px;
+}
+
+.ratingContainer {
+	display: flex;
+	gap: 5px;
+	justify-content: space-evenly;
+	font-size: 12px;
+	text-align: center;
+	margin: 5px 0px;
+	background: white;
+	border-radius: 5px;
+	padding: 5px;
+}
+.avgRating {
+	color: var(--darkpink);
+	font-weight: bold;
+}
+
+@media (max-width: 640px) {
+	.img {
+		width: 155px;
+		height: 100px;
+	}
+}

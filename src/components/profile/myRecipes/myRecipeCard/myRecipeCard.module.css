@@ -1,0 +1,71 @@
+.imgContainer {
+	position: relative;
+}
+.editIconContainer {
+	position: absolute;
+	top: 3px;
+	right: 3px;
+	border-radius: 50%;
+	background: var(--darkpink);
+	padding: 5px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+}
+.editIcon {
+	filter: brightness(0) invert(1);
+}
+.recipeCard {
+	background: var(--softgray);
+	border-radius: 5px;
+}
+.img {
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	object-fit: cover;
+}
+.infoContainer {
+	padding: 0px 5px 5px 5px;
+}
+.title {
+	font-size: 13px;
+	font-weight: bold;
+}
+.date {
+	font-size: 10px;
+	text-align: right;
+}
+.btn {
+	width: 100%;
+	padding: 5px 10px;
+	background: var(--darkpink);
+	color: white;
+	border-radius: 5px;
+	cursor: pointer;
+	margin-top: 5px;
+	font-size: 12px;
+}
+
+.ratingContainer {
+	display: flex;
+	gap: 5px;
+	justify-content: space-evenly;
+	font-size: 12px;
+	text-align: center;
+	margin: 5px 0px;
+	background: white;
+	border-radius: 5px;
+	padding: 5px;
+}
+.avgRating {
+	color: var(--darkpink);
+	font-weight: bold;
+}
+
+@media (max-width: 640px) {
+	.img {
+		width: 155px;
+		height: 100px;
+	}
+}

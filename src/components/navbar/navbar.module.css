@@ -14,18 +14,22 @@
 }
 
 .links {
-	width: 400px;
+	width: 450px;
 	height: 40px;
 	display: flex;
 	justify-content: space-between;
 }
 .link {
 	color: var(--darkgray);
-	font-size: 20px;
+	font-size: 15px;
 	padding: 10px;
 	box-sizing: content-box;
+	border-radius: 8px;
 }
 .link:hover {
+	border-bottom: 2px solid var(--darkpink);
+}
+.active {
 	border-bottom: 2px solid var(--darkpink);
 }
 

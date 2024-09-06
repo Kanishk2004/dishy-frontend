@@ -21,6 +21,7 @@
 .avatar {
 	border-radius: 50%;
 	background: white;
+	object-fit: cover;
 }
 
 /* Profile Card */

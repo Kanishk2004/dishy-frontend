@@ -43,7 +43,7 @@ export const AuthProvider = ({ children }) => {
 					success: true,
 					message: 'Login successfull',
 				});
-				router.push('/recipies');
+				router.push('/');
 			}
 		} catch (error) {
 			setMessage({
@@ -113,7 +113,42 @@ export const AuthProvider = ({ children }) => {
 			}
 			if (!response.success) {
 				setMessage({
+					success: false,
+					message: response.message,
+				});
+			}
+		} catch (error) {
+			setMessage({
+				success: false,
+				message: 'Something went wrong!',
+			});
+		}
+	};
+
+	const deleteAccount = async (password) => {
+		try {
+			let response = await fetch(`${apiURL}/users/me`, {
+				method: 'DELETE',
+				body: JSON.stringify({
+					password,
+				}),
+				headers: {
+					'Content-type': 'application/json',
+				},
+				credentials: 'include',
+			});
+
+			response = await response.json();
+			if (response.success) {
+				setMessage({
 					success: true,
+					message: response.message,
+				});
+				router.push('/');
+			}
+			if (!response.success) {
+				setMessage({
+					success: false,
 					message: response.message,
 				});
 			}
@@ -137,6 +172,7 @@ export const AuthProvider = ({ children }) => {
 				message,
 				setMessage,
 				updateAccount,
+				deleteAccount,
 			}}>
 			{children}
 		</AuthContext.Provider>

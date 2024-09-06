@@ -3,7 +3,7 @@ import Link from 'next/link';
 import styles from './navbar.module.css';
 import UserProfile from './userProfile/UserProfile';
 import { useAuth } from '@/context/AuthContext';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { apiURL } from '@/Constant';
 import { usePathname, useRouter } from 'next/navigation';
 import Image from 'next/image';
@@ -59,16 +59,37 @@ const Navbar = () => {
 			</Link>
 
 			<div className={styles.links}>
-				<Link href={'/'} className={styles.link}>
+				<Link
+					href={'/'}
+					className={`${styles.link} ${pathname === '/' ? styles.active : ''}`}>
 					Home
 				</Link>
-				<Link href={'/recipies'} className={styles.link}>
+				<Link
+					href={'/recipies'}
+					className={`${styles.link} ${
+						pathname === '/recipies' ? styles.active : ''
+					}`}>
 					Recipes
 				</Link>
-				<Link href={'/blog'} className={styles.link}>
+				<Link
+					href={'/share'}
+					className={`${styles.link} ${
+						pathname === '/share' ? styles.active : ''
+					}`}>
+					Add Recipe
+				</Link>
+				<Link
+					href={'/blog'}
+					className={`${styles.link} ${
+						pathname === '/blog' ? styles.active : ''
+					}`}>
 					Blog
 				</Link>
-				<Link href={'/about'} className={styles.link}>
+				<Link
+					href={'/about'}
+					className={`${styles.link} ${
+						pathname === '/about' ? styles.active : ''
+					}`}>
 					About
 				</Link>
 			</div>

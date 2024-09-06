@@ -1,0 +1,78 @@
+.container {
+	background: white;
+	border-radius: 8px;
+	padding: 10px;
+}
+.title {
+    margin-bottom: 5px;
+}
+.dropzoneStyle {
+	border: 2px dashed var(--lightpink);
+	background: rgb(240, 240, 240);
+	border-radius: 5px;
+	padding: 20px;
+	text-align: center;
+	cursor: pointer;
+}
+
+.previewContainer {
+	display: flex;
+    justify-content: center;
+	gap: 10px;
+	padding: 5px;
+	flex-wrap: wrap;
+}
+.previewItem {
+	display: flex;
+	flex-direction: column;
+    position: relative;
+}
+.previewItem button {
+	cursor: pointer;
+	padding: 5px;
+    position: absolute;
+	border: none;
+	width: 40px;
+	background: rgb(255, 111, 111);
+	color: white;
+    bottom: 2px;
+    right: 2px;
+	border-radius: 5px;
+}
+.deleteIcon {
+    filter: brightness(0) invert(1);
+}
+.previewStyle {
+	margin-top: 10px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+}
+.imageStyle {
+	object-fit: cover;
+    border-radius: 5px;
+}
+.uploadBtn {
+	font-size: 15px;
+	padding: 5px 10px;
+	color: white;
+	background: var(--darkpink);
+	border-radius: 5px;
+	cursor: pointer;
+	width: 150px;
+	height: 50px;
+	margin-top: 50px;
+}
+
+@media (max-width: 768px) {
+	.previewContainer {
+		gap: 5px;
+		/* flex-wrap: nowrap; */
+	}
+	.imageStyle {
+		width: 150px;
+		height: 90px;
+	}
+}

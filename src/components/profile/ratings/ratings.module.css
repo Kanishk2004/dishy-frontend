@@ -1,0 +1,52 @@
+.container {
+	background: white;
+	border-radius: 5px;
+	padding: 5px;
+	color: var(--gray);
+}
+
+.ratingCardContainer {
+	background: none;
+	display: flex;
+	flex-direction: column;
+}
+.ratingTable {
+	margin-top: 5px;
+	width: 100%;
+	padding: 5px;
+	border: 2px solid var(--softgray);
+	border-radius: 5px;
+}
+
+.ratingTable thead {
+	text-align: left;
+	font-size: 15px;
+}
+.ratingTable tr {
+	font-size: 13px;
+}
+.recipeTitle {
+	color: var(--darkpink);
+}
+.ratingTable button {
+	color: white;
+	background: rgb(255, 38, 38);
+	border-radius: 5px;
+	padding: 5px 10px;
+	cursor: pointer;
+}
+.noRatings {
+	font-size: 13px;
+}
+@media (max-width: 640px) {
+	.ratingTable thead {
+		font-size: 13px;
+	}
+	.ratingTable tr {
+		font-size: 10px;
+	}
+	.ratingTable button {
+		font-size: 12px;
+		padding: 3px 5px;
+	}
+}
