@@ -1,0 +1,52 @@
+.container {
+	width: 100%;
+	margin: 10px 0px;
+	background: var(--softgray);
+	padding: 20px;
+	border-radius: 8px;
+	color: var(--gray);
+}
+.heading {
+	margin-bottom: 20px;
+}
+
+.detailsSection {
+	display: flex;
+    gap: 20px;
+}
+.infoContainer {
+    flex: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background: white;
+	padding: 20px;
+	font-size: 15px;
+	border-radius: 8px;
+	gap: 15px;
+	text-align: center;
+}
+.text {
+	width: 500px;
+}
+
+.imgContainer {
+	width: fit-content;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 4px solid var(--darkpink);
+	border-radius: 50%;
+	padding: 10px;
+}
+.avatar {
+	border-radius: 50%;
+}
+
+.contactDetailContainer {
+    flex: 1;
+    background: white;
+	padding: 20px;
+	/* font-size: 15px; */
+	border-radius: 8px;
+}

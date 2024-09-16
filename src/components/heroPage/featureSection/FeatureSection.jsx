@@ -4,7 +4,7 @@ import styles from './featureSection.module.css';
 const FeatureSection = () => {
 	return (
 		<div className={styles.container}>
-			<h2 className={styles.heading}>Features</h2>
+			<h2 className={styles.heading}>What you can do on Dishy</h2>
 			<div className={styles.cardContainer}>
 				<div className={styles.card}>
 					<div className={styles.iconContainer}>
