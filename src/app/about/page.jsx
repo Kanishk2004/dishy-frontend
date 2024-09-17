@@ -3,6 +3,7 @@ import styles from './aboutPage.module.css';
 import FeatureSection from '@/components/heroPage/featureSection/FeatureSection';
 import HowItWorks from '@/components/heroPage/howItWorks/HowItWorks';
 import AboutDeveloper from '@/components/aboutDeveloper/AboutDeveloper';
+import CallToAction from '@/components/heroPage/callToActionSection/CallToAction';
 
 const page = () => {
 	return (
@@ -49,6 +50,7 @@ const page = () => {
 			<FeatureSection />
 			<HowItWorks />
 			<AboutDeveloper />
+			<CallToAction />
 		</div>
 	);
 };

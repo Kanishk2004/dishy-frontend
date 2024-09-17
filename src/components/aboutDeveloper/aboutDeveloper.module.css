@@ -10,24 +10,17 @@
 	margin-bottom: 20px;
 }
 
-.detailsSection {
-	display: flex;
-    gap: 20px;
-}
 .infoContainer {
-    flex: 1;
 	display: flex;
-	flex-direction: column;
 	align-items: center;
 	background: white;
 	padding: 20px;
 	font-size: 15px;
 	border-radius: 8px;
-	gap: 15px;
-	text-align: center;
+	gap: 20px;
 }
 .text {
-	width: 500px;
+	padding: 10px;
 }
 
 .imgContainer {
@@ -44,9 +37,45 @@
 }
 
 .contactDetailContainer {
-    flex: 1;
-    background: white;
-	padding: 20px;
-	/* font-size: 15px; */
-	border-radius: 8px;
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	padding: 10px 0px;
+}
+
+.contactDetail {
+	display: flex;
+	gap: 10px;
+}
+
+.icons {
+	display: flex;
+	gap: 10px;
+	padding: 10px 0px;
+}
+
+@media (max-width: 1024px) {
+	.infoContainer {
+		flex-direction: column;
+		text-align: center;
+	}
+	.contactDetailContainer {
+		justify-content: center;
+		align-items: center;
+	}
+	.contactDetail {
+		gap: 5px;
+	}
+	.icons {
+		justify-content: center;
+	}
+}
+
+@media (max-width: 768px) {
+	.container {
+		padding: 10px;
+	}
+	.infoContainer {
+		padding: 10px;
+	}
 }
