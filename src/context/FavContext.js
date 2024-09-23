@@ -11,11 +11,13 @@ export const FavProvider = ({ children }) => {
 
 	const getUserFavorites = async () => {
 		try {
+			const accessToken = localStorage.getItem('accessToken');
 			setLoadingFav(true);
 			let response = await fetch(`${apiURL}/favorites/`, {
 				method: 'GET',
 				headers: {
 					'Content-type': 'application/json',
+					Authorization: `Bearer ${accessToken}`,
 				},
 				credentials: 'include',
 			});
@@ -35,10 +37,12 @@ export const FavProvider = ({ children }) => {
 	const toggleFavorite = async (recipeId) => {
 		setLoadingFav(true);
 		try {
+			const accessToken = localStorage.getItem('accessToken');
 			let response = await fetch(`${apiURL}/favorites/toggle/${recipeId}`, {
 				method: 'POST',
 				headers: {
 					'Content-type': 'application/json',
+					Authorization: `Bearer ${accessToken}`,
 				},
 				credentials: 'include',
 			});

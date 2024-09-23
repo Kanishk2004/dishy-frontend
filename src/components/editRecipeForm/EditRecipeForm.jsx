@@ -86,6 +86,7 @@ const EditRecipeForm = ({
 		}
 
 		try {
+			const accessToken = localStorage.getItem('accessToken');
 			setUploading(true);
 
 			let res = await fetch(`${apiURL}/recipies/${recipeId}`, {
@@ -93,6 +94,7 @@ const EditRecipeForm = ({
 				body: JSON.stringify(updateData),
 				headers: {
 					'Content-type': 'application/json',
+					Authorization: `Bearer ${accessToken}`,
 				},
 				credentials: 'include',
 			});
@@ -122,12 +124,14 @@ const EditRecipeForm = ({
 		e.preventDefault();
 
 		try {
+			const accessToken = localStorage.getItem('accessToken');
 			setDeleting(true);
 
 			let res = await fetch(`${apiURL}/recipies/${recipeId}`, {
 				method: 'DELETE',
 				headers: {
 					'Content-type': 'application/json',
+					Authorization: `Bearer ${accessToken}`,
 				},
 				credentials: 'include',
 			});

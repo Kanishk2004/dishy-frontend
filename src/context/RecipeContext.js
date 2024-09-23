@@ -15,9 +15,13 @@ export const RecipeProvider = ({ children }) => {
 
 	const fetchUserRecipies = async () => {
 		try {
+			const accessToken = localStorage.getItem('accessToken');
 			let response = await fetch(`${apiURL}/recipies/myRecipies`, {
 				method: 'GET',
 				credentials: 'include',
+				headers: {
+					Authorization: `Bearer ${accessToken}`,
+				},
 			});
 			response = await response.json();
 
@@ -31,9 +35,13 @@ export const RecipeProvider = ({ children }) => {
 
 	const fetchAllRecipies = async (sortType = 'new') => {
 		try {
+			const accessToken = localStorage.getItem('accessToken');
 			let response = await fetch(`${apiURL}/recipies?sortType=${sortType}`, {
 				method: 'GET',
 				credentials: 'include',
+				headers: {
+					Authorization: `Bearer ${accessToken}`,
+				},
 			});
 			response = await response.json();
 
@@ -47,10 +55,12 @@ export const RecipeProvider = ({ children }) => {
 
 	const getRecipeAuthor = async (recipeId) => {
 		try {
+			const accessToken = localStorage.getItem('accessToken');
 			let response = await fetch(`${apiURL}/recipies/author/${recipeId}`, {
 				method: 'GET',
 				headers: {
 					'Content-type': 'application/json',
+					Authorization: `Bearer ${accessToken}`,
 				},
 				credentials: 'include',
 			});
@@ -65,10 +75,14 @@ export const RecipeProvider = ({ children }) => {
 
 	const uploadRecipe = async (data) => {
 		try {
+			const accessToken = localStorage.getItem('accessToken');
 			let res = await fetch(`${apiURL}/recipies/`, {
 				method: 'POST',
 				body: data,
 				credentials: 'include',
+				headers: {
+					Authorization: `Bearer ${accessToken}`,
+				},
 			});
 
 			res = await res.json();

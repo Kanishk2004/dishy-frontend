@@ -24,10 +24,12 @@ const Profile = () => {
 
 	const getUserProfile = async () => {
 		try {
+			const accessToken = localStorage.getItem('accessToken');
 			let res = await fetch(`${apiURL}/users/mystats`, {
 				method: 'GET',
 				headers: {
 					'Content-type': 'application/json',
+					Authorization: `Bearer ${accessToken}`,
 				},
 				credentials: 'include',
 			});
@@ -46,11 +48,13 @@ const Profile = () => {
 
 	const sendOtp = async () => {
 		try {
+			const accessToken = localStorage.getItem('accessToken');
 			setProcessing(true);
 			let res = await fetch(`${apiURL}/users/verify-email`, {
 				method: 'POST',
 				headers: {
 					'Content-type': 'application/json',
+					Authorization: `Bearer ${accessToken}`,
 				},
 				credentials: 'include',
 			});
@@ -69,6 +73,7 @@ const Profile = () => {
 	const submitOtp = async (e) => {
 		e.preventDefault();
 		try {
+			const accessToken = localStorage.getItem('accessToken');
 			let res = await fetch(`${apiURL}/users/verify-email`, {
 				method: 'PATCH',
 				body: JSON.stringify({
@@ -76,6 +81,7 @@ const Profile = () => {
 				}),
 				headers: {
 					'Content-type': 'application/json',
+					Authorization: `Bearer ${accessToken}`,
 				},
 				credentials: 'include',
 			});
