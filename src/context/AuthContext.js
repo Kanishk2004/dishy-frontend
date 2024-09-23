@@ -43,6 +43,8 @@ export const AuthProvider = ({ children }) => {
 					success: true,
 					message: 'Login successfull',
 				});
+				console.log(response.data.accessToken);
+				localStorage.setItem('accessToken', response.data.accessToken);
 				router.push('/');
 			}
 		} catch (error) {
@@ -55,9 +57,14 @@ export const AuthProvider = ({ children }) => {
 
 	const logout = async () => {
 		try {
+			const accessToken = localStorage.getItem('accessToken');
+
 			let response = await fetch(`${apiURL}/users/logout`, {
 				method: 'POST',
 				credentials: 'include',
+				headers: {
+					Authorization: `Bearer ${accessToken}`,
+				},
 			});
 
 			response = await response.json();
@@ -69,6 +76,7 @@ export const AuthProvider = ({ children }) => {
 					success: true,
 					message: 'logged out.',
 				});
+				localStorage.removeItem('accessToken');
 				router.push('/');
 			}
 			if (!response.success) {
@@ -87,6 +95,8 @@ export const AuthProvider = ({ children }) => {
 
 	const updateAccount = async (username, fullName, email, phone, bio) => {
 		try {
+			const accessToken = localStorage.getItem('accessToken');
+
 			let response = await fetch(`${apiURL}/users/me`, {
 				method: 'PATCH',
 				body: JSON.stringify({
@@ -98,6 +108,7 @@ export const AuthProvider = ({ children }) => {
 				}),
 				headers: {
 					'Content-type': 'application/json',
+					Authorization: `Bearer ${accessToken}`,
 				},
 				credentials: 'include',
 			});
@@ -127,6 +138,8 @@ export const AuthProvider = ({ children }) => {
 
 	const deleteAccount = async (password) => {
 		try {
+			const accessToken = localStorage.getItem('accessToken');
+
 			let response = await fetch(`${apiURL}/users/me`, {
 				method: 'DELETE',
 				body: JSON.stringify({
@@ -134,6 +147,7 @@ export const AuthProvider = ({ children }) => {
 				}),
 				headers: {
 					'Content-type': 'application/json',
+					Authorization: `Bearer ${accessToken}`,
 				},
 				credentials: 'include',
 			});

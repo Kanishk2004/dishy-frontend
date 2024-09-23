@@ -15,6 +15,7 @@ const ResetPasswordForm = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
+			const accessToken = localStorage.getItem('accessToken');
 			setLoading(true);
 			let res = await fetch(`${apiURL}/users/forgot-password`, {
 				method: 'POST',
@@ -23,6 +24,7 @@ const ResetPasswordForm = () => {
 				}),
 				headers: {
 					'Content-type': 'application/json',
+					Authorization: `Bearer ${accessToken}`,
 				},
 				credentials: 'include',
 			});
