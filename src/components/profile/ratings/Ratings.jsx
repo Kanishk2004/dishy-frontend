@@ -11,10 +11,12 @@ const Ratings = ({ userProfile }) => {
 
 	const getUserRatings = async () => {
 		try {
+			const accessToken = localStorage.getItem('accessToken');
 			let res = await fetch(`${apiURL}/ratings/user/${userProfile?._id}`, {
 				method: 'GET',
 				headers: {
 					'Content-type': 'application/json',
+					Authorization: `Bearer ${accessToken}`,
 				},
 				credentials: 'include',
 			});

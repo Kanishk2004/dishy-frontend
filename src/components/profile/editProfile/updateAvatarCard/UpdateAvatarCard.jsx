@@ -32,10 +32,14 @@ const UpdateAvatarCard = ({ setImageEditMode, setEditMode }) => {
 		formData.append('avatar', selectedImage);
 
 		try {
+			const accessToken = localStorage.getItem('accessToken');
 			let response = await fetch(`${apiURL}/users/avatar`, {
 				method: 'PATCH',
 				body: formData,
 				credentials: 'include',
+				headers: {
+					Authorization: `Bearer ${accessToken}`,
+				},
 			});
 
 			response = await response.json();
