@@ -8,6 +8,7 @@ import { FavProvider } from '@/context/FavContext';
 import MessageBox from '@/components/messageBox/MessageBox';
 import { RatingProvider } from '@/context/RatingContext';
 import { Analytics } from '@vercel/analytics/react';
+import AnnouncementBox from '@/components/announcementBox/AnnouncementBox';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -27,6 +28,7 @@ export default function RootLayout({ children }) {
 						<FavProvider>
 							<RatingProvider>
 								<div className="container">
+									<AnnouncementBox />
 									<MessageBox />
 									<Navbar />
 									{children}

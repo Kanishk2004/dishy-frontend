@@ -78,3 +78,11 @@
         font-size: 12px;
     }
 }
+
+.popUp {
+    background: red;
+	color: white;
+	padding: 8px;
+	font-size: 12px;
+	text-align: center;
+}

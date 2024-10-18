@@ -1,0 +1,24 @@
+.popUp {
+	background: red;
+	color: white;
+	padding: 8px 35px 8px 8px;
+	font-size: 12px;
+	text-align: center;
+	position: relative;
+}
+
+.closeBtn {
+    cursor: pointer;
+	position: absolute;
+	right: 5px;
+	top: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2px;
+    border: 2px solid white;
+    border-radius: 50%;
+}
+.closeBtn img {
+    filter: brightness(0) invert(1);
+}

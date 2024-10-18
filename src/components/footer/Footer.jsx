@@ -5,6 +5,24 @@ import Image from 'next/image';
 const Footer = () => {
 	return (
 		<div className={styles.container}>
+			<div className={styles.popUp}>
+				<div>
+					<p>
+						The backend server for this application is currently inactive. It
+						was live for over two months, during which time it provided a fully
+						functional experience. However, as this project is a hobby endeavor,
+						maintaining the server became cost-prohibitive. While the live
+						application is currently offline, the complete source code is
+						available on my{' '}
+						<a href="https://github.com/Kanishk2004">
+							<b> Github Profile</b>
+						</a>{' '}
+						for those interested in exploring the project or contributing to its
+						development. Feel free to review the code and reach out with any
+						questions or feedback.
+					</p>
+				</div>
+			</div>
 			<div className={styles.main}>
 				<div className={styles.brand}>
 					<h1>dishy</h1>
